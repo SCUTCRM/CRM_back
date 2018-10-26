@@ -25,7 +25,7 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public RegisterResult registerByUser(User user) throws RegisterException {
         RegisterResult result = new RegisterResult();
-        //1.判断输入是否为空
+        //判断输入是否为空
         if (user == null ) {
             result.setCode(RegisterResultEnum.INPUT_NULL.getCode());
             result.setMsg(RegisterResultEnum.INPUT_NULL.getMsg());

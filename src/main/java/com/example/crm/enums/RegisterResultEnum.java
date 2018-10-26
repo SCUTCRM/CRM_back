@@ -10,7 +10,7 @@ public  enum  RegisterResultEnum {
     INPUT_NULL(-1,"输入信息为空"),
     USER_EXIST(-2,"用户信息已存在"),
     SUCCESS(1,"注册成功"),
-    USER_FAILD(-5,"用户注册失败");
+    USER_FAILD(-3,"用户注册失败");
 
     private Integer code;
     private String msg;

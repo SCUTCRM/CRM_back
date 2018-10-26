@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
             return userResult;
         }
         try {
-            User user = userDao.getUser(userName); //用户锁定也是算用户不存在
+            User user = userDao.getUser(userName);
             if (user == null) {
                 userResult.setCode(UserResultEnum.USER_NOT_EXIT.getCode());
                 userResult.setMsg(UserResultEnum.USER_NOT_EXIT.getMsg());

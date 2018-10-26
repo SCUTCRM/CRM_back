@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * @ Author     ：Bin Liu
  * @ Date       ：2018/10/25 14:56
- * @ Description：${description}
+ * @ Description：用户数据库访问层接口
  * @ Modified By：
  */
 @Component
