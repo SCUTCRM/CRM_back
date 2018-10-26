@@ -1,0 +1,49 @@
+#Spring Profiles
+#datasource
+spring:
+  #Datasource
+  datasource:
+    #使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://localhost:3306/crm?characterEncoding=UTF8&useSSL=false
+      username: root
+      password: 7887227
+      #初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 10
+      #配置获取连接等待超时的时间
+      max-wait: 60000
+
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      validation-query-timeout: 60000
+      validation-query: SELECT 1 FROM DUAL
+      #打开PSCache,并且制定每个链接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+
+  #mvc:
+    #static-path-pattern: /**
+  #resources:
+    #static-locations: classpath:/META-INF/resources/static/
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+
+#端口号默认就是8080
+server:
+  port: 8080
+  #servlet:
+    #context-path: /system
+
+
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiyubxw.system.dao.UserDao" >
+    <resultMap id="userMap" type="com.tiyubxw.system.entity.User">
+        <id column="user_id" property="userId"/>
+        <result column="email" property="email"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="passWord"/>
+        <result column="phone" property="phone"/>
+        <result column="title" property="title"/>
+        <association property="address" column="address_id"
+                     javaType="com.example.crm.entity.address">
+            <id column="address_id" property="addressId"/>
+        </association>
+        <association property="leads" column="lead_id"
+                     javaType="com.example.crm.entity.leads">
+            <id column="lead_id" property="leadId"/>
+        </association>
+        <association property="concat" column="contact_id"
+                     javaType="com.example.crm.entity.contact">
+            <id column="concat_id" property="concatId"/>
+        </association>
+    </resultMap>
+
+    <!-- 登录用 -->
+    <select id="getUser" resultMap="userMap">
+        select u.*
+        from user u
+        where u.user_name = #{userName}
+    </select>
+
+    <insert id="insertUser" parameterType="com.example.crm.entity.User" keyProperty="userId" keyColumn="user_id">
+        insert into user(user_name,password,phone,email,address_id,title,lead_id,contact_id)
+        values(#{userName},#{passWord},#{phone},#{email},#{address.addressId},#{title},#{leads.leadId},#{contact.contactId})
+    </insert>
+
+    <!-- 姓名不可修改 -->
+    <update id="updateUser">
+        update user
+        <set>
+            <if test="password != null">password = #{passWord},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="address != null and address.addressId != null">address_id = #{address.addressId},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="leads != null and leads.leadId != null">lead_id = #{lead.leadId},</if>
+            <if test="contact != null and contact.contactId != null">contact_id = #{contact.contactId}</if>
+        </set>
+        where user_id = #{userId}
+    </update>
+</mapper>
