@@ -16,5 +16,5 @@ public interface LoginService {
      * @Param: null
      * @return
      */
-    LoginResult loginByUser(String name, String password);
+    LoginResult loginByUser(String userName, String passWord);
 }
