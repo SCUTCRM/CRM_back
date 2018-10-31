@@ -6,7 +6,7 @@ package com.example.crm.entity;
  * @ Description：价格实体
  * @ Modified By：
  */
-public class price {
+public class Price {
     private Integer priceId;
     //单价
     private Double unitPrice;

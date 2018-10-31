@@ -10,7 +10,7 @@ import java.util.Date;
  * @ Description：机会实体类
  * @ Modified By：
  */
-public class opportunity {
+public class Opportunity {
     private Integer opportId;
     //机会名字
     private String opportName;
@@ -39,7 +39,7 @@ public class opportunity {
     //描述
     private String description;
     //联系人
-    private contact contact;
+    private Contact contact;
 
     public Integer getOpportId() {
         return opportId;
@@ -145,11 +145,11 @@ public class opportunity {
         this.description = description;
     }
 
-    public com.example.crm.entity.contact getContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setContact(com.example.crm.entity.contact contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
     }
 }

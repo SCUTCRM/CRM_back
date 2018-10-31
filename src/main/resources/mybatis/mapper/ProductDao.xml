@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.ProductDao" >
+    <resultMap id="productMap" type="com.example.crm.entity.Product">
+        <id column="product_id" property="productId"/>
+        <result column="product_name" property="productName"/>
+        <result column="user_name" property="userName"/>
+        <result column="part_number" property="partNumber"/>
+        <result column="sale_start_date" property="saleStartDate"/>
+        <result column="product_category" property="productCategory"/>
+        <result column="active" property="active"/>
+        <result column="sale_end_date" property="saleEndDate"/>
+        <result column="product_number" property="productNumber"/>
+        <result column="website" property="website"/>
+        <result column="ventor_name" property="ventorName"/>
+        <result column="ventor_partno" property="ventorPartno"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="manufacturer" property="manufacturer"/>
+        <result column="description" property="description"/>
+        <result column="update" property="update"/>
+        <association property="price" column="price_id"
+                     javaType="com.example.crm.entity.Price">
+            <id column="price_id" property="priceId"/>
+        </association>
+        <association property="stockInfoId" column="stock_info_id"
+                     javaType="com.example.crm.entity.StockInfo">
+            <id column="stock_info_id" property="stockInfoId"/>
+        </association>
+    </resultMap>
+
+    <!-- 登录用 -->
+    <select id="getProduct" resultMap="productMap">
+        select p.*
+        from product p
+        where p.product_name = #{productName}
+    </select>
+
+    <insert id="insertProduct" parameterType="com.example.crm.entity.Product" keyProperty="productId" keyColumn="product_id">
+        insert into product(product_name,part_number,sale_start_date,product_category,active,sale_end_date,product_number,website,ventor_name,ventor_partno,create_time,modified_time,manufacturer,description,update,price_id,stock_info_id)
+        values(#{productName},#{partNumber},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{update},#{price.priceId},#{stockInfo.stockInfoId})
+    </insert>
+
+    <!-- 姓名不可修改 -->
+    <update id="updateProduct">
+        update product
+        <set>
+            <if test="productName != null">product_name = #{productName},</if>
+            <if test="partNumber != null">part_number = #{partNumber},</if>
+            <if test="saleStartDate != null">sale_start_date = #{saleStartDate},</if>
+            <if test="productCategory != null">product_category = #{productCategory},</if>
+            <if test="active != null">active = #{active},</if>
+            <if test="saleEndDate != null">sale_end_date = #{saleEndDate},</if>
+            <if test="productNumber != null">product_number = #{productNumber},</if>
+            <if test="website != null">website = #{website},</if>
+            <if test="ventorName != null">ventor_name = #{ventorName},</if>
+            <if test="ventorPartno != null">ventor_partno = #{ventorPartno},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
+            <if test="manufacturer != null">manufacturer = #{manufacturer},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="update != null">update = #{update},</if>
+            <if test="price != null and price.priceId != null">price_id = #{price.priceId},</if>
+            <if test="stockInfo != null and stockInfo.stockInfoId != null">stock_info_id = #{stockInfo.stock_info_id}</if>
+        </set>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteProduct">
+        delete from product
+        where product_id = #{productId}
+    </delete>
+</mapper>

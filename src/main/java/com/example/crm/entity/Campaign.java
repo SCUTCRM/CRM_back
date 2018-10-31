@@ -10,7 +10,7 @@ import java.util.Date;
  * @ Description：活动实体类
  * @ Modified By：
  */
-public class campaign {
+public class Campaign {
     private Integer campaignId;
     //活动类型
     private Integer campaignType;
@@ -42,11 +42,11 @@ public class campaign {
     //更新
     private String update;
     //产品
-    private product product;
+    private Product product;
     //预期和实际
-    private expActual expActual;
+    private ExpActual expActual;
     //机会
-    private opportunity opportunity;
+    private Opportunity opportunity;
 
     public Integer getCampaignId() {
         return campaignId;
@@ -160,27 +160,27 @@ public class campaign {
         this.update = update;
     }
 
-    public com.example.crm.entity.product getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(com.example.crm.entity.product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
-    public com.example.crm.entity.expActual getExpActual() {
+    public ExpActual getExpActual() {
         return expActual;
     }
 
-    public void setExpActual(com.example.crm.entity.expActual expActual) {
+    public void setExpActual(ExpActual expActual) {
         this.expActual = expActual;
     }
 
-    public com.example.crm.entity.opportunity getOpportunity() {
+    public Opportunity getOpportunity() {
         return opportunity;
     }
 
-    public void setOpportunity(com.example.crm.entity.opportunity opportunity) {
+    public void setOpportunity(Opportunity opportunity) {
         this.opportunity = opportunity;
     }
 }

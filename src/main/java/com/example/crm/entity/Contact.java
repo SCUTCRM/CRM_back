@@ -10,7 +10,7 @@ import java.util.Date;
  * @ Description：联系人实体类
  * @ Modified By：
  */
-public class contact {
+public class Contact {
     private Integer contactId;
     //名字
     private String firstName;
@@ -54,9 +54,9 @@ public class contact {
     //描述
     private String description;
     //组织
-    private organization organization;
+    private Organization organization;
     //地址
-    private address address;
+    private Address address;
 
     public Integer getContactId() {
         return contactId;
@@ -218,19 +218,19 @@ public class contact {
         this.description = description;
     }
 
-    public com.example.crm.entity.organization getOrganization() {
+    public Organization getOrganization() {
         return organization;
     }
 
-    public void setOrganization(com.example.crm.entity.organization organization) {
+    public void setOrganization(Organization organization) {
         this.organization = organization;
     }
 
-    public com.example.crm.entity.address getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(com.example.crm.entity.address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 }

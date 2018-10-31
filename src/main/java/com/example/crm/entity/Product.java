@@ -10,7 +10,7 @@ import java.util.Date;
  * @ Description：产品实体类
  * @ Modified By：
  */
-public class product {
+public class Product {
     private Integer productId;
     //产品名称
     private String productName;
@@ -45,9 +45,9 @@ public class product {
     //更改
     private String update;
     //价格
-    private price price;
+    private Price price;
     //库存
-    private stockInfo stockInfo;
+    private StockInfo stockInfo;
 
     public Integer getProductId() {
         return productId;
@@ -169,19 +169,19 @@ public class product {
         this.update = update;
     }
 
-    public com.example.crm.entity.price getPrice() {
+    public Price getPrice() {
         return price;
     }
 
-    public void setPrice(com.example.crm.entity.price price) {
+    public void setPrice(Price price) {
         this.price = price;
     }
 
-    public com.example.crm.entity.stockInfo getStockInfo() {
+    public StockInfo getStockInfo() {
         return stockInfo;
     }
 
-    public void setStockInfo(com.example.crm.entity.stockInfo stockInfo) {
+    public void setStockInfo(StockInfo stockInfo) {
         this.stockInfo = stockInfo;
     }
 }

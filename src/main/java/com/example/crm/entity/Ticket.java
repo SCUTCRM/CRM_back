@@ -10,7 +10,7 @@ import java.util.Date;
  * @ Description：身份证实体类
  * @ Modified By：
  */
-public class ticket {
+public class Ticket {
     private Integer ticketId;
     //称号（称呼）
     private String title;
@@ -39,9 +39,9 @@ public class ticket {
     //更改
     private String update;
     //组织
-    private organization organization;
+    private Organization organization;
     //产品
-    private product product;
+    private Product product;
 
     public Integer getTicketId() {
         return ticketId;
@@ -147,19 +147,19 @@ public class ticket {
         this.update = update;
     }
 
-    public com.example.crm.entity.organization getOrganization() {
+    public Organization getOrganization() {
         return organization;
     }
 
-    public void setOrganization(com.example.crm.entity.organization organization) {
+    public void setOrganization(Organization organization) {
         this.organization = organization;
     }
 
-    public com.example.crm.entity.product getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(com.example.crm.entity.product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 }

@@ -6,7 +6,7 @@ package com.example.crm.entity;
  * @ Description：预期和实际实体类
  * @ Modified By：
  */
-public class expActual {
+public class ExpActual {
     private Integer sxpActualId;
     //预算成本
     private Double budgetCost;

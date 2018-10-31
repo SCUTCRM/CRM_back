@@ -10,7 +10,7 @@ import java.util.Date;
  * @ Description：线索实体类
  * @ Modified By：
  */
-public class leads {
+public class Leads {
     private Integer leadId;
     //名字
     private String firstName;
@@ -41,11 +41,11 @@ public class leads {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifiedTime;
     //组织
-    private organization organization;
+    private Organization organization;
     //产品
-    private product product;
+    private Product product;
     //地址
-    private address address;
+    private Address address;
 
     public Integer getLeadId() {
         return leadId;
@@ -159,27 +159,27 @@ public class leads {
         this.modifiedTime = modifiedTime;
     }
 
-    public com.example.crm.entity.organization getOrganization() {
+    public Organization getOrganization() {
         return organization;
     }
 
-    public void setOrganization(com.example.crm.entity.organization organization) {
+    public void setOrganization(Organization organization) {
         this.organization = organization;
     }
 
-    public com.example.crm.entity.product getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(com.example.crm.entity.product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
-    public com.example.crm.entity.address getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(com.example.crm.entity.address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 }

@@ -7,7 +7,7 @@ package com.example.crm.entity;
  * @ Modified By：
  */
 
-public class address {
+public class Address {
     private Integer addressId;
     //邮寄街道
     private String mailStreet;

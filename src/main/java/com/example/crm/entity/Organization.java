@@ -10,7 +10,7 @@ import java.util.Date;
  * @ Description：组织实体类
  * @ Modified By：
  */
-public class organization {
+public class Organization {
     private Integer organizationId;
     //组织名字
     private String organizationName;
@@ -43,7 +43,7 @@ public class organization {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     //地址
-    private address address;
+    private Address address;
     //描述
     private String description;
 
@@ -167,11 +167,11 @@ public class organization {
         this.createTime = createTime;
     }
 
-    public com.example.crm.entity.address getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(com.example.crm.entity.address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

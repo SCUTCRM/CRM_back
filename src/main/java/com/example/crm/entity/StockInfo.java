@@ -6,7 +6,7 @@ package com.example.crm.entity;
  * @ Description：库存实体类
  * @ Modified By：
  */
-public class stockInfo {
+public class StockInfo {
     private Integer stockInfoId;
     //库存的使用单位
     private Integer usageUnit;

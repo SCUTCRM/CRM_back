@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tiyubxw.system.dao.UserDao" >
-    <resultMap id="userMap" type="com.tiyubxw.system.entity.User">
+<mapper namespace="com.example.crm.dao.UserDao" >
+    <resultMap id="userMap" type="com.example.crm.entity.User">
         <id column="user_id" property="userId"/>
         <result column="email" property="email"/>
         <result column="user_name" property="userName"/>
@@ -9,15 +9,15 @@
         <result column="phone" property="phone"/>
         <result column="title" property="title"/>
         <association property="address" column="address_id"
-                     javaType="com.example.crm.entity.address">
+                     javaType="com.example.crm.entity.Address">
             <id column="address_id" property="addressId"/>
         </association>
         <association property="leads" column="lead_id"
-                     javaType="com.example.crm.entity.leads">
+                     javaType="com.example.crm.entity.Leads">
             <id column="lead_id" property="leadId"/>
         </association>
         <association property="concat" column="contact_id"
-                     javaType="com.example.crm.entity.contact">
+                     javaType="com.example.crm.entity.Contact">
             <id column="concat_id" property="concatId"/>
         </association>
     </resultMap>

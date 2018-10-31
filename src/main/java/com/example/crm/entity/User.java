@@ -19,11 +19,11 @@ public class User {
     //用户称呼（头衔）
     private String title;
     //用户地址
-    private address address;
+    private Address address;
     //线索
-    private leads leads;
+    private Leads leads;
     //联系人
-    private contact contact;
+    private Contact contact;
 
     public Integer getUserId() {
         return userId;
@@ -73,27 +73,27 @@ public class User {
         this.title = title;
     }
 
-    public com.example.crm.entity.address getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(com.example.crm.entity.address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    public com.example.crm.entity.leads getLeads() {
+    public Leads getLeads() {
         return leads;
     }
 
-    public void setLeads(com.example.crm.entity.leads leads) {
+    public void setLeads(Leads leads) {
         this.leads = leads;
     }
 
-    public com.example.crm.entity.contact getContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setContact(com.example.crm.entity.contact contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
     }
 }
