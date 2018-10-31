@@ -3,9 +3,11 @@ package com.example.crm.web;
 import com.example.crm.dto.RegisterResult;
 import com.example.crm.entity.User;
 import com.example.crm.enums.RegisterResultEnum;
+import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.RegisterException;
 import com.example.crm.service.RegisterService;
 import com.example.crm.util.HttpServletRequestUtil;
+import com.example.crm.util.KaptchaUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,27 +31,34 @@ public class RegisterController {
 
     //用户注册
     @PostMapping("/users/register")
-    private HashMap<String,Object> registerByUser(HttpServletRequest request){
-        HashMap<String,Object> resultMap = new HashMap<>();
-        //将前台获取的参数转换成User对象
-        String userStr = HttpServletRequestUtil.getString(request,"user");
+    private HashMap<String, Object> registerByUser(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        //1.判断验证码
+        if (!KaptchaUtil.checkVerifyCode(request)) {
+            resultMap.put("success", false);
+            resultMap.put("msg", SystemErrorEnum.KAPTCHA_INPUT_ERROR.getMsg());
+            resultMap.put("code", SystemErrorEnum.KAPTCHA_INPUT_ERROR.getCode());
+            return resultMap;
+        }
+        //2.将前台获取的参数转换成User对象
+        String userStr = HttpServletRequestUtil.getString(request, "user");
         ObjectMapper mapper = new ObjectMapper();
         User user = null;
         //进行注册,user是由是由前端传递过来的json字符串
-        try{
+        try {
             RegisterResult result = registerService.registerByUser(user);
-            if (result.getCode() == RegisterResultEnum.SUCCESS.getCode()){
-                resultMap.put("success",true);
-            }else{
-                resultMap.put("success",false);
+            if (result.getCode() == RegisterResultEnum.SUCCESS.getCode()) {
+                resultMap.put("success", true);
+            } else {
+                resultMap.put("success", false);
             }
-            resultMap.put("code",result.getCode());
-            resultMap.put("msg",result.getMsg());
+            resultMap.put("code", result.getCode());
+            resultMap.put("msg", result.getMsg());
             return resultMap;
-        }catch (RegisterException e){
-            resultMap.put("success",false);
-            resultMap.put("code",e.getCode());
-            resultMap.put("msg",e.getMessage());
+        } catch (RegisterException e) {
+            resultMap.put("success", false);
+            resultMap.put("code", e.getCode());
+            resultMap.put("msg", e.getMessage());
             return resultMap;
         }
     }

@@ -8,8 +8,9 @@ package com.example.crm.enums;
  */
 public enum SystemErrorEnum {
     SYSTEM_INNER_ERROR(-1001,"系统内部错误,操作失败"),
+    KAPTCHA_INPUT_ERROR(-1002,"验证码输入错误"),
     CAPTCHA_GET_SUCCESS(1,"信息获取成功"),
-    INPUT_NULL_ERROR(-1002,"信息输入为空");
+    INPUT_NULL_ERROR(-1003,"信息输入为空");
 
     private Integer code;
     private String msg;

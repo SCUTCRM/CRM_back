@@ -2,9 +2,11 @@ package com.example.crm.web;
 
 import com.example.crm.dto.LoginResult;
 import com.example.crm.enums.LoginResultEnum;
+import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.LoginException;
 import com.example.crm.service.LoginService;
 import com.example.crm.util.HttpServletRequestUtil;
+import com.example.crm.util.KaptchaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +33,13 @@ public class LoginController {
     @PostMapping("/users/login")
     private HashMap<String,Object> loginByUser(HttpServletRequest request){
         HashMap<String,Object> resultMap = new HashMap<>();
+        //1.判断验证码
+        if (!KaptchaUtil.checkVerifyCode(request)){
+            resultMap.put("success",false);
+            resultMap.put("msg", SystemErrorEnum.KAPTCHA_INPUT_ERROR.getMsg());
+            resultMap.put("code", SystemErrorEnum.KAPTCHA_INPUT_ERROR.getCode());
+            return resultMap;
+        }
         //根据前端传递的参数发起登录请求
         String userName = HttpServletRequestUtil.getString(request,"userName");
         String passWord = HttpServletRequestUtil.getString(request,"passWord");
