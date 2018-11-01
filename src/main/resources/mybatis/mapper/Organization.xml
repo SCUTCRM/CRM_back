@@ -36,7 +36,7 @@
     </insert>
 
     <update id="updateOrganization">
-        update user
+        update organization
         <set>
             <if test="organizationName != null">organization_name = #{organizationName},</if>
             <if test="city != null">city = #{city},</if>
@@ -52,9 +52,9 @@
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="description != null">description = #{description},</if>
-            <if test="address_id != null and address.addressId != null">address_id = #{address.addressId}</if>
+            <if test="addressId != null and address.addressId != null">address_id = #{address.addressId}</if>
         </set>
-        where user_id = #{userId}
+        where organization_id = #{organizationId}
     </update>
 
     <delete id="deleteOrganization">

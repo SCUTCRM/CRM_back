@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.ContactDao" >
+    <resultMap id="userMap" type="com.example.crm.entity.Contact">
+        <id column="contact_id" property="contactId"/>
+        <result column="first_name" property="firstName"/>
+        <result column="last_name" property="lastName"/>
+        <result column="title" property="title"/>
+        <result column="email" property="email"/>
+        <result column="office_phone" property="officePhone"/>
+        <result column="assign_to" property="assignTo"/>
+        <result column="is_from_lead" property="isFromLead"/>
+        <result column="home_phone" property="homePhone"/>
+        <result column="update_info" property="updateInfo"/>
+        <result column="lead_state" property="leadState"/>
+        <result column="industry" property="industry"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="day_of_birth" property="dayOfBirth"/>
+        <result column="department" property="department"/>
+        <result column="assistant" property="assistant"/>
+        <result column="assistant_phone" property="assistantPhone"/>
+        <result column="profile_picture" property="profilePicture"/>
+        <result column="description" property="description"/>
+        <association property="address" column="address_id"
+                     javaType="com.example.crm.entity.Address">
+            <id column="address_id" property="addressId"/>
+        </association>
+        <association property="organization" column="organization_id"
+                     javaType="com.example.crm.entity.Organization">
+            <id column="organization_id" property="organizationId"/>
+        </association>
+    </resultMap>
+
+    <select id="getContact" resultMap="contactMap">
+        select o.*
+        from organization o
+        where u.organization_id = #{organizationId}
+    </select>
+
+    <insert id="insertContact" parameterType="com.example.crm.entity.Contact" keyProperty="contactId" keyColumn="contact_id">
+        insert into organization(organization_name,city,website,phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description)
+        values(#{organizationName},#{city},#{website},#{phone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.address_id},#{description})
+    </insert>
+
+    <update id="updateContact">
+        update contact
+        <set>
+            <if test="firstName != null">first_name = #{firstName},</if>
+            <if test="lastName != null">last_name = #{lastName},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="isFromLead != null">is_from_lead = #{isFromLead},</if>
+            <if test="assignTo != null">assign_to = #{assignTo},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="officePhone != null">office_phone = #{officePhone},</if>
+            <if test="homePhone != null">home_phone = #{homePhone},</if>
+            <if test="update_info != null">update_info = #{updateInfo},</if>
+            <if test="leadState != null">lead_state = #{leadState},</if>
+            <if test="industry != null">industry = #{industry},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
+            <if test="dayOfBirth != null">day_of_birth = #{dayOfBirth},</if>
+            <if test="department != null">department = #{department},</if>
+            <if test="assistant != null">assistant = #{assistant},</if>
+            <if test="assistantPhone != null">assistant_phone = #{assistantPhone},</if>
+            <if test="profilePicture != null">profile_picture = #{profilePicture},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="address_id != null and address.addressId != null">address_id = #{address.addressId}</if>
+            <if test="organizationId != null and organization.organizationId != null">organization_id = #{organization.organizationId}</if>
+        </set>
+        where contact_id = #{contactId}
+    </update>
+
+    <delete id="deleteContact">
+        delete from contact
+        where contact_id = #{contactId}
+    </delete>
+</mapper>

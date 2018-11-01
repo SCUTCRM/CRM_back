@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.ContactDao" >
+    <resultMap id="userMap" type="com.example.crm.entity.Campaign">
+        <id column="campaign_id" property="campaignId"/>
+        <result column="campaign_type" property="campaignType"/>
+        <result column="campaign_status" property="campaignStatus"/>
+        <result column="expected_revenue" property="expectedRevenue"/>
+        <result column="expected_close_date" property="expectedCloseDate"/>
+        <result column="assign_to" property="assignTo"/>
+        <result column="target_size" property="targetSize"/>
+        <result column="num_sent" property="numSent"/>
+        <result column="target_audience" property="targetAudience"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="sponsor" property="sponsor"/>
+        <result column="description" property="description"/>
+        <result column="updateInfo" property="modifiedTime"/>
+        <association property="product" column="product_id"
+                     javaType="com.example.crm.entity.Product">
+            <id column="product_id" property="productId"/>
+        </association>
+        <association property="expActual" column="exp_actual_id"
+                     javaType="com.example.crm.entity.ExpActual">
+            <id column="exp_actual_id" property="expActualId"/>
+        </association>
+        <association property="opportunity" column="opport_id"
+                     javaType="com.example.crm.entity.Opportunity">
+            <id column="opport_id" property="opportId"/>
+        </association>
+    </resultMap>
+
+    <select id="getCampaign" resultMap="campaignMap">
+        select c.*
+        from campaign c
+        where c.campaign_id = #{campaignId}
+    </select>
+
+    <insert id="insertCampaign" parameterType="com.example.crm.entity.Campaign" keyProperty="campaignId" keyColumn="campaign_id">
+        insert into campaign(campaign_type,campaign_status,expected_revenue,expected_close_date,assign_to,update_info,product_id,target_size,num_sent,target_audience,create_time,modified_time,sponsor,description,update_info,exp_actual_id,opport_id)
+        values(#{campaignType},#{campaignStatus},#{expectedRevenue},#{expectedCloseDate},#{assignTo},#{updateInfo},#{product.productId},#{targetSize},#{numSent},#{targetAudience},#{createTime},#{modifiedTime},#{sponsor},#{description},#{updateInfo},#{expActual.expActualId},#{opportunity.opportId})
+    </insert>
+
+    <update id="updateCampaign">
+        update campaign
+        <set>
+            <if test="campaignType != null">campaign_type = #{campaignType},</if>
+            <if test="campaignStatus != null">campaign_status = #{campaignStatus},</if>
+            <if test="expectedRevenue != null">expected_revenue = #{expectedRevenue},</if>
+            <if test="expectedCloseDate != null">expected_close_date = #{expectedCloseDate},</if>
+            <if test="assignTo != null">assign_to = #{assignTo},</if>
+            <if test="targetSize != null">target_size = #{targetSize},</if>
+            <if test="numSent != null">num_sent = #{numSent},</if>
+            <if test="targetAudience != null">target_audience = #{targetAudience},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
+            <if test="sponsor != null">sponsor = #{sponsor},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="updateInfo != null">update_info = #{updateInfo},</if>
+            <if test="productId != null and product.productId != null">product_id = #{product.productId},</if>
+            <if test="expActualId != null and expActual.expActualId != null">exp_actual_id = #{expActual.expActualId},</if>
+            <if test="opportId != null and opport.opportId != null">opport_id = #{opport.opportId}</if>
+        </set>
+        where campaign_id = #{compaignId}
+    </update>
+
+    <delete id="deleteCampaign">
+        delete from campaign
+        where campaign_id = #{campaignId}
+    </delete>
+</mapper>

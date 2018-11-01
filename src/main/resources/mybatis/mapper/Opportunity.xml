@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.OpportunityDao" >
+    <resultMap id="userMap" type="com.example.crm.entity.Opportunity">
+        <id column="opport_id" property="opportId"/>
+        <result column="opport_name" property="opportName"/>
+        <result column="prob" property="prob"/>
+        <result column="forcast_amount" property="forcastAmount"/>
+        <result column="is_from_lead" property="isFromLead"/>
+        <result column="assign_to" property="assignTo"/>
+        <result column="lead_source" property="leadSource"/>
+        <result column="update_info" property="updateInfo"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="type" property="type"/>
+        <result column="exp_close_time" property="expCloseTime"/>
+        <result column="description" property="description"/>
+        <association property="contact" column="contact_id"
+                     javaType="com.example.crm.entity.Contact">
+            <id column="contact_id" property="contactId"/>
+        </association>
+    </resultMap>
+
+    <select id="getOpportunity" resultMap="opportunityMap">
+        select o.*
+        from opportunity o
+        where u.opportunity_id = #{opportunityId}
+    </select>
+
+    <insert id="insertOpportunity" parameterType="com.example.crm.entity.Opportunity" keyProperty="opportunityId" keyColumn="opportunity_id">
+        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,contact_id,lead_source,update_info,create_time,modified_time,type,exp_close_time,description)
+        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{type},#{expCloseTime},#{description})
+    </insert>
+
+    <update id="updateOpportunity">
+        update opportunity
+        <set>
+            <if test="opportName != null">opport_name = #{opportName},</if>
+            <if test="prob != null">prob = #{prob},</if>
+            <if test="forcastAmount != null">forcast_amount = #{forcastAmount},</if>
+            <if test="isFromLead != null">is_from_lead = #{isFromLead},</if>
+            <if test="assignTo != null">assign_to = #{assignTo},</if>
+            <if test="leadSource != null">lead_source = #{leadSource},</if>
+            <if test="update_info != null">update_info = #{updateInfo},</if>
+            <if test="create_time != null">create_time = #{createTime},</if>
+            <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="expCloseTime != null">exp_close_time = #{expCloseTime},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="contact_id != null and contact.contactId != null">contact_id = #{contact.contactId}</if>
+        </set>
+        where opport_id = #{opportId}
+    </update>
+
+    <delete id="deleteOpportunity">
+        delete from opportunity
+        where opportunity_id = #{opportunityId}
+    </delete>
+</mapper>

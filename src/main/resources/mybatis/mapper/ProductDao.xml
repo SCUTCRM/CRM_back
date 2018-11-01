@@ -41,7 +41,6 @@
         values(#{productName},#{partNumber},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{updateInfo},#{price.priceId},#{stockInfo.stockInfoId})
     </insert>
 
-    <!-- 姓名不可修改 -->
     <update id="updateProduct">
         update product
         <set>
@@ -63,7 +62,7 @@
             <if test="price != null and price.priceId != null">price_id = #{price.priceId},</if>
             <if test="stockInfo != null and stockInfo.stockInfoId != null">stock_info_id = #{stockInfo.stock_info_id}</if>
         </set>
-        where user_id = #{userId}
+        where product_id = #{productId}
     </update>
 
     <delete id="deleteProduct">
