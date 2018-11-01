@@ -1,7 +1,5 @@
 package com.example.crm.exception;
 
-import com.example.crm.entity.Organization;
-
 /**
  * @ Author     ：Bin Liu
  * @ Date       ：2018/10/31 20:33

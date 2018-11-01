@@ -2,6 +2,8 @@ package com.example.crm.service;
 
 import com.example.crm.entity.Organization;
 
+import java.util.List;
+
 /**
  * @ Author     ：Bin Liu
  * @ Date       ：2018/10/31 20:14
@@ -11,10 +13,21 @@ import com.example.crm.entity.Organization;
 public interface OrganizationService {
     /**
      * create by: Bin Liu
+     * description: 获取所有的组织信息
+     * create time: 2018/11/1 10:58
+     *
+     * @return
+     * @Param: null
+     */
+    List<Organization> getOrganizationList();
+
+    /**
+     * create by: Bin Liu
      * description: 获取一条组织信息
      * create time: 2018/10/31 20:21
-     * @Param: null
+     *
      * @return
+     * @Param: null
      */
     Organization getOrganization(Integer organizationId);
 
@@ -22,8 +35,9 @@ public interface OrganizationService {
      * create by: Bin Liu
      * description: 插入一条组织信息
      * create time: 2018/10/31 20:22
-     * @Param: null
+     *
      * @return
+     * @Param: null
      */
     int insertOrganization(Organization organization);
 
@@ -31,8 +45,9 @@ public interface OrganizationService {
      * create by: Bin Liu
      * description: 更新一条组织信息
      * create time: 2018/10/31 20:22
-     * @Param: null
+     *
      * @return
+     * @Param: null
      */
     int updateOrganization(Organization organization);
 
@@ -40,8 +55,9 @@ public interface OrganizationService {
      * create by: Bin Liu
      * description: 删除一条组织信息
      * create time: 2018/10/31 20:22
-     * @Param: null
+     *
      * @return
+     * @Param: null
      */
-    int deleteOrganization(Integer OrganizationId);
+    int deleteOrganization(Integer organizationId);
 }

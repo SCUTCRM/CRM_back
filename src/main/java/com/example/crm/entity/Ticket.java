@@ -7,16 +7,16 @@ import java.util.Date;
 /**
  * @ Author     ：Bin Liu
  * @ Date       ：2018/10/25 11:07
- * @ Description：身份证实体类
+ * @ Description：售后客服实体类
  * @ Modified By：
  */
 public class Ticket {
     private Integer ticketId;
-    //称号（称呼）
+    //标题
     private String title;
     //状态
     private Integer status;
-    //优先权 从0-10优先级依次递减
+    //优先级 从0-10优先级依次递减
     private Integer priority;
     //分配给
     private Integer assignedTo;

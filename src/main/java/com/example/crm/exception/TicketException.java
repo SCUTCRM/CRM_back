@@ -2,14 +2,14 @@ package com.example.crm.exception;
 
 /**
  * @ Author     ：Bin Liu
- * @ Date       ：2018/10/31 20:30
- * @ Description：产品操作异常类
+ * @ Date       ：2018/11/1 10:41
+ * @ Description：售后服务操作异常类
  * @ Modified By：
  */
-public class ProductException extends RuntimeException {
+public class TicketException extends RuntimeException{
     private Integer code;
 
-    public ProductException(String message, Integer code) {
+    public TicketException(String message, Integer code) {
         super(message);
         this.code = code;
     }

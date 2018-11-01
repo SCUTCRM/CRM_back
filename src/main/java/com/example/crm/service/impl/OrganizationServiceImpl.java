@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @ Author     ：Bin Liu
  * @ Date       ：2018/10/31 20:23
@@ -18,6 +20,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrganizationServiceImpl implements OrganizationService {
     @Autowired
     private OrganizationDao organizationDao;
+
+    @Override
+    public List<Organization> getOrganizationList() {
+        return organizationDao.getOrganizationList();
+    }
 
     @Override
     public Organization getOrganization(Integer organizationId) {
@@ -54,12 +61,12 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Transactional
     @Override
-    public int deleteOrganization(Integer OrganizationId) {
-        if (OrganizationId == null) {
+    public int deleteOrganization(Integer organizationId) {
+        if (organizationId == null) {
             return 0;
         }
         try {
-            int result = organizationDao.deleteOrganization(OrganizationId);
+            int result = organizationDao.deleteOrganization(organizationId);
             return result;
         } catch (Exception e) {
             throw  new OrganizationException("删除订单失败",-2);

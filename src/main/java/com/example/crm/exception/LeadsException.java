@@ -2,14 +2,14 @@ package com.example.crm.exception;
 
 /**
  * @ Author     ：Bin Liu
- * @ Date       ：2018/10/31 20:30
- * @ Description：产品操作异常类
+ * @ Date       ：2018/11/1 10:40
+ * @ Description：线索操作异常类
  * @ Modified By：
  */
-public class ProductException extends RuntimeException {
+public class LeadsException extends RuntimeException {
     private Integer code;
 
-    public ProductException(String message, Integer code) {
+    public LeadsException(String message, Integer code) {
         super(message);
         this.code = code;
     }
@@ -17,4 +17,5 @@ public class ProductException extends RuntimeException {
     public Integer getCode() {
         return code;
     }
+
 }

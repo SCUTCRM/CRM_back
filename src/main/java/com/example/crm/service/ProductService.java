@@ -2,6 +2,8 @@ package com.example.crm.service;
 
 import com.example.crm.entity.Product;
 
+import java.util.List;
+
 /**
  * @ Author     ：Bin Liu
  * @ Date       ：2018/10/31 20:14
@@ -11,10 +13,21 @@ import com.example.crm.entity.Product;
 public interface ProductService {
     /**
      * create by: Bin Liu
+     * description: 获取所有的产品信息
+     * create time: 2018/11/1 10:59
+     *
+     * @return
+     * @Param: null
+     */
+    List<Product> getProductList();
+
+    /**
+     * create by: Bin Liu
      * description: 获取一条产品信息
      * create time: 2018/10/31 20:17
+     *
+     * @return
      * @Param: null
-     * @return 
      */
     Product getProduct(String productName);
 
@@ -22,8 +35,9 @@ public interface ProductService {
      * create by: Bin Liu
      * description: 插入一条产品信息
      * create time: 2018/10/31 20:20
+     *
+     * @return
      * @Param: null
-     * @return 
      */
     int insertProduct(Product product);
 
@@ -31,8 +45,9 @@ public interface ProductService {
      * create by: Bin Liu
      * description: 更新一条产品信息
      * create time: 2018/10/31 20:20
+     *
+     * @return
      * @Param: null
-     * @return 
      */
     int updateProduct(Product product);
 
@@ -40,8 +55,9 @@ public interface ProductService {
      * create by: Bin Liu
      * description: 删除一条产品信息
      * create time: 2018/10/31 20:20
+     *
+     * @return
      * @Param: null
-     * @return 
      */
     int deleteProduct(Integer productId);
 }
