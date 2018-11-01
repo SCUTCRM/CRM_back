@@ -19,5 +19,5 @@ public interface OpportunityService {
 
     int updateOpportunity(Opportunity opportunity);
 
-    int deleteOpportunity();
+    int deleteOpportunity(Integer opportunity);
 }

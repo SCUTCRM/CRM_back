@@ -1,10 +1,10 @@
 package com.example.crm.web;
 
-import com.example.crm.dto.OrganizationDto;
-import com.example.crm.entity.Organization;
+import com.example.crm.dto.LeadsDto;
+import com.example.crm.entity.Leads;
 import com.example.crm.enums.SystemErrorEnum;
-import com.example.crm.exception.ProductException;
-import com.example.crm.service.OrganizationService;
+import com.example.crm.exception.LeadsException;
+import com.example.crm.service.LeadsService;
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +20,31 @@ import java.util.List;
 
 /**
  * @ Author     ：Bin Liu
- * @ Date       ：2018/10/31 21:03
- * @ Description：组织操作相关控制层类
+ * @ Date       ：2018/11/1 16:27
+ * @ Description：线索操作相关控制层类
  * @ Modified By：
  */
 @RestController
 @RequestMapping("")
-public class OrganizationController {
+public class LeadsController {
     @Autowired
-    private OrganizationService organizationService;
+    private LeadsService leadsService;
 
-    //获取组织信息
-    @GetMapping("/organizations")
-    private HashMap<String,Object> listOrganization(){
+    //获取联系人信息
+    @GetMapping("/leads")
+    private HashMap<String,Object> listLeads(){
         HashMap<String,Object> resultMap = new HashMap<>();
         try{
-            List<Organization> organizationList = organizationService.getOrganizationList();
+            List<Leads> leadsList = leadsService.getLeadsList();
             //前端只能识别字段为value的值
-            List<OrganizationDto> organizations = new ArrayList<>();
-            for(Organization o : organizationList) {
-                OrganizationDto oto = new OrganizationDto();
-                oto.setValue(o.getOrganizationName());
-                oto.setId(o.getOrganizationId());
-                organizations.add(oto);
+            List<LeadsDto> leads = new ArrayList<>();
+            for(Leads l : leadsList) {
+                LeadsDto lto = new LeadsDto();
+                lto.setValue(l.getFirstName());
+                lto.setId(l.getLeadId());
+                leads.add(lto);
             }
-            resultMap.put("organizations",organizations);
+            resultMap.put("leads",leads);
             resultMap.put("success",true);
             resultMap.put("code",200);
             resultMap.put("msg","数据获取成功");
@@ -56,31 +56,31 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @PostMapping("/organizations/update")
-    private HashMap<String,Object> updateOrganization(HttpServletRequest request) {
+    @PostMapping("/leads/update")
+    private HashMap<String,Object> updateContact(HttpServletRequest request) {
         HashMap<String,Object> resultMap = new HashMap<>();
-        //1.将前端传过来的组织json字符串转换成实体类
+        //1.将前端传过来的线索json字符串转换成实体类
         ObjectMapper mapper = new ObjectMapper();
-        String organizationStr = HttpServletRequestUtil.getString(request,"organization");
-        Organization organization = null;
+        String leadsStr = HttpServletRequestUtil.getString(request,"contact");
+        Leads leads = null;
         try {
-            organization = mapper.readValue(organizationStr,Organization.class);
+            leads = mapper.readValue(leadsStr,Leads.class);
         } catch (Exception e) {
             resultMap.put("success",false);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
             return resultMap;
         }
-        //2.更新组织信息
+        //2.更新线索信息
         try {
-            int result = organizationService.updateOrganization(organization);
+            int result = leadsService.updateLeads(leads);
             if (result == 1) {
                 resultMap.put("success",true);
-                resultMap.put("msg", "组织更新成功");
+                resultMap.put("msg", "线索更新成功");
             } else {
                 resultMap.put("success",false);
-                resultMap.put("msg", "组织更新失败");
+                resultMap.put("msg", "线索更新失败");
             }
-        } catch (ProductException e) {
+        } catch (LeadsException e) {
             resultMap.put("success",false);
             resultMap.put("msg", e.getMessage());
         }

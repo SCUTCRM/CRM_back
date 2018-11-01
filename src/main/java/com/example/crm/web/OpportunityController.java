@@ -1,10 +1,10 @@
 package com.example.crm.web;
 
-import com.example.crm.dto.OrganizationDto;
-import com.example.crm.entity.Organization;
+import com.example.crm.dto.OpportunityDto;
+import com.example.crm.entity.Opportunity;
 import com.example.crm.enums.SystemErrorEnum;
-import com.example.crm.exception.ProductException;
-import com.example.crm.service.OrganizationService;
+import com.example.crm.exception.OpportunityException;
+import com.example.crm.service.OpportunityService;
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +20,31 @@ import java.util.List;
 
 /**
  * @ Author     ：Bin Liu
- * @ Date       ：2018/10/31 21:03
- * @ Description：组织操作相关控制层类
+ * @ Date       ：2018/11/1 16:45
+ * @ Description：机会操作相关控制层类
  * @ Modified By：
  */
 @RestController
 @RequestMapping("")
-public class OrganizationController {
+public class OpportunityController {
     @Autowired
-    private OrganizationService organizationService;
+    private OpportunityService opportunityService;
 
-    //获取组织信息
-    @GetMapping("/organizations")
-    private HashMap<String,Object> listOrganization(){
+    //获取机会信息
+    @GetMapping("/opportunitys")
+    private HashMap<String,Object> listLeads(){
         HashMap<String,Object> resultMap = new HashMap<>();
         try{
-            List<Organization> organizationList = organizationService.getOrganizationList();
+            List<Opportunity> opportunityList = opportunityService.getOpportunityList();
             //前端只能识别字段为value的值
-            List<OrganizationDto> organizations = new ArrayList<>();
-            for(Organization o : organizationList) {
-                OrganizationDto oto = new OrganizationDto();
-                oto.setValue(o.getOrganizationName());
-                oto.setId(o.getOrganizationId());
-                organizations.add(oto);
+            List<OpportunityDto> opportunitys = new ArrayList<>();
+            for(Opportunity o : opportunityList) {
+                OpportunityDto oto = new OpportunityDto();
+                oto.setValue(o.getOpportName());
+                oto.setId(o.getOpportId());
+                opportunitys.add(oto);
             }
-            resultMap.put("organizations",organizations);
+            resultMap.put("opportunitys",opportunitys);
             resultMap.put("success",true);
             resultMap.put("code",200);
             resultMap.put("msg","数据获取成功");
@@ -56,31 +56,31 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @PostMapping("/organizations/update")
-    private HashMap<String,Object> updateOrganization(HttpServletRequest request) {
+    @PostMapping("/opportunitys/update")
+    private HashMap<String,Object> updateOpportunity(HttpServletRequest request) {
         HashMap<String,Object> resultMap = new HashMap<>();
-        //1.将前端传过来的组织json字符串转换成实体类
+        //1.将前端传过来的机会json字符串转换成实体类
         ObjectMapper mapper = new ObjectMapper();
-        String organizationStr = HttpServletRequestUtil.getString(request,"organization");
-        Organization organization = null;
+        String opportunityStr = HttpServletRequestUtil.getString(request,"opportunity");
+        Opportunity opportunity = null;
         try {
-            organization = mapper.readValue(organizationStr,Organization.class);
+            opportunity = mapper.readValue( opportunityStr,Opportunity.class);
         } catch (Exception e) {
             resultMap.put("success",false);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
             return resultMap;
         }
-        //2.更新组织信息
+        //2.更新机会信息
         try {
-            int result = organizationService.updateOrganization(organization);
+            int result =  opportunityService.updateOpportunity( opportunity);
             if (result == 1) {
                 resultMap.put("success",true);
-                resultMap.put("msg", "组织更新成功");
+                resultMap.put("msg", "机会更新成功");
             } else {
                 resultMap.put("success",false);
-                resultMap.put("msg", "组织更新失败");
+                resultMap.put("msg", "机会更新失败");
             }
-        } catch (ProductException e) {
+        } catch ( OpportunityException e) {
             resultMap.put("success",false);
             resultMap.put("msg", e.getMessage());
         }

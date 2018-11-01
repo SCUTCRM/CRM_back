@@ -1,10 +1,12 @@
 package com.example.crm.web;
 
-import com.example.crm.dto.OrganizationDto;
-import com.example.crm.entity.Organization;
+import com.example.crm.dto.ProductDto;
+import com.example.crm.dto.TicketDto;
+import com.example.crm.entity.Product;
+import com.example.crm.entity.Ticket;
 import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.ProductException;
-import com.example.crm.service.OrganizationService;
+import com.example.crm.service.TicketService;
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +22,31 @@ import java.util.List;
 
 /**
  * @ Author     ：Bin Liu
- * @ Date       ：2018/10/31 21:03
- * @ Description：组织操作相关控制层类
+ * @ Date       ：2018/11/1 16:57
+ * @ Description：售后操作相关控制层类
  * @ Modified By：
  */
 @RestController
 @RequestMapping("")
-public class OrganizationController {
+public class TicketController {
     @Autowired
-    private OrganizationService organizationService;
+    private TicketService ticketService;
 
-    //获取组织信息
-    @GetMapping("/organizations")
-    private HashMap<String,Object> listOrganization(){
+    //获取售后信息
+    @GetMapping("/tickets")
+    private HashMap<String,Object> listTicket(){
         HashMap<String,Object> resultMap = new HashMap<>();
         try{
-            List<Organization> organizationList = organizationService.getOrganizationList();
+            List<Ticket> ticketList = ticketService.getTicketList();
             //前端只能识别字段为value的值
-            List<OrganizationDto> organizations = new ArrayList<>();
-            for(Organization o : organizationList) {
-                OrganizationDto oto = new OrganizationDto();
-                oto.setValue(o.getOrganizationName());
-                oto.setId(o.getOrganizationId());
-                organizations.add(oto);
+            List<TicketDto> tickets = new ArrayList<>();
+            for(Ticket t : ticketList) {
+                TicketDto tto = new TicketDto();
+                tto.setValue(t.getTitle());
+                tto.setId(t.getTicketId());
+                tickets.add(tto);
             }
-            resultMap.put("organizations",organizations);
+            resultMap.put("tickets",tickets);
             resultMap.put("success",true);
             resultMap.put("code",200);
             resultMap.put("msg","数据获取成功");
@@ -56,29 +58,29 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @PostMapping("/organizations/update")
-    private HashMap<String,Object> updateOrganization(HttpServletRequest request) {
+    @PostMapping("/tickets/update")
+    private HashMap<String,Object> updateTicket(HttpServletRequest request) {
         HashMap<String,Object> resultMap = new HashMap<>();
-        //1.将前端传过来的组织json字符串转换成实体类
+        //1.将前端传过来的售后服务json字符串转换成实体类
         ObjectMapper mapper = new ObjectMapper();
-        String organizationStr = HttpServletRequestUtil.getString(request,"organization");
-        Organization organization = null;
+        String ticketStr = HttpServletRequestUtil.getString(request,"ticket");
+        Ticket ticket = null;
         try {
-            organization = mapper.readValue(organizationStr,Organization.class);
+            ticket = mapper.readValue(ticketStr,Ticket.class);
         } catch (Exception e) {
             resultMap.put("success",false);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
             return resultMap;
         }
-        //2.更新组织信息
+        //2.更新售后服务信息
         try {
-            int result = organizationService.updateOrganization(organization);
+            int result = ticketService.updateTicket(ticket);
             if (result == 1) {
                 resultMap.put("success",true);
-                resultMap.put("msg", "组织更新成功");
+                resultMap.put("msg", "售后服务更新成功");
             } else {
                 resultMap.put("success",false);
-                resultMap.put("msg", "组织更新失败");
+                resultMap.put("msg", "售后服务更新失败");
             }
         } catch (ProductException e) {
             resultMap.put("success",false);

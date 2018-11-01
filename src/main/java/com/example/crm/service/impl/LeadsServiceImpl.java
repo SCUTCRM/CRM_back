@@ -5,6 +5,7 @@ import com.example.crm.entity.Leads;
 import com.example.crm.exception.LeadsException;
 import com.example.crm.service.LeadsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * @ Description：线索业务逻辑实现类
  * @ Modified By：
  */
+@Service
 public class LeadsServiceImpl implements LeadsService {
     @Autowired
     private LeadsDao leadsDao;

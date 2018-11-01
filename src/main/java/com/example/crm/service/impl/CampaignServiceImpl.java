@@ -5,6 +5,7 @@ import com.example.crm.entity.Campaign;
 import com.example.crm.exception.CampaignException;
 import com.example.crm.service.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * @ Description：活动业务逻辑实现类
  * @ Modified By：
  */
+@Service
 public class CampaignServiceImpl implements CampaignService {
     @Autowired
     private CampaignDao campaignDao;

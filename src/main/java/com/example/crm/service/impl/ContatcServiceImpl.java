@@ -6,6 +6,7 @@ import com.example.crm.exception.CampaignException;
 import com.example.crm.exception.ContactException;
 import com.example.crm.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * @ Description：联系人业务逻辑实现类
  * @ Modified By：
  */
+@Service
 public class ContatcServiceImpl implements ContactService {
     @Autowired
     private ContactDao contactDao;

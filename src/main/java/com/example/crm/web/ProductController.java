@@ -1,5 +1,6 @@
 package com.example.crm.web;
 
+import com.example.crm.dto.ProductDto;
 import com.example.crm.entity.Product;
 import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.ProductException;
@@ -7,12 +8,15 @@ import com.example.crm.service.ProductService;
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @ Author     ：Bin Liu
@@ -20,11 +24,37 @@ import java.util.HashMap;
  * @ Description：产品操作相关控制层类
  * @ Modified By：
  */
-@RequestMapping("")
 @RestController
+@RequestMapping("")
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    //获取产品信息
+    @GetMapping("/products")
+    private HashMap<String,Object> listProduct(){
+        HashMap<String,Object> resultMap = new HashMap<>();
+        try{
+            List<Product> productList = productService.getProductList();
+            //前端只能识别字段为value的值
+            List<ProductDto> products = new ArrayList<>();
+            for(Product p : productList) {
+                ProductDto pto = new ProductDto();
+                pto.setValue(p.getProductName());
+                pto.setId(p.getProductId());
+                products.add(pto);
+            }
+            resultMap.put("products",products);
+            resultMap.put("success",true);
+            resultMap.put("code",200);
+            resultMap.put("msg","数据获取成功");
+        }catch (Exception ex){
+            resultMap.put("success",false);
+            resultMap.put("code",-200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
 
     @PostMapping("/products/update")
     private HashMap<String,Object> updateProduct(HttpServletRequest request) {

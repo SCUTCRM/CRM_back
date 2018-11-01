@@ -2,8 +2,10 @@ package com.example.crm.service.impl;
 
 import com.example.crm.dao.OpportunityDao;
 import com.example.crm.entity.Opportunity;
+import com.example.crm.exception.OpportunityException;
 import com.example.crm.service.OpportunityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.List;
  * @ Description：机会业务逻辑实现类
  * @ Modified By：
  */
+@Service
 public class OpportunityServiceImpl implements OpportunityService {
     @Autowired
     private OpportunityDao opportunityDao;
@@ -31,42 +34,42 @@ public class OpportunityServiceImpl implements OpportunityService {
     @Transactional
     @Override
     public int insertOpportunity(Opportunity opportunity) {
-        if (campaign == null) {
+        if (opportunity == null) {
             return 0;
         }
         try {
-            int result = campaignDao.insertCampaign(campaign);
+            int result = opportunityDao.insertOpportunity(opportunity);
             return result;
         } catch (Exception e) {
-            throw new CampaignException("插入活动失败", -1);
+            throw new OpportunityException("插入机会失败", -1);
         }
     }
 
     @Transactional
     @Override
     public int updateOpportunity(Opportunity opportunity) {
-        if (campaign == null || campaign.getCampaignId() == null) {
+        if (opportunity == null || opportunity.getOpportId() == null) {
             return 0;
         }
         try {
-            int result = campaignDao.updateCampaign(campaign);
+            int result = opportunityDao.updateOpportunity(opportunity);
             return result;
         } catch (Exception e) {
-            throw new CampaignException("更新活动失败", -1);
+            throw new OpportunityException("更新机会失败", -1);
         }
     }
 
     @Transactional
     @Override
-    public int deleteOpportunity() {
-        if (campaignId == null) {
+    public int deleteOpportunity(Integer opportunityId) {
+        if (opportunityId == null) {
             return 0;
         }
         try {
-            int result = campaignDao.deleteCampaign(campaignId);
+            int result = opportunityDao.deleteOpportunity(opportunityId);
             return result;
         } catch (Exception e) {
-            throw new CampaignException("删除活动失败", -2);
+            throw new OpportunityException("删除机会失败", -2);
         }
     }
 }

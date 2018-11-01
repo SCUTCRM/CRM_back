@@ -56,5 +56,5 @@ public interface OpportunityDao {
      * @Param: null
      * @return
      */
-    int deleteOpportunity();
+    int deleteOpportunity(Integer opportunity);
 }
