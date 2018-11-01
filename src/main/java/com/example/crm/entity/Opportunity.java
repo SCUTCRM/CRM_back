@@ -25,7 +25,7 @@ public class Opportunity {
     //线索来源
     private String leadSource;
     //更改
-    private String update;
+    private String updateInfo;
     //创建时间
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
@@ -97,12 +97,12 @@ public class Opportunity {
         this.leadSource = leadSource;
     }
 
-    public String getUpdate() {
-        return update;
+    public String getUpdateInfo() {
+        return updateInfo;
     }
 
-    public void setUpdate(String update) {
-        this.update = update;
+    public void setUpdateInfo(String updateInfo) {
+        this.updateInfo = updateInfo;
     }
 
     public Date getCreateTime() {

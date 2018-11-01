@@ -29,7 +29,7 @@ public class Contact {
     //家的电话
     private Integer homePhone;
     //更改
-    private String update;
+    private String updateInfo;
     //线索状态
     private Integer Leadstate;
     //行业
@@ -130,12 +130,12 @@ public class Contact {
         this.homePhone = homePhone;
     }
 
-    public String getUpdate() {
-        return update;
+    public String getUpdateInfo() {
+        return updateInfo;
     }
 
-    public void setUpdate(String update) {
-        this.update = update;
+    public void setUpdateInfo(String updateInfo) {
+        this.updateInfo = updateInfo;
     }
 
     public Integer getLeadstate() {

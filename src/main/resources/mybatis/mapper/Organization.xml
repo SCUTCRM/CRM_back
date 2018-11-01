@@ -8,7 +8,7 @@
         <result column="website" property="website"/>
         <result column="phone" property="phone"/>
         <result column="assign_to" property="assignTo"/>
-        <result column="update" property="update"/>
+        <result column="update_info" property="updateInfo"/>
         <result column="is_from_lead" property="isFromLead"/>
         <result column="owner_ship" property="ownerShip"/>
         <result column="annual_revenue" property="annualRevenue"/>
@@ -31,8 +31,8 @@
     </select>
 
     <insert id="insertOrganization" parameterType="com.example.crm.entity.Organization" keyProperty="organizationId" keyColumn="organization_id">
-        insert into organization(organization_name,city,website,phone,assign_to,update,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description)
-        values(#{organizationName},#{city},#{website},#{phone},#{assignTo},#{update},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.address_id},#{description})
+        insert into organization(organization_name,city,website,phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description)
+        values(#{organizationName},#{city},#{website},#{phone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.address_id},#{description})
     </insert>
 
     <update id="updateOrganization">
@@ -43,7 +43,7 @@
             <if test="website != null">website = #{website},</if>
             <if test="phone != null">phone = #{phone},</if>
             <if test="assignTo != null">assign_to = #{assignTo},</if>
-            <if test="update != null">update = #{update},</if>
+            <if test="update != null">update_info = #{updateInfo},</if>
             <if test="isFromLead != null">is_from_lead = #{isFromLead},</if>
             <if test="ownerShip != null">owner_ship = #{ownerShip},</if>
             <if test="annualRevenue != null">annual_revenue = #{annualRevenue},</if>

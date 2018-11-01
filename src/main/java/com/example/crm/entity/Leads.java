@@ -31,7 +31,7 @@ public class Leads {
     //邮件
     private String email;
     //更新
-    private String update;
+    private String updateInfo;
     //描述
     private String description;
     //创建时间
@@ -127,12 +127,12 @@ public class Leads {
         this.email = email;
     }
 
-    public String getUpdate() {
-        return update;
+    public String getUpdateInfo() {
+        return updateInfo;
     }
 
-    public void setUpdate(String update) {
-        this.update = update;
+    public void setUpdateInfo(String updateInfo) {
+        this.updateInfo = updateInfo;
     }
 
     public String getDescription() {

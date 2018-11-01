@@ -18,7 +18,7 @@
         <result column="modified_time" property="modifiedTime"/>
         <result column="manufacturer" property="manufacturer"/>
         <result column="description" property="description"/>
-        <result column="update" property="update"/>
+        <result column="updateInfo" property="update_info"/>
         <association property="price" column="price_id"
                      javaType="com.example.crm.entity.Price">
             <id column="price_id" property="priceId"/>
@@ -37,8 +37,8 @@
     </select>
 
     <insert id="insertProduct" parameterType="com.example.crm.entity.Product" keyProperty="productId" keyColumn="product_id">
-        insert into product(product_name,part_number,sale_start_date,product_category,active,sale_end_date,product_number,website,ventor_name,ventor_partno,create_time,modified_time,manufacturer,description,update,price_id,stock_info_id)
-        values(#{productName},#{partNumber},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{update},#{price.priceId},#{stockInfo.stockInfoId})
+        insert into product(product_name,part_number,sale_start_date,product_category,active,sale_end_date,product_number,website,ventor_name,ventor_partno,create_time,modified_time,manufacturer,description,update_info,price_id,stock_info_id)
+        values(#{productName},#{partNumber},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{updateInfo},#{price.priceId},#{stockInfo.stockInfoId})
     </insert>
 
     <!-- 姓名不可修改 -->
@@ -59,7 +59,7 @@
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="manufacturer != null">manufacturer = #{manufacturer},</if>
             <if test="description != null">description = #{description},</if>
-            <if test="update != null">update = #{update},</if>
+            <if test="update != null">update_info = #{updateInfo},</if>
             <if test="price != null and price.priceId != null">price_id = #{price.priceId},</if>
             <if test="stockInfo != null and stockInfo.stockInfoId != null">stock_info_id = #{stockInfo.stock_info_id}</if>
         </set>

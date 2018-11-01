@@ -23,7 +23,7 @@ public class Organization {
     //分配给
     private Integer assignTo;
     //更改
-    private String update;
+    private String updateInfo;
     //是否来自线索
     private String isFromLead;
     //所有权
@@ -95,12 +95,12 @@ public class Organization {
         this.assignTo = assignTo;
     }
 
-    public String getUpdate() {
-        return update;
+    public String getUpdateInfo() {
+        return updateInfo;
     }
 
-    public void setUpdate(String update) {
-        this.update = update;
+    public void setUpdateInfo(String updateInfo) {
+        this.updateInfo = updateInfo;
     }
 
     public String getIsFromLead() {

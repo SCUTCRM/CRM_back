@@ -43,7 +43,7 @@ public class Product {
     //描述
     private String description;
     //更改
-    private String update;
+    private String updateInfo;
     //价格
     private Price price;
     //库存
@@ -161,12 +161,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getUpdate() {
-        return update;
+    public String getUpdateInfo() {
+        return updateInfo;
     }
 
-    public void setUpdate(String update) {
-        this.update = update;
+    public void setUpdateInfo(String updateInfo) {
+        this.updateInfo = updateInfo;
     }
 
     public Price getPrice() {

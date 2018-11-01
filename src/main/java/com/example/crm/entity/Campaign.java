@@ -40,7 +40,7 @@ public class Campaign {
     //描述
     private String description;
     //更新
-    private String update;
+    private String updateInfo;
     //产品
     private Product product;
     //预期和实际
@@ -152,12 +152,12 @@ public class Campaign {
         this.description = description;
     }
 
-    public String getUpdate() {
-        return update;
+    public String getUpdateInfo() {
+        return updateInfo;
     }
 
-    public void setUpdate(String update) {
-        this.update = update;
+    public void setUpdateInfo(String updateInfo) {
+        this.updateInfo = updateInfo;
     }
 
     public Product getProduct() {

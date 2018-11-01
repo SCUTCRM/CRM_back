@@ -37,7 +37,7 @@ public class Ticket {
     //描述
     private String description;
     //更改
-    private String update;
+    private String updateInfo;
     //组织
     private Organization organization;
     //产品
@@ -139,12 +139,12 @@ public class Ticket {
         this.description = description;
     }
 
-    public String getUpdate() {
-        return update;
+    public String getUpdateInfo() {
+        return updateInfo;
     }
 
-    public void setUpdate(String update) {
-        this.update = update;
+    public void setUpdateInfo(String updateInfo) {
+        this.updateInfo = updateInfo;
     }
 
     public Organization getOrganization() {
