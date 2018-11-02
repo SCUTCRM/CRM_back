@@ -29,8 +29,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public Product getProduct(String productName) {
-        return productDao.getProduct(productName);
+    public Product getProduct(Integer productId) {
+        return productDao.getProduct(productId);
     }
 
     @Override

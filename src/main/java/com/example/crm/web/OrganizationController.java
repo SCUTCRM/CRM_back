@@ -31,42 +31,90 @@ public class OrganizationController {
     private OrganizationService organizationService;
 
     //获取组织信息
-    @GetMapping("/organizations")
-    private HashMap<String,Object> listOrganization(){
-        HashMap<String,Object> resultMap = new HashMap<>();
-        try{
+    @GetMapping("/organization/organizations")
+    private HashMap<String, Object> listOrganization() {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
             List<Organization> organizationList = organizationService.getOrganizationList();
             //前端只能识别字段为value的值
             List<OrganizationDto> organizations = new ArrayList<>();
-            for(Organization o : organizationList) {
+            for (Organization o : organizationList) {
                 OrganizationDto oto = new OrganizationDto();
                 oto.setValue(o.getOrganizationName());
                 oto.setId(o.getOrganizationId());
                 organizations.add(oto);
             }
-            resultMap.put("organizations",organizations);
-            resultMap.put("success",true);
-            resultMap.put("code",200);
-            resultMap.put("msg","数据获取成功");
-        }catch (Exception ex){
-            resultMap.put("success",false);
-            resultMap.put("code",-200);
+            resultMap.put("organizations", organizations);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
         }
         return resultMap;
     }
 
-    @PostMapping("/organizations/update")
-    private HashMap<String,Object> updateOrganization(HttpServletRequest request) {
-        HashMap<String,Object> resultMap = new HashMap<>();
-        //1.将前端传过来的组织json字符串转换成实体类
+    @GetMapping("/organization/getOrganization")
+    private HashMap<String, Object> getOrganization(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Organization organization = organizationService.getOrganization(organizationId);
+            resultMap.put("organization", organization);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/organization/insert")
+    private HashMap<String, Object> insertOrganization(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        //1.获取organization对应的json字符串
+        String organizationStr = HttpServletRequestUtil.getString(request, "organization");
         ObjectMapper mapper = new ObjectMapper();
-        String organizationStr = HttpServletRequestUtil.getString(request,"organization");
         Organization organization = null;
         try {
-            organization = mapper.readValue(organizationStr,Organization.class);
+            organization = mapper.readValue(organizationStr, Organization.class);
         } catch (Exception e) {
-            resultMap.put("success",false);
+            resultMap.put("success", false);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+            return resultMap;
+        }
+        try {
+            int result = organizationService.insertOrganization(organization);
+            if (result == 1) {
+                resultMap.put("success", false);
+                resultMap.put("msg", "保存成功");
+            } else {
+                resultMap.put("success", true);
+                resultMap.put("msg", "保存失败");
+            }
+        } catch (RuntimeException e) {
+            resultMap.put("success", false);
+            resultMap.put("msg", e.getMessage());
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/organizations/update")
+    private HashMap<String, Object> updateOrganization(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        //1.将前端传过来的组织json字符串转换成实体类
+        ObjectMapper mapper = new ObjectMapper();
+        String organizationStr = HttpServletRequestUtil.getString(request, "organization");
+        Organization organization = null;
+        try {
+            organization = mapper.readValue(organizationStr, Organization.class);
+        } catch (Exception e) {
+            resultMap.put("success", false);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
             return resultMap;
         }
@@ -74,14 +122,34 @@ public class OrganizationController {
         try {
             int result = organizationService.updateOrganization(organization);
             if (result == 1) {
-                resultMap.put("success",true);
+                resultMap.put("success", true);
                 resultMap.put("msg", "组织更新成功");
             } else {
-                resultMap.put("success",false);
+                resultMap.put("success", false);
                 resultMap.put("msg", "组织更新失败");
             }
         } catch (ProductException e) {
-            resultMap.put("success",false);
+            resultMap.put("success", false);
+            resultMap.put("msg", e.getMessage());
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/organization/delete")
+    private HashMap<String, Object> deleteOpportunity(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+        try {
+            int result = organizationService.deleteOrganization(organizationId);
+            if (result == 1) {
+                resultMap.put("success", false);
+                resultMap.put("msg", "删除成功");
+            } else {
+                resultMap.put("success", true);
+                resultMap.put("msg", "删除失败");
+            }
+        } catch (RuntimeException e) {
+            resultMap.put("success", false);
             resultMap.put("msg", e.getMessage());
         }
         return resultMap;

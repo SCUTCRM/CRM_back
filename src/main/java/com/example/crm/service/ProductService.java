@@ -29,7 +29,7 @@ public interface ProductService {
      * @return
      * @Param: null
      */
-    Product getProduct(String productName);
+    Product getProduct(Integer productId);
 
     /**
      * create by: Bin Liu

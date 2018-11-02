@@ -5,7 +5,6 @@ import com.example.crm.entity.Contact;
 import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.ContactException;
 import com.example.crm.service.ContactService;
-
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,42 +31,91 @@ public class ContactController {
     private ContactService contactService;
 
     //获取联系人信息
-    @GetMapping("/contacts")
-    private HashMap<String,Object> listCampaign(){
-        HashMap<String,Object> resultMap = new HashMap<>();
-        try{
+    @GetMapping("contact/contacts")
+    private HashMap<String, Object> listCampaign() {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
             List<Contact> contactList = contactService.getContactList();
             //前端只能识别字段为value的值
             List<ContactDto> contacts = new ArrayList<>();
-            for(Contact c : contactList) {
+            for (Contact c : contactList) {
                 ContactDto cto = new ContactDto();
                 cto.setValue(c.getFirstName());
                 cto.setId(c.getContactId());
                 contacts.add(cto);
             }
-            resultMap.put("contacts",contacts);
-            resultMap.put("success",true);
-            resultMap.put("code",200);
-            resultMap.put("msg","数据获取成功");
-        }catch (Exception ex){
-            resultMap.put("success",false);
-            resultMap.put("code",-200);
+            resultMap.put("contacts", contacts);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
         }
         return resultMap;
     }
 
-    @PostMapping("/contacts/update")
-    private HashMap<String,Object> updateContact(HttpServletRequest request) {
-        HashMap<String,Object> resultMap = new HashMap<>();
-        //1.将前端传过来的联系人json字符串转换成实体类
+    @GetMapping("/contact/getContact")
+    private HashMap<String, Object> getCampaign(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int contactId = HttpServletRequestUtil.getInt(request, "contactId");
+            Contact contact = contactService.getContact(contactId);
+            resultMap.put("contact", contact);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/contact/insert")
+    private HashMap<String, Object> insertContact(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        //1.获取contact对应的json字符串
+        String contactStr = HttpServletRequestUtil.getString(request, "contact");
         ObjectMapper mapper = new ObjectMapper();
-        String contactStr = HttpServletRequestUtil.getString(request,"contact");
         Contact contact = null;
         try {
-            contact = mapper.readValue(contactStr,Contact.class);
+            contact = mapper.readValue(contactStr, Contact.class);
         } catch (Exception e) {
-            resultMap.put("success",false);
+            resultMap.put("success", false);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+            return resultMap;
+        }
+        try {
+            int result = contactService.insertContact(contact);
+            if (result == 1) {
+                resultMap.put("success", false);
+                resultMap.put("msg", "保存成功");
+            } else {
+                resultMap.put("success", true);
+                resultMap.put("msg", "保存失败");
+            }
+        } catch (RuntimeException e) {
+            resultMap.put("success", false);
+            resultMap.put("msg", e.getMessage());
+        }
+        return resultMap;
+    }
+
+
+    @PostMapping("/contacts/update")
+    private HashMap<String, Object> updateContact(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        //1.将前端传过来的联系人json字符串转换成实体类
+        ObjectMapper mapper = new ObjectMapper();
+        String contactStr = HttpServletRequestUtil.getString(request, "contact");
+        Contact contact = null;
+        try {
+            contact = mapper.readValue(contactStr, Contact.class);
+        } catch (Exception e) {
+            resultMap.put("success", false);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
             return resultMap;
         }
@@ -75,14 +123,34 @@ public class ContactController {
         try {
             int result = contactService.updateContact(contact);
             if (result == 1) {
-                resultMap.put("success",true);
+                resultMap.put("success", true);
                 resultMap.put("msg", "联系人更新成功");
             } else {
-                resultMap.put("success",false);
+                resultMap.put("success", false);
                 resultMap.put("msg", "联系人更新失败");
             }
         } catch (ContactException e) {
-            resultMap.put("success",false);
+            resultMap.put("success", false);
+            resultMap.put("msg", e.getMessage());
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/contact/delete")
+    private HashMap<String, Object> deleteContact(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        int contactId = HttpServletRequestUtil.getInt(request, "contactId");
+        try {
+            int result = contactService.deleteContact(contactId);
+            if (result == 1) {
+                resultMap.put("success", false);
+                resultMap.put("msg", "删除成功");
+            } else {
+                resultMap.put("success", true);
+                resultMap.put("msg", "删除失败");
+            }
+        } catch (RuntimeException e) {
+            resultMap.put("success", false);
             resultMap.put("msg", e.getMessage());
         }
         return resultMap;

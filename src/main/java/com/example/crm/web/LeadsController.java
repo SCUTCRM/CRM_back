@@ -31,42 +31,90 @@ public class LeadsController {
     private LeadsService leadsService;
 
     //获取联系人信息
-    @GetMapping("/leads")
-    private HashMap<String,Object> listLeads(){
-        HashMap<String,Object> resultMap = new HashMap<>();
-        try{
+    @GetMapping("/leads/leads")
+    private HashMap<String, Object> listLeads() {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
             List<Leads> leadsList = leadsService.getLeadsList();
             //前端只能识别字段为value的值
             List<LeadsDto> leads = new ArrayList<>();
-            for(Leads l : leadsList) {
+            for (Leads l : leadsList) {
                 LeadsDto lto = new LeadsDto();
                 lto.setValue(l.getFirstName());
                 lto.setId(l.getLeadId());
                 leads.add(lto);
             }
-            resultMap.put("leads",leads);
-            resultMap.put("success",true);
-            resultMap.put("code",200);
-            resultMap.put("msg","数据获取成功");
-        }catch (Exception ex){
-            resultMap.put("success",false);
-            resultMap.put("code",-200);
+            resultMap.put("leads", leads);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
         }
         return resultMap;
     }
 
-    @PostMapping("/leads/update")
-    private HashMap<String,Object> updateContact(HttpServletRequest request) {
-        HashMap<String,Object> resultMap = new HashMap<>();
-        //1.将前端传过来的线索json字符串转换成实体类
+    @GetMapping("/leads/getLeads")
+    private HashMap<String, Object> getLeads(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int leadsId = HttpServletRequestUtil.getInt(request, "leadsId");
+            Leads leads = leadsService.getLeads(leadsId);
+            resultMap.put("leads", leads);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/contact/insert")
+    private HashMap<String, Object> insertLeads(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        //1.获取leads对应的json字符串
+        String leadsStr = HttpServletRequestUtil.getString(request, "leads");
         ObjectMapper mapper = new ObjectMapper();
-        String leadsStr = HttpServletRequestUtil.getString(request,"contact");
         Leads leads = null;
         try {
-            leads = mapper.readValue(leadsStr,Leads.class);
+            leads = mapper.readValue(leadsStr, Leads.class);
         } catch (Exception e) {
-            resultMap.put("success",false);
+            resultMap.put("success", false);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+            return resultMap;
+        }
+        try {
+            int result = leadsService.insertLeads(leads);
+            if (result == 1) {
+                resultMap.put("success", false);
+                resultMap.put("msg", "保存成功");
+            } else {
+                resultMap.put("success", true);
+                resultMap.put("msg", "保存失败");
+            }
+        } catch (RuntimeException e) {
+            resultMap.put("success", false);
+            resultMap.put("msg", e.getMessage());
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/leads/update")
+    private HashMap<String, Object> updateContact(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        //1.将前端传过来的线索json字符串转换成实体类
+        ObjectMapper mapper = new ObjectMapper();
+        String leadsStr = HttpServletRequestUtil.getString(request, "contact");
+        Leads leads = null;
+        try {
+            leads = mapper.readValue(leadsStr, Leads.class);
+        } catch (Exception e) {
+            resultMap.put("success", false);
             resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
             return resultMap;
         }
@@ -74,14 +122,34 @@ public class LeadsController {
         try {
             int result = leadsService.updateLeads(leads);
             if (result == 1) {
-                resultMap.put("success",true);
+                resultMap.put("success", true);
                 resultMap.put("msg", "线索更新成功");
             } else {
-                resultMap.put("success",false);
+                resultMap.put("success", false);
                 resultMap.put("msg", "线索更新失败");
             }
         } catch (LeadsException e) {
-            resultMap.put("success",false);
+            resultMap.put("success", false);
+            resultMap.put("msg", e.getMessage());
+        }
+        return resultMap;
+    }
+
+    @PostMapping("/leads/delete")
+    private HashMap<String, Object> deleteContact(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        int leadsId = HttpServletRequestUtil.getInt(request, "leadsId");
+        try {
+            int result = leadsService.deleteLeads(leadsId);
+            if (result == 1) {
+                resultMap.put("success", false);
+                resultMap.put("msg", "删除成功");
+            } else {
+                resultMap.put("success", true);
+                resultMap.put("msg", "删除失败");
+            }
+        } catch (RuntimeException e) {
+            resultMap.put("success", false);
             resultMap.put("msg", e.getMessage());
         }
         return resultMap;

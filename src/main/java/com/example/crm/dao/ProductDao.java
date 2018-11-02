@@ -25,13 +25,13 @@ public interface ProductDao {
 
     /**
      * create by: Bin Liu
-     * description: 根据用户商品名称查询商品
+     * description: 根据用户商品Id查询商品
      * create time: 2018/10/31 19:46
      *
      * @return
      * @Param: null
      */
-    Product getProduct(String productName);
+    Product getProduct(Integer productId);
 
     /**
      * create by: Bin Liu
