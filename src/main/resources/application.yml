@@ -3,30 +3,31 @@
 spring:
   #Datasource
   datasource:
-    #Ê¹ÓÃdruidÊı¾İÔ´
+    #ä½¿ç”¨druidæ•°æ®æº
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       url: jdbc:mysql://localhost:3306/crm?characterEncoding=UTF8&useSSL=false
       username: root
       password: 7887227
-      #³õÊ¼»¯´óĞ¡£¬×îĞ¡£¬×î´ó
+
+      #åˆå§‹åŒ–å¤§å°ï¼Œæœ€å°ï¼Œæœ€å¤§
       initial-size: 5
       min-idle: 5
       max-active: 10
-      #ÅäÖÃ»ñÈ¡Á¬½ÓµÈ´ı³¬Ê±µÄÊ±¼ä
+      #é…ç½®è·å–è¿æ¥ç­‰å¾…è¶…æ—¶çš„æ—¶é—´
       max-wait: 60000
 
-      #ÅäÖÃ¼ä¸ô¶à¾Ã²Å½øĞĞÒ»´Î¼ì²â£¬¼ì²âĞèÒª¹Ø±ÕµÄ¿ÕÏĞÁ¬½Ó£¬µ¥Î»ÊÇºÁÃë
+      #é…ç½®é—´éš”å¤šä¹…æ‰è¿›è¡Œä¸€æ¬¡æ£€æµ‹ï¼Œæ£€æµ‹éœ€è¦å…³é—­çš„ç©ºé—²è¿æ¥ï¼Œå•ä½æ˜¯æ¯«ç§’
       time-between-eviction-runs-millis: 60000
-      # ÅäÖÃÒ»¸öÁ¬½ÓÔÚ³ØÖĞ×îĞ¡Éú´æµÄÊ±¼ä£¬µ¥Î»ÊÇºÁÃë
+      # é…ç½®ä¸€ä¸ªè¿æ¥åœ¨æ± ä¸­æœ€å°ç”Ÿå­˜çš„æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
       min-evictable-idle-time-millis: 300000
       test-on-borrow: false
       test-on-return: false
       test-while-idle: true
       validation-query-timeout: 60000
       validation-query: SELECT 1 FROM DUAL
-      #´ò¿ªPSCache,²¢ÇÒÖÆ¶¨Ã¿¸öÁ´½ÓÉÏPSCacheµÄ´óĞ¡
+      #æ‰“å¼€PSCache,å¹¶ä¸”åˆ¶å®šæ¯ä¸ªé“¾æ¥ä¸ŠPSCacheçš„å¤§å°
       pool-prepared-statements: true
       max-pool-prepared-statement-per-connection-size: 20
 
@@ -39,7 +40,7 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
 
-#¶Ë¿ÚºÅÄ¬ÈÏ¾ÍÊÇ8080
+#ç«¯å£å·é»˜è®¤å°±æ˜¯8080
 server:
   port: 8080
   #servlet:

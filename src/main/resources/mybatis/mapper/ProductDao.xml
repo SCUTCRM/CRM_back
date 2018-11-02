@@ -4,7 +4,6 @@
     <resultMap id="productMap" type="com.example.crm.entity.Product">
         <id column="product_id" property="productId"/>
         <result column="product_name" property="productName"/>
-        <result column="user_name" property="userName"/>
         <result column="part_number" property="partNumber"/>
         <result column="sale_start_date" property="saleStartDate"/>
         <result column="product_category" property="productCategory"/>
@@ -18,7 +17,7 @@
         <result column="modified_time" property="modifiedTime"/>
         <result column="manufacturer" property="manufacturer"/>
         <result column="description" property="description"/>
-        <result column="updateInfo" property="update_info"/>
+        <result column="update_info" property="updateInfo"/>
         <association property="price" column="price_id"
                      javaType="com.example.crm.entity.Price">
             <id column="price_id" property="priceId"/>
@@ -29,6 +28,12 @@
         </association>
     </resultMap>
 
+    <select id="getProductList" resultMap="ProductMap">
+        select p.*
+        from product p
+        order by product_id ASC
+    </select>
+
     <!-- 登录用 -->
     <select id="getProduct" resultMap="productMap">
         select p.*
@@ -38,7 +43,7 @@
 
     <insert id="insertProduct" parameterType="com.example.crm.entity.Product" keyProperty="productId" keyColumn="product_id">
         insert into product(product_name,part_number,sale_start_date,product_category,active,sale_end_date,product_number,website,ventor_name,ventor_partno,create_time,modified_time,manufacturer,description,update_info,price_id,stock_info_id)
-        values(#{productName},#{partNumber},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{updateInfo},#{price.priceId},#{stockInfo.stockInfoId})
+        values(#{productName},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{updateInfo},#{price.priceId},#{stockInfo.stockInfoId})
     </insert>
 
     <update id="updateProduct">

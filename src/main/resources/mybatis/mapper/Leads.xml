@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.crm.dao.LeadsDao" >
-    <resultMap id="userMap" type="com.example.crm.entity.Leads">
+    <resultMap id="leadsMap" type="com.example.crm.entity.Leads">
         <id column="lead_id" property="leadId"/>
         <result column="first_name" property="firstName"/>
         <result column="last_name" property="lastName"/>
@@ -30,10 +30,16 @@
         </association>
     </resultMap>
 
+    <select id="getLeadsList" resultMap="leadsMap">
+        select l.*
+        from leads l
+        order by leads_id ASC
+    </select>
+
     <select id="getLeads" resultMap="leadsMap">
         select l.*
-        from leads o
-        where u.lead_id = #{leadId}
+        from leads l
+        where l.lead_id = #{leadId}
     </select>
 
     <insert id="insertLeads" parameterType="com.example.crm.entity.Leads" keyProperty="leadId" keyColumn="lead_id">
@@ -59,7 +65,7 @@
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="organizationId != null and organization.organizationId != null">organization_id = #{organization.organizationId},</if>
             <if test="productId != null and product.productId != null">product_id = #{product.productId},</if>
-            <if test="address_id != null and address.addressId != null">address_id = #{address.addressId}</if>
+            <if test="addressId != null and address.addressId != null">address_id = #{address.addressId}</if>
         </set>
         where lead_id = #{leadId}
     </update>

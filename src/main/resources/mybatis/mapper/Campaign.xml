@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.crm.dao.ContactDao" >
-    <resultMap id="userMap" type="com.example.crm.entity.Campaign">
+<mapper namespace="com.example.crm.dao.CampaignDao" >
+    <resultMap id="campaignMap" type="com.example.crm.entity.Campaign">
         <id column="campaign_id" property="campaignId"/>
         <result column="campaign_type" property="campaignType"/>
         <result column="campaign_status" property="campaignStatus"/>
@@ -15,7 +15,7 @@
         <result column="modified_time" property="modifiedTime"/>
         <result column="sponsor" property="sponsor"/>
         <result column="description" property="description"/>
-        <result column="updateInfo" property="modifiedTime"/>
+        <result column="update_info" property="updateInfo"/>
         <association property="product" column="product_id"
                      javaType="com.example.crm.entity.Product">
             <id column="product_id" property="productId"/>
@@ -30,6 +30,12 @@
         </association>
     </resultMap>
 
+    <select id="getCampaignList" resultMap="campaignMap">
+        select c.*
+        from campaign c
+        order by campaign_id ASC
+    </select>
+
     <select id="getCampaign" resultMap="campaignMap">
         select c.*
         from campaign c
@@ -37,8 +43,8 @@
     </select>
 
     <insert id="insertCampaign" parameterType="com.example.crm.entity.Campaign" keyProperty="campaignId" keyColumn="campaign_id">
-        insert into campaign(campaign_type,campaign_status,expected_revenue,expected_close_date,assign_to,update_info,product_id,target_size,num_sent,target_audience,create_time,modified_time,sponsor,description,update_info,exp_actual_id,opport_id)
-        values(#{campaignType},#{campaignStatus},#{expectedRevenue},#{expectedCloseDate},#{assignTo},#{updateInfo},#{product.productId},#{targetSize},#{numSent},#{targetAudience},#{createTime},#{modifiedTime},#{sponsor},#{description},#{updateInfo},#{expActual.expActualId},#{opportunity.opportId})
+        insert into campaign(campaign_type,campaign_status,expected_revenue,expected_close_date,assign_to,product_id,target_size,num_sent,target_audience,create_time,modified_time,sponsor,description,update_info,exp_actual_id,opport_id)
+        values(#{campaignType},#{campaignStatus},#{expectedRevenue},#{expectedCloseDate},#{assignTo},#{product.productId},#{targetSize},#{numSent},#{targetAudience},#{createTime},#{modifiedTime},#{sponsor},#{description},#{updateInfo},#{expActual.expActualId},#{opportunity.opportId})
     </insert>
 
     <update id="updateCampaign">

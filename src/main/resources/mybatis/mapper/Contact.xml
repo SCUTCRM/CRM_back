@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.crm.dao.ContactDao" >
-    <resultMap id="userMap" type="com.example.crm.entity.Contact">
+    <resultMap id="contactMap" type="com.example.crm.entity.Contact">
         <id column="contact_id" property="contactId"/>
         <result column="first_name" property="firstName"/>
         <result column="last_name" property="lastName"/>
@@ -32,15 +32,21 @@
         </association>
     </resultMap>
 
+    <select id="getContactList" resultMap="ContactMap">
+        select c.*
+        from contact c
+        order by contact_id ASC
+    </select>
+
     <select id="getContact" resultMap="contactMap">
-        select o.*
-        from organization o
-        where u.organization_id = #{organizationId}
+        select c.*
+        from contact c
+        where c.contact_id = #{contactId}
     </select>
 
     <insert id="insertContact" parameterType="com.example.crm.entity.Contact" keyProperty="contactId" keyColumn="contact_id">
-        insert into organization(organization_name,city,website,phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description)
-        values(#{organizationName},#{city},#{website},#{phone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.address_id},#{description})
+        insert into contact(first_name,last_name,title,organization_id,assign_to,email,office_phone,assign_to,is_from_lead,home_phone,address_id,update_info,lead_state,industry,create_time,modified_time,day_of_birth,department,assistant,assistant_phone,profile_picture,description)
+        values(#{firstName},#{lastName},#{title},#{organization.organizationId},#{assignTo},#{email},#{officePhone},#{assignTo},#{isFromLead},#{homePhone},#{address.addressId},#{updateInfo},#{leadState},#{industry},#{createTime},#{modifiedTime},#{dayOfBirth},#{department},#{assistant},#{assistantPhone},#{profilePicture},#{description})
     </insert>
 
     <update id="updateContact">
@@ -54,7 +60,7 @@
             <if test="email != null">email = #{email},</if>
             <if test="officePhone != null">office_phone = #{officePhone},</if>
             <if test="homePhone != null">home_phone = #{homePhone},</if>
-            <if test="update_info != null">update_info = #{updateInfo},</if>
+            <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="leadState != null">lead_state = #{leadState},</if>
             <if test="industry != null">industry = #{industry},</if>
             <if test="createTime != null">create_time = #{createTime},</if>

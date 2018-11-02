@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.crm.dao.OrganizationDao" >
-    <resultMap id="userMap" type="com.example.crm.entity.Organization">
+    <resultMap id="organizationMap" type="com.example.crm.entity.Organization">
         <id column="organization_id" property="organizationId"/>
         <result column="organization_name" property="organizationName"/>
         <result column="city" property="city"/>
@@ -24,10 +24,16 @@
         </association>
     </resultMap>
 
+    <select id="getOrganizationList" resultMap="organizationMap">
+        select o.*
+        from organization o
+        order by organization_id ASC
+    </select>
+
     <select id="getOrganization" resultMap="organizationMap">
         select o.*
         from organization o
-        where u.organization_id = #{organizationId}
+        where o.organization_id = #{organizationId}
     </select>
 
     <insert id="insertOrganization" parameterType="com.example.crm.entity.Organization" keyProperty="organizationId" keyColumn="organization_id">
@@ -43,11 +49,12 @@
             <if test="website != null">website = #{website},</if>
             <if test="phone != null">phone = #{phone},</if>
             <if test="assignTo != null">assign_to = #{assignTo},</if>
-            <if test="update != null">update_info = #{updateInfo},</if>
+            <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="isFromLead != null">is_from_lead = #{isFromLead},</if>
             <if test="ownerShip != null">owner_ship = #{ownerShip},</if>
             <if test="annualRevenue != null">annual_revenue = #{annualRevenue},</if>
             <if test="memberOf != null">member_of = #{memberOf},</if>
+            <if test="employee != null">employee = #{employee},</if>
             <if test="industry != null">industry = #{industry},</if>
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
