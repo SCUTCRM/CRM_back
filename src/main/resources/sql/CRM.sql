@@ -47,12 +47,12 @@ DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '地址id',
   `mail_street` varchar(30) NOT NULL COMMENT '街道',
-  `mail_p0_box` varchar(30) NOT NULL COMMENT '邮箱',
+  `mail_po_box` varchar(30) NOT NULL COMMENT '邮箱',
   `mail_city` varchar(30) NOT NULL COMMENT '城市',
   `mail_country` varchar(30) NOT NULL COMMENT '乡村',
   `mail_state` varchar(30) NOT NULL COMMENT '州',
   `other_street` varchar(30) NOT NULL COMMENT '街道',
-  `other_p0_box` varchar(30) NOT NULL COMMENT '邮箱',
+  `other_po_box` varchar(30) NOT NULL COMMENT '邮箱',
   `other_city` varchar(30) NOT NULL COMMENT '城市',
   `other_country` varchar(30) NOT NULL COMMENT '国家',
   PRIMARY KEY (`address_id`)

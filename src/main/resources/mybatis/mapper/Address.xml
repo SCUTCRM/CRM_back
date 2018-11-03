@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.AddressDao" >
+    <resultMap id="addressMap" type="com.example.crm.entity.Address">
+        <id column="address_id" property="addressId"/>
+        <result column="mail_street" property="mailStreet"/>
+        <result column="mail_po_box" property="mailPoBox"/>
+        <result column="mail_city" property="mailCity"/>
+        <result column="mail_country" property="mailCountry"/>
+        <result column="mail_state" property="mailState"/>
+        <result column="other_street" property="otherStreet"/>
+        <result column="other_po_box" property="otherPoBox"/>
+        <result column="other_city" property="otherCity"/>
+        <result column="other_country" property="otherCountry"/>
+    </resultMap>
+
+    <select id="getAddress" resultMap="addressMap">
+        select a.*
+        from address a
+        where a.address_id = #{addressId}
+    </select>
+
+    <insert id="insertAddress" parameterType="com.example.crm.entity.Address" keyProperty="addressId" keyColumn="address_id">
+        insert into address(mail_street,mail_po_box,mail_city,mail_country,mail_state,other_street,other_po_box,other_city,other_country)
+        values(#{mailStreet},#{mailPoBox},#{mailCity},#{mailCountry},#{mailState},#{otherStreet},#{otherPoBox},#{otherCity},#{other_country})
+    </insert>
+
+    <update id="updateAddress">
+        update address
+        <set>
+            <if test="mailStreet != null">mail_street = #{mailStreet},</if>
+            <if test="mailPoBox != null">mail_po_box = #{mailPoBox},</if>
+            <if test="mailCity != null">mail_city = #{mailCity},</if>
+            <if test="mailCountry != null">mail_country = #{mailCountry},</if>
+            <if test="mailState != null">mail_state = #{mailState},</if>
+            <if test="otherStreet != null">other_street = #{otherStreet},</if>
+            <if test="otherPoBox != null">other_po_box = #{otherPoBox},</if>
+            <if test="otherCity != null">other_city = #{otherCity},</if>
+            <if test="otherCountry != null">other_country = #{otherCountry}</if>
+        </set>
+        where address_id = #{addressId}
+    </update>
+
+    <delete id="deleteAddress">
+        delete from address
+        where address_id = #{addressId}
+    </delete>
+</mapper>
