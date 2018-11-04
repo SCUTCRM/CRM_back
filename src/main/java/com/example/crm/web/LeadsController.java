@@ -30,7 +30,7 @@ public class LeadsController {
     @Autowired
     private LeadsService leadsService;
 
-    //获取联系人信息
+    //获取潜在客户信息
     @GetMapping("/leads/leads")
     private HashMap<String, Object> listLeads() {
         HashMap<String, Object> resultMap = new HashMap<>();
@@ -74,7 +74,7 @@ public class LeadsController {
         return resultMap;
     }
 
-    @PostMapping("/contact/insert")
+    @PostMapping("/leads/insertLeads")
     private HashMap<String, Object> insertLeads(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         //1.获取leads对应的json字符串
@@ -104,7 +104,7 @@ public class LeadsController {
         return resultMap;
     }
 
-    @PostMapping("/leads/update")
+    @PostMapping("/leads/updateLeads")
     private HashMap<String, Object> updateContact(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         //1.将前端传过来的线索json字符串转换成实体类
@@ -135,7 +135,7 @@ public class LeadsController {
         return resultMap;
     }
 
-    @PostMapping("/leads/delete")
+    @PostMapping("/leads/deleteLeads")
     private HashMap<String, Object> deleteContact(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         int leadsId = HttpServletRequestUtil.getInt(request, "leadsId");

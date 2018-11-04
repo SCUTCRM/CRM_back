@@ -33,7 +33,7 @@
     <select id="getLeadsList" resultMap="leadsMap">
         select l.*
         from leads l
-        order by leads_id ASC
+        order by lead_id ASC
     </select>
 
     <select id="getLeads" resultMap="leadsMap">

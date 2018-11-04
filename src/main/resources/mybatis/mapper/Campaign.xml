@@ -67,7 +67,7 @@
             <if test="expActualId != null and expActual.expActualId != null">exp_actual_id = #{expActual.expActualId},</if>
             <if test="opportId != null and opport.opportId != null">opport_id = #{opport.opportId}</if>
         </set>
-        where campaign_id = #{compaignId}
+        where campaign_id = #{campaignId}
     </update>
 
     <delete id="deleteCampaign">
