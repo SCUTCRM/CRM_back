@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class RegisterServiceTest {
+public class RegisterServiceImplTest {
     @Autowired
     private RegisterService registerService;
 

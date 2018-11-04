@@ -23,13 +23,13 @@ public class AddressDaoTest {
     private AddressDao addressDao;
 
     @Test
-    @Ignore
+    //@Ignore
     public void getAddress(){
         System.out.println(addressDao.getAddress(1));
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void insertAddress(){
         Address address = new Address();
         address.setAddressId(1);
@@ -39,9 +39,9 @@ public class AddressDaoTest {
         address.setMailCountry("广州");
         address.setMailState("美国");
         address.setOtherStreet("桂岭大道");
-        address.setMailPoBox("邮箱2");
-        address.setMailCity("蕉岭");
-        address.setMailCountry("梅州");
+        address.setOtherPoBox("邮箱2");
+        address.setOtherCity("蕉岭");
+        address.setOtherCountry("梅州");
         System.out.println("插入前" + address.getAddressId());
         System.out.println(addressDao.insertAddress(address));
         System.out.println("插入后" + address.getAddressId());

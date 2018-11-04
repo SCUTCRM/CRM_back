@@ -19,6 +19,8 @@ public class Product {
     //销售开始日期
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date saleStartDate;
+    //产品种类
+    private String productCategory;
     //产品是否在售 T和F
     private String active;
     //销售结束日期
@@ -79,6 +81,14 @@ public class Product {
 
     public void setSaleStartDate(Date saleStartDate) {
         this.saleStartDate = saleStartDate;
+    }
+
+    public String getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(String productCategory) {
+        this.productCategory = productCategory;
     }
 
     public String getActive() {

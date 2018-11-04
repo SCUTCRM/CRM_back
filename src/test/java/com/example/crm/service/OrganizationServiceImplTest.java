@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrganizationServiceTest {
+public class OrganizationServiceImplTest {
     @Autowired
     private OrganizationService organizationService;
 

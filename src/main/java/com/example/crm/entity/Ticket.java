@@ -19,9 +19,9 @@ public class Ticket {
     //优先级 从0-10优先级依次递减
     private Integer priority;
     //分配给
-    private Integer assignedTo;
+    private Integer assignTo;
     //小时数
-    private String hour;
+    private String hourNum;
     //种类
     private String category;
     //创建时间
@@ -75,20 +75,20 @@ public class Ticket {
         this.priority = priority;
     }
 
-    public Integer getAssignedTo() {
-        return assignedTo;
+    public Integer getAssignTo() {
+        return assignTo;
     }
 
-    public void setAssignedTo(Integer assignedTo) {
-        this.assignedTo = assignedTo;
+    public void setAssignTo(Integer assignTo) {
+        this.assignTo = assignTo;
     }
 
-    public String getHour() {
-        return hour;
+    public String getHourNum() {
+        return hourNum;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
+    public void setHourNum(String hourNum) {
+        this.hourNum = hourNum;
     }
 
     public String getCategory() {

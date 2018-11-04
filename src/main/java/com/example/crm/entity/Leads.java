@@ -19,11 +19,11 @@ public class Leads {
     //常用电话
     private Integer primaryPhone;
     //网站
-    private String webSite;
+    private String website;
     //常用邮箱
     private String primaryEmail;
     //分配给
-    private Integer assignedTo;
+    private Integer assignTo;
     //年收入
     private Double annualRevenue;
     //电话
@@ -79,12 +79,12 @@ public class Leads {
         this.primaryPhone = primaryPhone;
     }
 
-    public String getWebSite() {
-        return webSite;
+    public String getWebsite() {
+        return website;
     }
 
-    public void setWebSite(String webSite) {
-        this.webSite = webSite;
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getPrimaryEmail() {
@@ -95,12 +95,12 @@ public class Leads {
         this.primaryEmail = primaryEmail;
     }
 
-    public Integer getAssignedTo() {
-        return assignedTo;
+    public Integer getAssignTo() {
+        return assignTo;
     }
 
-    public void setAssignedTo(Integer assignedTo) {
-        this.assignedTo = assignedTo;
+    public void setAssignTo(Integer assignTo) {
+        this.assignTo = assignTo;
     }
 
     public Double getAnnualRevenue() {

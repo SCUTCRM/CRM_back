@@ -13,7 +13,7 @@ import java.util.Date;
 public class Campaign {
     private Integer campaignId;
     //活动类型
-    private Integer campaignType;
+    private String campaignType;
     //活动状态 0表示 1表示
     private Integer campaignStatus;
     //预期收入
@@ -56,11 +56,11 @@ public class Campaign {
         this.campaignId = campaignId;
     }
 
-    public Integer getCampaignType() {
+    public String getCampaignType() {
         return campaignType;
     }
 
-    public void setCampaignType(Integer campaignType) {
+    public void setCampaignType(String campaignType) {
         this.campaignType = campaignType;
     }
 

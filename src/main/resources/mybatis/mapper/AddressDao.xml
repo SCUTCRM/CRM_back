@@ -22,7 +22,7 @@
 
     <insert id="insertAddress" parameterType="com.example.crm.entity.Address" keyProperty="addressId" keyColumn="address_id">
         insert into address(mail_street,mail_po_box,mail_city,mail_country,mail_state,other_street,other_po_box,other_city,other_country)
-        values(#{mailStreet},#{mailPoBox},#{mailCity},#{mailCountry},#{mailState},#{otherStreet},#{otherPoBox},#{otherCity},#{other_country})
+        values(#{mailStreet},#{mailPoBox},#{mailCity},#{mailCountry},#{mailState},#{otherStreet},#{otherPoBox},#{otherCity},#{otherCountry})
     </insert>
 
     <update id="updateAddress">

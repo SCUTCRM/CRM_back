@@ -33,7 +33,7 @@ public class Opportunity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifiedTime;
     //类型
-    private Integer type;
+    private String opportType;
     //期望结束时间
     private Date expCloseTime;
     //描述
@@ -121,12 +121,12 @@ public class Opportunity {
         this.modifiedTime = modifiedTime;
     }
 
-    public Integer getType() {
-        return type;
+    public String getOpportType() {
+        return opportType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setOpportType(String opportType) {
+        this.opportType = opportType;
     }
 
     public Date getExpCloseTime() {

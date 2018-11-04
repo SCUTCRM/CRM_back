@@ -23,7 +23,7 @@ public class Contact {
     //办公室电话
     private Integer officePhone;
     //分配给
-    private Integer assignedTo;
+    private Integer assignTo;
     //是否是来自于线索 T和F
     private String isFromLead;
     //家的电话
@@ -31,7 +31,7 @@ public class Contact {
     //更改
     private String updateInfo;
     //线索状态
-    private Integer Leadstate;
+    private Integer leadState;
     //行业
     private String industry;
     //创建时间
@@ -44,7 +44,7 @@ public class Contact {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dayOfBirth;
     //部门
-    private String departMent;
+    private String department;
     //助理
     private String assistant;
     //助理电话
@@ -106,14 +106,6 @@ public class Contact {
         this.officePhone = officePhone;
     }
 
-    public Integer getAssignedTo() {
-        return assignedTo;
-    }
-
-    public void setAssignedTo(Integer assignedTo) {
-        this.assignedTo = assignedTo;
-    }
-
     public String getIsFromLead() {
         return isFromLead;
     }
@@ -138,12 +130,20 @@ public class Contact {
         this.updateInfo = updateInfo;
     }
 
-    public Integer getLeadstate() {
-        return Leadstate;
+    public Integer getAssignTo() {
+        return assignTo;
     }
 
-    public void setLeadstate(Integer leadstate) {
-        Leadstate = leadstate;
+    public void setAssignTo(Integer assignTo) {
+        this.assignTo = assignTo;
+    }
+
+    public Integer getLeadState() {
+        return leadState;
+    }
+
+    public void setLeadState(Integer leadState) {
+        this.leadState = leadState;
     }
 
     public String getIndustry() {
@@ -178,12 +178,12 @@ public class Contact {
         this.dayOfBirth = dayOfBirth;
     }
 
-    public String getDepartMent() {
-        return departMent;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setDepartMent(String departMent) {
-        this.departMent = departMent;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getAssistant() {

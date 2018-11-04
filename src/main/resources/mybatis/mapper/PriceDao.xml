@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.PriceDao" >
+    <resultMap id="priceMap" type="com.example.crm.entity.Price">
+        <id column="price_id" property="priceId"/>
+        <result column="unit_price" property="unitPrice"/>
+        <result column="commission_rate" property="commissionRate"/>
+    </resultMap>
+
+    <select id="getPrice" resultMap="priceMap">
+        select p.*
+        from price p
+        where p.price_id = #{priceId}
+    </select>
+
+    <insert id="insertPrice" parameterType="com.example.crm.entity.Price" keyProperty="priceId" keyColumn="price_id">
+        insert into price(unit_price,commission_rate)
+        values(#{unitPrice},#{commissionRate})
+    </insert>
+
+    <update id="updatePrice">
+        update price
+        <set>
+            <if test="unitPrice != null">unit_price = #{unitPrice},</if>
+            <if test="commissionRate != null">commission_rate = #{commissionRate}</if>
+        </set>
+        where price_id = #{priceId}
+    </update>
+
+    <delete id="deletePrice">
+        delete from price
+        where price_id = #{priceId}
+    </delete>
+</mapper>

@@ -8,14 +8,14 @@ package com.example.crm.dto;
  * Modified By：
  */
 public class CampaignDto {
-    private Integer type;
+    private String type;
     private Integer id;
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setValue(Integer type) {
+    public void setValue(String type) {
         this.type = type;
     }
 

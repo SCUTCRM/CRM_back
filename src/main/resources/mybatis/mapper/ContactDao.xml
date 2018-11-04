@@ -32,7 +32,7 @@
         </association>
     </resultMap>
 
-    <select id="getContactList" resultMap="ContactMap">
+    <select id="getContactList" resultMap="contactMap">
         select c.*
         from contact c
         order by contact_id ASC
@@ -45,8 +45,8 @@
     </select>
 
     <insert id="insertContact" parameterType="com.example.crm.entity.Contact" keyProperty="contactId" keyColumn="contact_id">
-        insert into contact(first_name,last_name,title,organization_id,assign_to,email,office_phone,assign_to,is_from_lead,home_phone,address_id,update_info,lead_state,industry,create_time,modified_time,day_of_birth,department,assistant,assistant_phone,profile_picture,description)
-        values(#{firstName},#{lastName},#{title},#{organization.organizationId},#{assignTo},#{email},#{officePhone},#{assignTo},#{isFromLead},#{homePhone},#{address.addressId},#{updateInfo},#{leadState},#{industry},#{createTime},#{modifiedTime},#{dayOfBirth},#{department},#{assistant},#{assistantPhone},#{profilePicture},#{description})
+        insert into contact(first_name,last_name,title,organization_id,email,office_phone,assign_to,is_from_lead,home_phone,address_id,update_info,lead_state,industry,create_time,modified_time,day_of_birth,department,assistant,assistant_phone,profile_picture,description)
+        values(#{firstName},#{lastName},#{title},#{organization.organizationId},#{email},#{officePhone},#{assignTo},#{isFromLead},#{homePhone},#{address.addressId},#{updateInfo},#{leadState},#{industry},#{createTime},#{modifiedTime},#{dayOfBirth},#{department},#{assistant},#{assistantPhone},#{profilePicture},#{description})
     </insert>
 
     <update id="updateContact">
@@ -71,8 +71,8 @@
             <if test="assistantPhone != null">assistant_phone = #{assistantPhone},</if>
             <if test="profilePicture != null">profile_picture = #{profilePicture},</if>
             <if test="description != null">description = #{description},</if>
-            <if test="address_id != null and address.addressId != null">address_id = #{address.addressId}</if>
-            <if test="organizationId != null and organization.organizationId != null">organization_id = #{organization.organizationId}</if>
+            <if test="address != null and address.addressId != null">address_id = #{address.addressId},</if>
+            <if test="organization != null and organization.organizationId != null">organization_id = #{organization.organizationId}</if>
         </set>
         where contact_id = #{contactId}
     </update>

@@ -28,7 +28,7 @@
         </association>
     </resultMap>
 
-    <select id="getProductList" resultMap="ProductMap">
+    <select id="getProductList" resultMap="productMap">
         select p.*
         from product p
         order by product_id ASC
@@ -63,9 +63,9 @@
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="manufacturer != null">manufacturer = #{manufacturer},</if>
             <if test="description != null">description = #{description},</if>
-            <if test="update != null">update_info = #{updateInfo},</if>
+            <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="price != null and price.priceId != null">price_id = #{price.priceId},</if>
-            <if test="stockInfo != null and stockInfo.stockInfoId != null">stock_info_id = #{stockInfo.stock_info_id}</if>
+            <if test="stockInfo != null and stockInfo.stockInfoId != null">stock_info_id = #{stockInfo.stockInfoId}</if>
         </set>
         where product_id = #{productId}
     </update>

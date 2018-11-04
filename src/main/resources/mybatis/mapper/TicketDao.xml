@@ -7,7 +7,7 @@
         <result column="status" property="status"/>
         <result column="priority" property="priority"/>
         <result column="assign_to" property="assignTo"/>
-        <result column="hour" property="hour"/>
+        <result column="hour_num" property="hourNum"/>
         <result column="category" property="category"/>
         <result column="create_time" property="createTime"/>
         <result column="modified_time" property="modifiedTime"/>
@@ -38,8 +38,8 @@
     </select>
 
     <insert id="insertTicket" parameterType="com.example.crm.entity.Ticket" keyProperty="ticketId" keyColumn="ticket_id">
-        insert into ticket(title,status,priority,assign_to,hour,category,create_time,modified_time,severity,days,description,update_info,organization_id,product_id)
-        values(#{title},#{status},#{priority},#{assignTo},#{hour},#{category},#{createTime},#{modifiedTime},#{severity},#{days},#{description},#{updateInfo},#{organization.organizationId},#{product.product_id})
+        insert into ticket(title,status,priority,assign_to,hour_num,category,create_time,modified_time,severity,days,description,update_info,organization_id,product_id)
+        values(#{title},#{status},#{priority},#{assignTo},#{hourNum},#{category},#{createTime},#{modifiedTime},#{severity},#{days},#{description},#{updateInfo},#{organization.organizationId},#{product.productId})
     </insert>
 
     <update id="updateTicket">
@@ -49,16 +49,16 @@
             <if test="status != null">status = #{status},</if>
             <if test="priority != null">priority = #{priority},</if>
             <if test="assignTo != null">assign_to = #{assignTo},</if>
-            <if test="hour != null">hour = #{hour},</if>
+            <if test="hourNum != null">hour_num = #{hourNum},</if>
             <if test="category != null">category = #{category},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="severity != null">severity = #{severity},</if>
             <if test="days != null">days = #{days},</if>
             <if test="description != null">description = #{description},</if>
-            <if test="updateInfo != null">update_info = #{update_info},</if>
-            <if test="organizationId != null and organization.organizationId != null">organization_id = #{organization.organizationId},</if>
-            <if test="addressId != null and address.addressId != null">address_id = #{address.addressId}</if>
+            <if test="updateInfo != null">update_info = #{updateInfo},</if>
+            <if test="organization != null and organization.organizationId != null">organization_id = #{organization.organizationId},</if>
+            <if test="product != null and product.productId != null">product_id = #{product.productId}</if>
         </set>
         where ticket_id = #{ticketId}
     </update>

@@ -43,8 +43,8 @@
     </select>
 
     <insert id="insertLeads" parameterType="com.example.crm.entity.Leads" keyProperty="leadId" keyColumn="lead_id">
-        insert into leads(first_name,last_name,organization_id,primary_phone,website,primary_email,assign_to,product_id,annual_revenue,phone,employee,email,address_id,update_info,description,create_time,modified_time)
-        values(#{firstName},#{lastName},#{organization.organizationId},#{primaryPhone},#{website},#{primaryEmail},#{assignTo},#{product.productId},#{annualRevenue},#{phone},#{email},#{address.address_id},#{updateInfo},#{description},#{createTime},#{modifiedTime})
+        insert into leads(first_name,last_name,organization_id,primary_phone,website,primary_email,assign_to,product_id,annual_revenue,phone,email,address_id,update_info,description,create_time,modified_time)
+        values(#{firstName},#{lastName},#{organization.organizationId},#{primaryPhone},#{website},#{primaryEmail},#{assignTo},#{product.productId},#{annualRevenue},#{phone},#{email},#{address.addressId},#{updateInfo},#{description},#{createTime},#{modifiedTime})
     </insert>
 
     <update id="updateLeads">
@@ -63,9 +63,9 @@
             <if test="description != null">description = #{description},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
-            <if test="organizationId != null and organization.organizationId != null">organization_id = #{organization.organizationId},</if>
-            <if test="productId != null and product.productId != null">product_id = #{product.productId},</if>
-            <if test="addressId != null and address.addressId != null">address_id = #{address.addressId}</if>
+            <if test="organization != null and organization.organizationId != null">organization_id = #{organization.organizationId},</if>
+            <if test="product != null and product.productId != null">product_id = #{product.productId},</if>
+            <if test="address != null and address.addressId != null">address_id = #{address.addressId}</if>
         </set>
         where lead_id = #{leadId}
     </update>

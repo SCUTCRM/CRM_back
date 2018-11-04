@@ -12,7 +12,7 @@
         <result column="update_info" property="updateInfo"/>
         <result column="create_time" property="createTime"/>
         <result column="modified_time" property="modifiedTime"/>
-        <result column="type" property="type"/>
+        <result column="opport_type" property="opportType"/>
         <result column="exp_close_time" property="expCloseTime"/>
         <result column="description" property="description"/>
         <association property="contact" column="contact_id"
@@ -34,8 +34,8 @@
     </select>
 
     <insert id="insertOpportunity" parameterType="com.example.crm.entity.Opportunity" keyProperty="opportId" keyColumn="opport_id">
-        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,contact_id,lead_source,update_info,create_time,modified_time,type,exp_close_time,description)
-        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{type},#{expCloseTime},#{description})
+        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,contact_id,lead_source,update_info,create_time,modified_time,opport_type,exp_close_time,description)
+        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{opportType},#{expCloseTime},#{description})
     </insert>
 
     <update id="updateOpportunity">
@@ -50,10 +50,10 @@
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
-            <if test="type != null">type = #{type},</if>
+            <if test="opportType != null">opport_type = #{opportType},</if>
             <if test="expCloseTime != null">exp_close_time = #{expCloseTime},</if>
             <if test="description != null">description = #{description},</if>
-            <if test="contactId != null and contact.contactId != null">contact_id = #{contact.contactId}</if>
+            <if test="contact != null and contact.contactId != null">contact_id = #{contact.contactId}</if>
         </set>
         where opport_id = #{opportId}
     </update>

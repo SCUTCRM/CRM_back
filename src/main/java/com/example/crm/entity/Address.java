@@ -107,4 +107,5 @@ public class Address {
     public void setOtherCountry(String otherCountry) {
         this.otherCountry = otherCountry;
     }
+
 }

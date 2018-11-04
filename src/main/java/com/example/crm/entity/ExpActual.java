@@ -7,7 +7,7 @@ package com.example.crm.entity;
  * @ Modified By：
  */
 public class ExpActual {
-    private Integer sxpActualId;
+    private Integer expActualId;
     //预算成本
     private Double budgetCost;
     //实际成本
@@ -25,12 +25,12 @@ public class ExpActual {
     //实际的roi
     private Double actualRoi;
 
-    public Integer getSxpActualId() {
-        return sxpActualId;
+    public Integer getExpActualId() {
+        return expActualId;
     }
 
-    public void setSxpActualId(Integer sxpActualId) {
-        this.sxpActualId = sxpActualId;
+    public void setExpActualId(Integer sxpActualId) {
+        this.expActualId = sxpActualId;
     }
 
     public Double getBudgetCost() {
