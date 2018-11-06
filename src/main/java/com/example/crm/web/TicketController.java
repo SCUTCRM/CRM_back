@@ -33,7 +33,7 @@ public class TicketController {
     private TicketService ticketService;
 
     //获取售后信息
-    @GetMapping("/tickets")
+    @GetMapping("/ticket/tickets")
     private HashMap<String, Object> listTicket() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {

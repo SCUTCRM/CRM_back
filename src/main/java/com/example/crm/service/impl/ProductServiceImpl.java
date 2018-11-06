@@ -27,12 +27,42 @@ public class ProductServiceImpl implements ProductService {
         return productDao.getProductList();
     }
 
-    @Transactional
     @Override
-    public Product getProduct(Integer productId) {
-        return productDao.getProduct(productId);
+    public Product getProductById(Integer productId) {
+        return productDao.getProductById(productId);
     }
 
+    @Override
+    public Product getProductByProductName(String productName) {
+        return productDao.getProductByProductName(productName);
+    }
+
+    @Override
+    public Product getProductByPartNumber(Integer partNumber) {
+        return productDao.getProductByPartNumber(partNumber);
+    }
+
+    @Override
+    public Product getProductByCommissionRate(Double commissionRate) {
+        return productDao.getProductByCommissionRate(commissionRate);
+    }
+
+    @Override
+    public Product getProductByQtyInStock(Integer qtyInStock) {
+        return productDao.getProductByQtyInStock(qtyInStock);
+    }
+
+    @Override
+    public Product getProductByQtyUnit(Integer unit) {
+        return productDao.getProductByQtyUnit(unit);
+    }
+
+    @Override
+    public Product getProductByUnitPrice(Double unitPrice) {
+        return productDao.getProductByUnitPrice(unitPrice);
+    }
+
+    @Transactional
     @Override
     public int insertProduct(Product product) {
         if (product == null) {
@@ -42,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
             int result = productDao.insertProduct(product);
             return result;
         } catch (Exception e) {
-            throw new ProductException("插入产品失败",-1);
+            throw new ProductException("插入产品失败", -1);
         }
     }
 
@@ -56,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
             int result = productDao.updateProduct(product);
             return result;
         } catch (Exception e) {
-            throw  new ProductException("更新产品失败",-1);
+            throw new ProductException("更新产品失败", -1);
         }
     }
 
@@ -70,7 +100,7 @@ public class ProductServiceImpl implements ProductService {
             int result = productDao.deleteProduct(productId);
             return result;
         } catch (Exception e) {
-            throw  new ProductException("删除产品失败",-2);
+            throw new ProductException("删除产品失败", -2);
         }
     }
 }

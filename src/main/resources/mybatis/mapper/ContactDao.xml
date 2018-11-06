@@ -38,10 +38,52 @@
         order by contact_id ASC
     </select>
 
-    <select id="getContact" resultMap="contactMap">
+    <select id="getContactById" resultMap="contactMap">
         select c.*
         from contact c
         where c.contact_id = #{contactId}
+    </select>
+
+    <select id="getContactByFirstName" resultMap="contactMap">
+        select c.*
+        from contact c
+        where c.first_name = #{firstName}
+    </select>
+
+    <select id="getContactByLastName" resultMap="contactMap">
+        select c.*
+        from contact c
+        where c.last_name = #{lastName}
+    </select>
+
+    <select id="getContactByTitle" resultMap="contactMap">
+        select c.*
+        from contact c
+        where c.title = #{title}
+    </select>
+
+    <select id="getContactByOrganizationName" resultMap="contactMap">
+        select c.*
+        from contact c,organization o
+        where c.organization_id = o.organization_id and o.organization_name = #{organizationName}
+    </select>
+
+    <select id="getContactByPrimaryEmail" resultMap="contactMap">
+        select c.*
+        from contact c
+        where c.email = #{primaryEmail}
+    </select>
+
+    <select id="getContactByOfficePhone" resultMap="contactMap">
+        select c.*
+        from contact c
+        where c.office_phone = #{officePhone}
+    </select>
+
+    <select id="getContactByAssignTo" resultMap="contactMap">
+        select c.*
+        from contact c
+        where c.assign_to = #{assignTo}
     </select>
 
     <insert id="insertContact" parameterType="com.example.crm.entity.Contact" keyProperty="contactId" keyColumn="contact_id">

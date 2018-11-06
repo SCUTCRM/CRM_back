@@ -13,7 +13,21 @@ import java.util.List;
 public interface ContactService {
     List<Contact> getContactList();
 
-    Contact getContact(Integer contactId);
+    Contact getContactById(Integer contactId);
+
+    Contact getContactByFirstName(String firstName);
+
+    Contact getContactByLastName(String lastName);
+
+    Contact getContactByTitle(String title);
+
+    Contact getContactByOrganizationName(String organizationName);
+
+    Contact getContactByPrimaryEmail(String primaryEmail);
+
+    Contact getContactByOfficePhone(String officePhone);
+
+    Contact getContactByAssignTo(Integer assignTo);
 
     int insertContact(Contact contact);
 

@@ -31,7 +31,77 @@ public interface ContactDao {
      * @return
      * @Param: null
      */
-    Contact getContact(Integer contactId);
+    Contact getContactById(Integer contactId);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据firstName获取联系人信息
+     * create time: 2018/11/6 16:44
+     *
+     * @return
+     * @Param: null
+     */
+    Contact getContactByFirstName(String firstName);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据lastName获取联系人信息
+     * create time: 2018/11/6 16:44
+     *
+     * @return
+     * @Param: null
+     */
+    Contact getContactByLastName(String lastName);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据title获取联系人信息
+     * create time: 2018/11/6 16:44
+     *
+     * @return
+     * @Param: null
+     */
+    Contact getContactByTitle(String title);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据OrganizationName获取联系人信息
+     * create time: 2018/11/6 16:44
+     *
+     * @return
+     * @Param: null
+     */
+    Contact getContactByOrganizationName(String organizationName);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据PrimaryEmail获取联系人信息
+     * create time: 2018/11/6 16:57
+     *
+     * @return
+     * @Param: null
+     */
+    Contact getContactByPrimaryEmail(String primaryEmail);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据OfficePhone获取联系人信息
+     * create time: 2018/11/6 16:57
+     *
+     * @return
+     * @Param: null
+     */
+    Contact getContactByOfficePhone(String officePhone);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据AssignedTo获取联系人信息
+     * create time: 2018/11/6 16:57
+     *
+     * @return
+     * @Param: null
+     */
+    Contact getContactByAssignTo(Integer assignTo);
 
     /**
      * create by: Bin Liu

@@ -34,11 +34,40 @@
         order by product_id ASC
     </select>
 
-    <!-- 登录用 -->
-    <select id="getProduct" resultMap="productMap">
+    <select id="getProductById" resultMap="productMap">
         select p.*
         from product p
-        where p.product_name = #{productName}
+        where p.product_id = #{productId}
+    </select>
+
+    <select id="getProductByPartNumber" resultMap="productMap">
+        select p.*
+        from product p
+        where p.part_number = #{partNumber}
+    </select>
+
+    <select id="getProductByCommissionRate" resultMap="productMap">
+        select pro.*
+        from product pro,price pri
+        where pro.price_id = pri.price_id and pri.commission_rate = #{commissionRate}
+    </select>
+
+    <select id="getProductByQtyInStock" resultMap="productMap">
+        select p.*
+        from product p,stock_info s
+        where p.stock_info_id = s.stock_info_id and s.qty_in_stock = #{qtyInStock}
+    </select>
+
+    <select id="getProductByQtyUnit" resultMap="productMap">
+        select p.*
+        from product p,stock_info s
+        where p.stock_info_id = s.stock_info_id  and s.unit=#{unit}
+    </select>
+
+    <select id="getProductByUnitPrice" resultMap="productMap">
+        select p.*
+        from product pro,price pri
+        where pro.price_id = pri.price_id  and pri.unit_price=#{unitPrice}
     </select>
 
     <insert id="insertProduct" parameterType="com.example.crm.entity.Product" keyProperty="productId" keyColumn="product_id">

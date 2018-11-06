@@ -38,8 +38,8 @@ public class UserServiceImplTest {
         User user = new User();
         user.setUserId(3);
         user.setUserName("刘斌"); //name属性无法修改
-        user.setPassWord("13265910904zly");
-        user.setPhone("13672814949");
+        user.setPassWord("123456");
+        user.setPhone("15766345459");
 
         System.out.println(userService.updateUser(user));
     }

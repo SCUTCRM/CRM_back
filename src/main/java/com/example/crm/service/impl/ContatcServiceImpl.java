@@ -28,9 +28,45 @@ public class ContatcServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact getContact(Integer contactId) {
-        return contactDao.getContact(contactId);
+    public Contact getContactById(Integer contactId) {
+        return contactDao.getContactById(contactId);
     }
+
+    @Override
+    public Contact getContactByFirstName(String firstName) {
+        return contactDao.getContactByFirstName(firstName);
+    }
+
+    @Override
+    public Contact getContactByLastName(String lastName) {
+        return contactDao.getContactByLastName(lastName);
+    }
+
+    @Override
+    public Contact getContactByTitle(String title) {
+        return contactDao.getContactByTitle(title);
+    }
+
+    @Override
+    public Contact getContactByOrganizationName(String organizationName) {
+        return contactDao.getContactByOrganizationName(organizationName);
+    }
+
+    @Override
+    public Contact getContactByPrimaryEmail(String primaryEmail) {
+        return contactDao.getContactByPrimaryEmail(primaryEmail);
+    }
+
+    @Override
+    public Contact getContactByOfficePhone(String officePhone) {
+        return contactDao.getContactByOfficePhone(officePhone);
+    }
+
+    @Override
+    public Contact getContactByAssignTo(Integer assignTo) {
+        return contactDao.getContactByAssignTo(assignTo);
+    }
+
 
     @Transactional
     @Override
