@@ -34,4 +34,6 @@ public interface ContactService {
     int updateContact(Contact contact);
 
     int deleteContact(Integer contactId);
+
+    List<Contact> getRecentlyModified();
 }

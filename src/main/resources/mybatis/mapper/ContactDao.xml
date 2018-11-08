@@ -123,4 +123,11 @@
         delete from contact
         where contact_id = #{contactId}
     </delete>
+
+    <select id="getRecentlyModified" resultMap="contactMap">
+        select c.*
+        from contact c
+        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
+        and modified_time &lt; CURRENT_DATE
+    </select>
 </mapper>

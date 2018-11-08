@@ -121,5 +121,30 @@ public interface ProductDao {
      */
     int deleteProduct(Integer productId);
 
+    /**
+     * create by: Bin Liu
+     * description: 获取最近修改的产品信息
+     * create time: 2018/11/6 21:57
+     * @Param: null
+     * @return 
+     */
+    List<Product> getRecentlyModified();
 
-}
+    /**
+     * create by: Bin Liu
+     * description: 查重
+     * create time: 2018/11/6 22:07
+     * @Param: null
+     * @return 
+     */
+    int findDuplicates();
+
+    /**
+     * create by: Bin Liu
+     * description: 根据id获取更新信息
+     * create time: 2018/11/6 22:40
+     * @Param: null
+     * @return 
+     */
+    String getUpdateInfo(Integer productId);
+ }

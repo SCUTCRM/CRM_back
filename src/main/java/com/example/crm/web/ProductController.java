@@ -262,4 +262,30 @@ public class ProductController {
         }
         return resultMap;
     }
+
+    //获取产品信息
+    @GetMapping("product/recentlyModified")
+    private HashMap<String, Object> getRecentlyModified() {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            List<Product> productList = productService.getRecentlyModified();
+            //前端只能识别字段为value的值
+            List<ProductDto> products = new ArrayList<>();
+            for (Product p : productList) {
+                ProductDto pto = new ProductDto();
+                pto.setValue(p.getProductName());
+                pto.setId(p.getProductId());
+                products.add(pto);
+            }
+            resultMap.put("products", products);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
 }

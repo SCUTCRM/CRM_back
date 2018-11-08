@@ -72,4 +72,9 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw  new OrganizationException("删除订单失败",-2);
         }
     }
+
+    @Override
+    public List<Organization> getRecentlyModified() {
+        return organizationDao.getRecentlyModified();
+    }
 }

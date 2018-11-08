@@ -113,4 +113,13 @@ public interface ProductService {
      * @Param: null
      */
     int deleteProduct(Integer productId);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据id获取更新信息
+     * create time: 2018/11/6 23:07
+     * @Param: null
+     * @return
+     */
+    List<Product> getRecentlyModified();
 }

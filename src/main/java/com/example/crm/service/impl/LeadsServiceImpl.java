@@ -28,7 +28,7 @@ public class LeadsServiceImpl implements LeadsService {
 
     @Override
     public Leads getLeads(Integer leadId) {
-        return leadsDao.getLeads(leadId);
+        return leadsDao.getLeadsById(leadId);
     }
 
     @Transactional
@@ -72,4 +72,46 @@ public class LeadsServiceImpl implements LeadsService {
             throw new LeadsException("删除线索失败", -2);
         }
     }
+
+    @Override
+    public List<Leads> getRecentlyModified() {
+        return leadsDao.getRecentlyModified();
+    }
+
+    @Override
+    public Leads getLeadsByFirstName(String firstName) {
+        return leadsDao.getLeadsByFirstName(firstName);
+    }
+
+    @Override
+    public Leads getLeadsByLastName(String lastName) {
+        return leadsDao.getLeadsByLastName(lastName);
+    }
+
+    @Override
+    public Leads getLeadsByCompany(String company) {
+        return leadsDao.getLeadsByCompany(company);
+    }
+
+    @Override
+    public Leads getLeadsByPrimaryPhone(Integer primaryPhone) {
+        return leadsDao.getLeadsByPrimaryPhone(primaryPhone);
+    }
+
+    @Override
+    public Leads getLeadsByWebsite(String website) {
+        return leadsDao.getLeadsByWebsite(website);
+    }
+
+    @Override
+    public Leads getLeadsByPrimaryEmail(String primaryEmail) {
+        return leadsDao.getLeadsByPrimaryEmail(primaryEmail);
+    }
+
+    @Override
+    public Leads getLeadsByAssignTo(Integer assignTo) {
+        return leadsDao.getLeadsByAssignTo(assignTo);
+    }
+
+
 }

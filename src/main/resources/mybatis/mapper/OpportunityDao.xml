@@ -62,4 +62,11 @@
         delete from opportunity
         where opport_id = #{opportId}
     </delete>
+
+    <select id="getRecentlyModified" resultMap="opportunityMap">
+        select o.*
+        from opportunity o
+        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
+        and modified_time &lt; CURRENT_DATE
+    </select>
 </mapper>

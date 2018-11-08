@@ -36,7 +36,7 @@
         order by lead_id ASC
     </select>
 
-    <select id="getLeads" resultMap="leadsMap">
+    <select id="getLeadsById" resultMap="leadsMap">
         select l.*
         from leads l
         where l.lead_id = #{leadId}
@@ -74,4 +74,31 @@
         delete from leads
         where lead_id = #{leadId}
     </delete>
+
+    <select id="getRecentlyModified" resultMap="leadsMap">
+        select l.*
+        from leads l
+        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
+        and modified_time &lt; CURRENT_DATE
+    </select>
+
+    <select id="getLeadsByFirstName" resultMap="leadsMap">
+        select l.*
+        from leads l
+        where first_name=#{firstName}
+    </select>
+
+    <select id="getLeadsByLastName" resultMap="leadsMap">
+        select l.*
+        from leads l
+        where last_name=#{lastName}
+    </select>
+
+    <select id="getLeadsByCompany" resultMap="leadsMap">
+        select l.*
+        from leads l
+        where company=#{company}
+    </select>
+
+
 </mapper>

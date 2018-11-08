@@ -62,4 +62,13 @@ public interface OrganizationDao {
      * @Param: null
      */
     int deleteOrganization(Integer OrganizationId);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据id获取更新信息
+     * create time: 2018/11/6 22:48
+     * @Param: null
+     * @return
+     */
+    List<Organization> getRecentlyModified();
 }

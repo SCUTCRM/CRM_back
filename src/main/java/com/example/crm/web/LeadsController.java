@@ -154,4 +154,29 @@ public class LeadsController {
         }
         return resultMap;
     }
+
+    @GetMapping("/leads/recentlyModified")
+    private HashMap<String, Object> getRecentlyModified() {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            List<Leads> leadsList = leadsService.getRecentlyModified();
+            //前端只能识别字段为value的值
+            List<LeadsDto> leads = new ArrayList<>();
+            for (Leads l : leadsList) {
+                LeadsDto lto = new LeadsDto();
+                lto.setValue(l.getFirstName());
+                lto.setId(l.getLeadId());
+                leads.add(lto);
+            }
+            resultMap.put("leads", leads);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
 }

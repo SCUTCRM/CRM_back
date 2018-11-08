@@ -103,4 +103,17 @@
         delete from product
         where product_id = #{productId}
     </delete>
+
+    <select id="getRecentlyModified" resultMap="productMap">
+        select p.*
+        from product p
+        where p.modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
+        and p.modified_time &lt; CURRENT_DATE
+    </select>
+
+    <select id="getUpdateInfo" resultMap="productMap">
+        select p.update_info
+        from product p
+        where product_id=#{productId}
+    </select>
 </mapper>

@@ -156,4 +156,30 @@ public class TicketController {
         }
         return resultMap;
     }
+
+    //获取售后信息
+    @GetMapping("/ticket/recentlyModified")
+    private HashMap<String, Object> getRecentlyModified() {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            List<Ticket> ticketList = ticketService.getRecentlyModified();
+            //前端只能识别字段为value的值
+            List<TicketDto> tickets = new ArrayList<>();
+            for (Ticket t : ticketList) {
+                TicketDto tto = new TicketDto();
+                tto.setValue(t.getTitle());
+                tto.setId(t.getTicketId());
+                tickets.add(tto);
+            }
+            resultMap.put("tickets", tickets);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
 }

@@ -20,4 +20,6 @@ public interface CampaignService {
     int updateCampaign(Campaign campaign);
 
     int deleteCampaign(Integer campaignId);
+
+    List<Campaign> getRecentlyModified();
 }

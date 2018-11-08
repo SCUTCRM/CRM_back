@@ -20,4 +20,6 @@ public interface OpportunityService {
     int updateOpportunity(Opportunity opportunity);
 
     int deleteOpportunity(Integer opportunity);
+
+    List<Opportunity> getRecentlyModified();
 }

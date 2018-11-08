@@ -72,4 +72,9 @@ public class OpportunityServiceImpl implements OpportunityService {
             throw new OpportunityException("删除机会失败", -2);
         }
     }
+
+    @Override
+    public List<Opportunity> getRecentlyModified() {
+        return opportunityDao.getRecentlyModified();
+    }
 }

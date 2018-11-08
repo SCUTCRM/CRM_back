@@ -154,4 +154,30 @@ public class OrganizationController {
         }
         return resultMap;
     }
+
+    //获取组织信息
+    @GetMapping("/organization/recentlyModified")
+    private HashMap<String, Object> getRecentlyModified() {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            List<Organization> organizationList = organizationService.getRecentlyModified();
+            //前端只能识别字段为value的值
+            List<OrganizationDto> organizations = new ArrayList<>();
+            for (Organization o : organizationList) {
+                OrganizationDto oto = new OrganizationDto();
+                oto.setValue(o.getOrganizationName());
+                oto.setId(o.getOrganizationId());
+                organizations.add(oto);
+            }
+            resultMap.put("organizations", organizations);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
 }

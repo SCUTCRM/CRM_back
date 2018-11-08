@@ -68,4 +68,11 @@
         delete from organization
         where organization_id = #{organizationId}
     </delete>
+
+    <select id="getRecentlyModified" resultMap="organizationMap">
+        select o.*
+        from organization
+        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
+        and modified_time &lt; CURRENT_DATE
+    </select>
 </mapper>

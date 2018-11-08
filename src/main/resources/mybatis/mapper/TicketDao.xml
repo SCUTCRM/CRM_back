@@ -67,4 +67,11 @@
         delete from ticket
         where ticket_id = #{ticketId}
     </delete>
+
+    <select id="getRecentlyModified" resultMap="ticketMap">
+        select t.*
+        from ticket t
+        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
+        and modified_time &lt; CURRENT_DATE
+    </select>
 </mapper>

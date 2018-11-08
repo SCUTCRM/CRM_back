@@ -20,4 +20,6 @@ public interface TicketService {
     int updateTicket(Ticket ticket);
 
     int deleteTicket(Integer ticketId);
+
+    List<Ticket> getRecentlyModified();
 }

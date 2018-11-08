@@ -72,4 +72,9 @@ public class CampaignServiceImpl implements CampaignService {
             throw new CampaignException("删除活动失败", -2);
         }
     }
+
+    @Override
+    public List<Campaign> getRecentlyModified() {
+        return campaignDao.getRecentlyModified();
+    }
 }

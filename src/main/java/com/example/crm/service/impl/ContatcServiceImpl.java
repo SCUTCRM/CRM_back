@@ -109,4 +109,9 @@ public class ContatcServiceImpl implements ContactService {
             throw new CampaignException("删除联系人失败", -2);
         }
     }
+
+    @Override
+    public List<Contact> getRecentlyModified() {
+        return contactDao.getRecentlyModified();
+    }
 }

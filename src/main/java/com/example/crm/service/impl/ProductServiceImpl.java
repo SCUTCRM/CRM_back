@@ -103,4 +103,9 @@ public class ProductServiceImpl implements ProductService {
             throw new ProductException("删除产品失败", -2);
         }
     }
+
+    @Override
+    public List<Product> getRecentlyModified() {
+        return productDao.getRecentlyModified();
+    }
 }

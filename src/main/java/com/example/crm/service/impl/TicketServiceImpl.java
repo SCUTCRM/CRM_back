@@ -72,4 +72,9 @@ public class TicketServiceImpl implements TicketService {
             throw new TicketException("删除售后失败", -2);
         }
     }
+
+    @Override
+    public List<Ticket> getRecentlyModified() {
+        return ticketDao.getRecentlyModified();
+    }
 }

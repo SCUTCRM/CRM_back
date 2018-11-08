@@ -274,4 +274,30 @@ public class ContactController {
         }
         return resultMap;
     }
+
+    //获取联系人信息
+    @GetMapping("contact/recentlyModified")
+    private HashMap<String, Object> getRecentlyModified() {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            List<Contact> contactList = contactService.getRecentlyModified();
+            //前端只能识别字段为value的值
+            List<ContactDto> contacts = new ArrayList<>();
+            for (Contact c : contactList) {
+                ContactDto cto = new ContactDto();
+                cto.setValue(c.getFirstName());
+                cto.setId(c.getContactId());
+                contacts.add(cto);
+            }
+            resultMap.put("contacts", contacts);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
 }
