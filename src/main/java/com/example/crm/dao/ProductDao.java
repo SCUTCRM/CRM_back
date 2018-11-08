@@ -32,65 +32,15 @@ public interface ProductDao {
      * @Param: null
      */
     Product getProductById(Integer productId);
-
+    
     /**
      * create by: Bin Liu
-     * description: 根据用户商品productName查询商品
-     * create time: 2018/11/6 15:27
-     *
-     * @return
+     * description: 动态获取product
+     * create time: 2018/11/8 23:19
      * @Param: null
+     * @return 
      */
-    Product getProductByProductName(String productName);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品partNumber查询商品
-     * create time: 2018/11/6 15:32
-     *
-     * @return
-     * @Param: null
-     */
-    Product getProductByPartNumber(Integer partNumber);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品的佣金率查询商品
-     * create time: 2018/11/6 15:33
-     *
-     * @return
-     * @Param: null
-     */
-    Product getProductByCommissionRate(Double commissionRate);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品的库存数量查询商品
-     * create time: 2018/11/6 15:36
-     *
-     * @return
-     * @Param: null
-     */
-    Product getProductByQtyInStock(Integer qtyInStock);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品的数量/单位查询商品
-     * create time: 2018/11/6 15:37
-     *
-     * @return
-     * @Param: null
-     */
-    Product getProductByQtyUnit(Integer unit);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品的单价查询商品
-     * create time: 2018/11/6 15:37
-     * @Param: null
-     * @return
-     */
-    Product getProductByUnitPrice(Double unitPrice);
+    Product getProduct(Product product);
     /**
      * create by: Bin Liu
      * description: 增加一个产品

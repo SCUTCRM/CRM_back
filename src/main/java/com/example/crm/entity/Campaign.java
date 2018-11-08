@@ -12,6 +12,8 @@ import java.util.Date;
  */
 public class Campaign {
     private Integer campaignId;
+    //活动名字
+    private String campaignName;
     //活动类型
     private String campaignType;
     //活动状态 0表示 1表示
@@ -54,6 +56,14 @@ public class Campaign {
 
     public void setCampaignId(Integer campaignId) {
         this.campaignId = campaignId;
+    }
+
+    public String getCampaignName() {
+        return campaignName;
+    }
+
+    public void setCampaignName(String campaignName) {
+        this.campaignName = campaignName;
     }
 
     public String getCampaignType() {

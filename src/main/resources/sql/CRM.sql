@@ -113,7 +113,7 @@ CREATE TABLE `contact` (
   `last_name` varchar(30) NOT NULL COMMENT '姓',
   `title` varchar(30) NOT NULL COMMENT '称呼（头衔）',
   `organization_id` int(11) NOT NULL COMMENT '组织id', 
-  `email` varchar(30) NOT NULL COMMENT '邮件',
+  `primary_email` varchar(30) NOT NULL COMMENT '邮件',
   `office_phone` int(11) NOT NULL COMMENT '办公室电话',
   `assign_to` int(11) NOT NULL COMMENT '分配给',
   `is_from_lead` varchar(2) NOT NULL COMMENT '是否是来自于线索',
@@ -212,6 +212,7 @@ CREATE TABLE `exp_actual` (
 DROP TABLE IF EXISTS `campaign`;
 CREATE TABLE `campaign` (
   `campaign_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '活动id',
+  `campaign_name` varchar(30) NOT NULL COMMENT '活动名字',
   `campaign_type` varchar(30) NOT NULL COMMENT '活动类型',
   `campaign_status` int(11) NOT NULL COMMENT '活动状态',
   `expected_revenue` double(11,2) NOT NULL COMMENT '预期收入',

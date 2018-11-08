@@ -6,7 +6,7 @@
         <result column="first_name" property="firstName"/>
         <result column="last_name" property="lastName"/>
         <result column="title" property="title"/>
-        <result column="email" property="email"/>
+        <result column="primary_email" property="primaryEmail"/>
         <result column="office_phone" property="officePhone"/>
         <result column="assign_to" property="assignTo"/>
         <result column="is_from_lead" property="isFromLead"/>
@@ -44,51 +44,37 @@
         where c.contact_id = #{contactId}
     </select>
 
-    <select id="getContactByFirstName" resultMap="contactMap">
-        select c.*
-        from contact c
-        where c.first_name = #{firstName}
-    </select>
-
-    <select id="getContactByLastName" resultMap="contactMap">
-        select c.*
-        from contact c
-        where c.last_name = #{lastName}
-    </select>
-
-    <select id="getContactByTitle" resultMap="contactMap">
-        select c.*
-        from contact c
-        where c.title = #{title}
-    </select>
-
-    <select id="getContactByOrganizationName" resultMap="contactMap">
-        select c.*
-        from contact c,organization o
-        where c.organization_id = o.organization_id and o.organization_name = #{organizationName}
-    </select>
-
-    <select id="getContactByPrimaryEmail" resultMap="contactMap">
-        select c.*
-        from contact c
-        where c.email = #{primaryEmail}
-    </select>
-
-    <select id="getContactByOfficePhone" resultMap="contactMap">
-        select c.*
-        from contact c
-        where c.office_phone = #{officePhone}
-    </select>
-
     <select id="getContactByAssignTo" resultMap="contactMap">
         select c.*
         from contact c
-        where c.assign_to = #{assignTo}
+        <where>
+            <if test="firstName!=null">
+                first_name=#{firstName}
+            </if>
+            <if test="lastName!=null">
+                and last_name=#{lastName}
+            </if>
+            <if test="title !=null">
+                and title=#{title}
+            </if>
+            <if test="organizationName !=null">
+                and organization_name = #{organizationName}
+            </if>
+            <if test="primaryEmail !=null">
+                and primary_email = #{primaryEmail}
+            </if>
+            <if test="officePhone !=null">
+                and office_phone=#{officePhone}
+            </if>
+            <if test="assignTo !=null">
+                and assign_to=#{assignTo}
+            </if>
+        </where>
     </select>
 
     <insert id="insertContact" parameterType="com.example.crm.entity.Contact" keyProperty="contactId" keyColumn="contact_id">
-        insert into contact(first_name,last_name,title,organization_id,email,office_phone,assign_to,is_from_lead,home_phone,address_id,update_info,lead_state,industry,create_time,modified_time,day_of_birth,department,assistant,assistant_phone,profile_picture,description)
-        values(#{firstName},#{lastName},#{title},#{organization.organizationId},#{email},#{officePhone},#{assignTo},#{isFromLead},#{homePhone},#{address.addressId},#{updateInfo},#{leadState},#{industry},#{createTime},#{modifiedTime},#{dayOfBirth},#{department},#{assistant},#{assistantPhone},#{profilePicture},#{description})
+        insert into contact(first_name,last_name,title,organization_id,primary_email,office_phone,assign_to,is_from_lead,home_phone,address_id,update_info,lead_state,industry,create_time,modified_time,day_of_birth,department,assistant,assistant_phone,profile_picture,description)
+        values(#{firstName},#{lastName},#{title},#{organization.organizationId},#{primaryEmail},#{officePhone},#{assignTo},#{isFromLead},#{homePhone},#{address.addressId},#{updateInfo},#{leadState},#{industry},#{createTime},#{modifiedTime},#{dayOfBirth},#{department},#{assistant},#{assistantPhone},#{profilePicture},#{description})
     </insert>
 
     <update id="updateContact">
@@ -99,7 +85,7 @@
             <if test="title != null">title = #{title},</if>
             <if test="isFromLead != null">is_from_lead = #{isFromLead},</if>
             <if test="assignTo != null">assign_to = #{assignTo},</if>
-            <if test="email != null">email = #{email},</if>
+            <if test="primaryEmail != null">primary_email = #{primaryEmail},</if>
             <if test="officePhone != null">office_phone = #{officePhone},</if>
             <if test="homePhone != null">home_phone = #{homePhone},</if>
             <if test="updateInfo != null">update_info = #{updateInfo},</if>

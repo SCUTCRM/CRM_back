@@ -42,6 +42,31 @@
         where l.lead_id = #{leadId}
     </select>
 
+    <select id="getLeads" resultMap="leadsMap">
+        select l.*
+        from leads l
+        <where>
+            <if test="campaignName!=null">
+                campaign_name=#{campaignName}
+            </if>
+            <if test="campaignType!=null">
+                and campaign_type=#{campaignType}
+            </if>
+            <if test="campaignStatus !=null">
+                and campaign_status=#{campaignStatus}
+            </if>
+            <if test="expectedRevenue !=null">
+                and expected_revenue = #{expectedRevenue}
+            </if>
+            <if test="expectedCloseDate!=null">
+                and expected_close_date=#{expectedCloseDate}
+            </if>
+            <if test="campaignType!=null">
+                and assign_to=#{assignTo};
+            </if>
+        </where>
+    </select>
+
     <insert id="insertLeads" parameterType="com.example.crm.entity.Leads" keyProperty="leadId" keyColumn="lead_id">
         insert into leads(first_name,last_name,organization_id,primary_phone,website,primary_email,assign_to,product_id,annual_revenue,phone,email,address_id,update_info,description,create_time,modified_time)
         values(#{firstName},#{lastName},#{organization.organizationId},#{primaryPhone},#{website},#{primaryEmail},#{assignTo},#{product.productId},#{annualRevenue},#{phone},#{email},#{address.addressId},#{updateInfo},#{description},#{createTime},#{modifiedTime})
@@ -81,24 +106,4 @@
         where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
         and modified_time &lt; CURRENT_DATE
     </select>
-
-    <select id="getLeadsByFirstName" resultMap="leadsMap">
-        select l.*
-        from leads l
-        where first_name=#{firstName}
-    </select>
-
-    <select id="getLeadsByLastName" resultMap="leadsMap">
-        select l.*
-        from leads l
-        where last_name=#{lastName}
-    </select>
-
-    <select id="getLeadsByCompany" resultMap="leadsMap">
-        select l.*
-        from leads l
-        where company=#{company}
-    </select>
-
-
 </mapper>

@@ -31,8 +31,16 @@ public interface TicketDao {
      * @return
      * @Param: null
      */
-    Ticket getTicket(Integer ticketId);
+    Ticket getTicketById(Integer ticketId);
 
+    /**
+     * create by: Bin Liu
+     * description: 动态获取售后服务
+     * create time: 2018/11/8 23:22
+     * @Param: null
+     * @return 
+     */
+    Ticket getTicket(Ticket ticket);
     /**
      * create by: Bin Liu
      * description: 插入一条售后服务信息

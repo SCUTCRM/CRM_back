@@ -19,7 +19,7 @@ public class Contact {
     //称呼（头衔）
     private String title;
     //邮件
-    private String email;
+    private String primaryEmail;
     //办公室电话
     private Integer officePhone;
     //分配给
@@ -90,12 +90,12 @@ public class Contact {
         this.title = title;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPrimaryEmail() {
+        return primaryEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPrimaryEmail(String primaryEmail) {
+        this.primaryEmail = primaryEmail;
     }
 
     public Integer getOfficePhone() {

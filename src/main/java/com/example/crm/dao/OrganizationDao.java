@@ -31,7 +31,7 @@ public interface OrganizationDao {
      * @return
      * @Param: null
      */
-    Organization getOrganization(Integer organizationId);
+    Organization getOrganizationById(Integer organizationId);
 
     /**
      * create by: Bin Liu
@@ -71,4 +71,13 @@ public interface OrganizationDao {
      * @return
      */
     List<Organization> getRecentlyModified();
+    
+    /**
+     * create by: Bin Liu
+     * description: 动态获取
+     * create time: 2018/11/8 23:23
+     * @Param: null
+     * @return 
+     */
+    Organization getOrganization(Organization organization);
 }
