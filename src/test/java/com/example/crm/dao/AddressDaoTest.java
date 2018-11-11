@@ -29,7 +29,7 @@ public class AddressDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertAddress(){
         Address address = new Address();
         address.setAddressId(1);
@@ -48,7 +48,7 @@ public class AddressDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void updateAddress(){
         Address address= new Address();
         address.setAddressId(1);
@@ -65,7 +65,7 @@ public class AddressDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deleteAddress(){
         System.out.println(addressDao.deleteAddress(1));
     }

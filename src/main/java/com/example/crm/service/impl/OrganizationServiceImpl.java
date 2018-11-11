@@ -27,8 +27,13 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public Organization getOrganization(Integer organizationId) {
-        return organizationDao.getOrganization(organizationId);
+    public Organization getOrganizationById(Integer organizationId) {
+        return organizationDao.getOrganizationById(organizationId);
+    }
+
+    @Override
+    public Organization getOrganization(Organization organization) {
+        return organizationDao.getOrganization(organization);
     }
 
     @Transactional

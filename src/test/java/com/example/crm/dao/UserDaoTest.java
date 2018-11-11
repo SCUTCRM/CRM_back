@@ -1,5 +1,8 @@
 package com.example.crm.dao;
 
+import com.example.crm.entity.Address;
+import com.example.crm.entity.Contact;
+import com.example.crm.entity.Leads;
 import com.example.crm.entity.User;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -35,20 +38,37 @@ public class UserDaoTest {
         user.setUserName("刘斌");
         user.setEmail("1145054472@qq.com");
         user.setPassWord("123456");
-        user.setPhone("13265940904");
+        user.setPhone("15766345459");
         user.setTitle("学生");
-
+        Address address=new Address();
+        address.setAddressId(1);
+        user.setAddress(address);
+        Leads leads=new Leads();
+        leads.setLeadId(1);
+        user.setLeads(leads);
+        Contact contact=new Contact();
+        contact.setContactId(1);
+        user.setContact(contact);
         System.out.println(userDao.insertUser(user));
     }
 
     @Test
     public void updateUser() {
         User user = new User();
-        user.setUserId(1);
-        user.setUserName("刘斌"); //不可变
-        user.setEmail("1");
-        user.setPassWord("123");
-        user.setPhone("7887227");
+        user.setUserName("刘斌");
+        user.setEmail("1145054472@qq.com");
+        user.setPassWord("12345678");
+        user.setPhone("13719965066");
+        user.setTitle("学生");
+        Address address=new Address();
+        address.setAddressId(1);
+        user.setAddress(address);
+        Leads leads=new Leads();
+        leads.setLeadId(1);
+        user.setLeads(leads);
+        Contact contact=new Contact();
+        contact.setContactId(1);
+        user.setContact(contact);
         System.out.println(userDao.updateUser(user));
     }
 }

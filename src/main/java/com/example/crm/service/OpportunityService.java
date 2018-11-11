@@ -13,7 +13,9 @@ import java.util.List;
 public interface OpportunityService {
     List<Opportunity> getOpportunityList();
 
-    Opportunity getOpportunity(Integer opportunityId);
+    Opportunity getOpportunityById(Integer opportunityId);
+
+    Opportunity getOpportunity(Opportunity opportunity);
 
     int insertOpportunity(Opportunity opportunity);
 

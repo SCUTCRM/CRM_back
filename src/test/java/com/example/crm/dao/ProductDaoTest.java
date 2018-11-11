@@ -35,7 +35,7 @@ public class ProductDaoTest {
     @Test
     @Ignore
     public void getProduct() {
-        System.out.println(productDao.getProduct(1));
+        System.out.println(productDao.getProductById(1));
     }
 
     @Test

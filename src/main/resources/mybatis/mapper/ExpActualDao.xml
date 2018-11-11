@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.ExpActualDao" >
+    <resultMap id="expActualMap" type="com.example.crm.entity.ExpActual">
+        <id column="exp_actual_id" property="expActualId"/>
+        <result column="budget_cost" property="budgetCost"/>
+        <result column="actual_cost" property="actualCost"/>
+        <result column="exp_response" property="expResponse"/>
+        <result column="actual_response" property="actualResponse"/>
+        <result column="exp_sale_count" property="expSaleCount"/>
+        <result column="actualSaleCount" property="actualSaleCount"/>
+        <result column="exp_roi" property="expRoi"/>
+        <result column="actual_roi" property="actualRoi"/>
+    </resultMap>
+
+    <select id="getExpActual" resultMap="expActualMap">
+        select e.*
+        from exp_actual e
+        where e.exp_actual_id = #{expActualId}
+    </select>
+
+    <insert id="insertExpActual" parameterType="com.example.crm.entity.ExpActual" keyProperty="expActualId" keyColumn="expActual_id">
+        insert into exp_actual(budget_cost,actual_cost,exp_response,actual_response,exp_sale_count,actual_sale_count,exp_roi,actual_roi)
+        values(#{budgetCost},#{actualCost},#{expResponse},#{actualResponse},#{expSaleCount},#{actualSaleCount},#{expRoi},#{actualRoi})
+    </insert>
+
+    <update id="updateExpActual">
+        update exp_actual
+        <set>
+            <if test="budgetCost != null">budget_cost = #{budgetCost},</if>
+            <if test="actualCost != null">actual_cost = #{actualCost},</if>
+            <if test="expResponse != null">exp_response = #{expResponse},</if>
+            <if test="actualResponse != null">actual_response = #{actualResponse},</if>
+            <if test="expSaleCount != null">exp_sale_count = #{expSaleCount},</if>
+            <if test="actualSaleCount != null">actual_sale_count = #{actualSaleCount},</if>
+            <if test="expRoi != null">exp_roi = #{expRoi},</if>
+            <if test="actualRoi != null">actual_roi = #{actualRoi}</if>
+        </set>
+        where exp_actual_id = #{expActualId}
+    </update>
+
+    <delete id="deleteExpActual">
+        delete from exp_actual
+        where exp_actual_id = #{expActualId}
+    </delete>
+</mapper>

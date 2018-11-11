@@ -36,7 +36,7 @@ public class CampaignDaoTest {
     @Test
     @Ignore
     public void getCampaign() {
-        System.out.println(campaignDao.getCampaign(1));
+        System.out.println(campaignDao.getCampaignById(1));
     }
 
     @Test

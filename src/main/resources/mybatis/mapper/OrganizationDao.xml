@@ -30,7 +30,7 @@
         order by organization_id ASC
     </select>
 
-    <select id="getOrganization" resultMap="organizationMap">
+    <select id="getOrganizationById" resultMap="organizationMap">
         select o.*
         from organization o
         where o.organization_id = #{organizationId}

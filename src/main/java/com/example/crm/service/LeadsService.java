@@ -23,17 +23,5 @@ public interface LeadsService {
 
     List<Leads> getRecentlyModified();
 
-    Leads getLeadsByFirstName(String firstName);
-
-    Leads getLeadsByLastName(String lastName);
-
-    Leads getLeadsByCompany(String company);
-
-    Leads getLeadsByPrimaryPhone(Integer primaryPhone);
-
-    Leads getLeadsByWebsite(String website);
-
-    Leads getLeadsByPrimaryEmail(String primaryEmail);
-
-    Leads getLeadsByAssignTo(Integer assignTo);
+    Leads getLeads(Leads leads);
 }

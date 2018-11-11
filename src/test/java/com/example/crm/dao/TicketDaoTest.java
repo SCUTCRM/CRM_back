@@ -36,7 +36,7 @@ public class TicketDaoTest {
     @Test
     @Ignore
     public void getTicket() {
-        System.out.println(ticketDao.getTicket(1));
+        System.out.println(ticketDao.getTicketById(1));
     }
 
     @Test

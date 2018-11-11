@@ -35,7 +35,7 @@ public class OpportunityDaoTest {
     @Test
     //@Ignore
     public void getOpportunity() {
-        System.out.println(opportunityDao.getOpportunity(1));
+        System.out.println(opportunityDao.getOpportunityById(1));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class OpportunityDaoTest {
         opportunity.setCreateTime(new Date());
         opportunity.setModifiedTime(new Date());
         opportunity.setOpportType("工作");
-        opportunity.setExpCloseTime(new Date());
+        opportunity.setExpectedCloseDate(new Date());
         opportunity.setDescription("测试");
         System.out.println(opportunityDao.insertOpportunity(opportunity));
     }
@@ -79,7 +79,7 @@ public class OpportunityDaoTest {
         opportunity.setCreateTime(new Date());
         opportunity.setModifiedTime(new Date());
         opportunity.setOpportType("工作");
-        opportunity.setExpCloseTime(new Date());
+        opportunity.setExpectedCloseDate(new Date());
         opportunity.setDescription("测试");
         System.out.println(opportunityDao.updateOpportunity(opportunity));
     }

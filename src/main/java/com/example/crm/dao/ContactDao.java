@@ -1,6 +1,6 @@
 package com.example.crm.dao;
 
-import com.alibaba.druid.sql.visitor.functions.Concat;
+
 import com.example.crm.entity.Contact;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +42,7 @@ public interface ContactDao {
      * @return
      * @Param: null
      */
-    Contact getContact(Concat concat);
+    Contact getContact(Contact contact);
 
     /**
      * create by: Bin Liu

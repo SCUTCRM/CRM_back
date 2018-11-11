@@ -27,8 +27,13 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket getTicket(Integer ticketId) {
-        return ticketDao.getTicket(ticketId);
+    public Ticket getTicketById(Integer ticketId) {
+        return ticketDao.getTicketById(ticketId);
+    }
+
+    @Override
+    public Ticket getTicket(Ticket ticket) {
+        return ticketDao.getTicket(ticket);
     }
 
     @Transactional

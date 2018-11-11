@@ -33,7 +33,7 @@ public class ContactDaoTest {
     @Test
     @Ignore
     public void getContact() {
-        System.out.println(contactDao.getContact(1));
+        System.out.println(contactDao.getContactById(1));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class ContactDaoTest {
         Organization organization=new Organization();
         organization.setOrganizationId(1);
         contact.setOrganization(organization);
-        contact.setEmail("1145054472@qq.com");
+        contact.setPrimaryEmail("1145054472@qq.com");
         contact.setOfficePhone(788);
         contact.setIsFromLead("Y");
         contact.setHomePhone(7887227);
@@ -80,7 +80,7 @@ public class ContactDaoTest {
         Organization organization=new Organization();
         organization.setOrganizationId(1);
         contact.setOrganization(organization);
-        contact.setEmail("1145054472@qq.com");
+        contact.setPrimaryEmail("1145054472@qq.com");
         contact.setOfficePhone(788);
         contact.setIsFromLead("Y");
         contact.setHomePhone(788722);

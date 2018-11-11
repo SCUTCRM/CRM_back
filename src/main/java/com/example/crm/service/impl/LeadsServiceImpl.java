@@ -79,38 +79,8 @@ public class LeadsServiceImpl implements LeadsService {
     }
 
     @Override
-    public Leads getLeadsByFirstName(String firstName) {
-        return leadsDao.getLeadsByFirstName(firstName);
-    }
-
-    @Override
-    public Leads getLeadsByLastName(String lastName) {
-        return leadsDao.getLeadsByLastName(lastName);
-    }
-
-    @Override
-    public Leads getLeadsByCompany(String company) {
-        return leadsDao.getLeadsByCompany(company);
-    }
-
-    @Override
-    public Leads getLeadsByPrimaryPhone(Integer primaryPhone) {
-        return leadsDao.getLeadsByPrimaryPhone(primaryPhone);
-    }
-
-    @Override
-    public Leads getLeadsByWebsite(String website) {
-        return leadsDao.getLeadsByWebsite(website);
-    }
-
-    @Override
-    public Leads getLeadsByPrimaryEmail(String primaryEmail) {
-        return leadsDao.getLeadsByPrimaryEmail(primaryEmail);
-    }
-
-    @Override
-    public Leads getLeadsByAssignTo(Integer assignTo) {
-        return leadsDao.getLeadsByAssignTo(assignTo);
+    public Leads getLeads(Leads leads) {
+        return leadsDao.getLeads(leads);
     }
 
 

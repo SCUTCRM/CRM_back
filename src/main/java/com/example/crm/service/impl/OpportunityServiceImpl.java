@@ -27,10 +27,14 @@ public class OpportunityServiceImpl implements OpportunityService {
     }
 
     @Override
-    public Opportunity getOpportunity(Integer opportunityId) {
-        return opportunityDao.getOpportunity(opportunityId);
+    public Opportunity getOpportunityById(Integer opportunityId) {
+        return opportunityDao.getOpportunityById(opportunityId);
     }
 
+    @Override
+    public Opportunity getOpportunity(Opportunity opportunity) {
+        return opportunityDao.getOpportunity(opportunity);
+    }
     @Transactional
     @Override
     public int insertOpportunity(Opportunity opportunity) {

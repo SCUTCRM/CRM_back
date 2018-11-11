@@ -27,7 +27,7 @@
         order by opport_id ASC
     </select>
 
-    <select id="getOpportunity" resultMap="opportunityMap">
+    <select id="getOpportunityById" resultMap="opportunityMap">
         select o.*
         from opportunity o
         where o.opport_id = #{opportId}

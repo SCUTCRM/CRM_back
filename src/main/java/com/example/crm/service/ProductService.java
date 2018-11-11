@@ -33,57 +33,13 @@ public interface ProductService {
 
     /**
      * create by: Bin Liu
-     * description: 根据用户商品productName查询商品
-     * create time: 2018/11/6 15:45
+     * description: 动态获取产品信息
+     * create time: 2018/11/11 20:13
      * @Param: null
-     * @return 
+     * @return
      */
-    Product getProductByProductName(String productProductName);
+    Product getProduct(Product product);
 
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品partNumber查询商品
-     * create time: 2018/11/6 15:45
-     * @Param: null
-     * @return 
-     */
-    Product getProductByPartNumber(Integer partNumber);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品的佣金率查询商品
-     * create time: 2018/11/6 15:45
-     * @Param: null
-     * @return 
-     */
-    Product getProductByCommissionRate(Double commissionRate);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品的库存数量查询商品
-     * create time: 2018/11/6 15:45
-     * @Param: null
-     * @return 
-     */
-    Product getProductByQtyInStock(Integer qtyInStock);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品的数量/单位查询商品
-     * create time: 2018/11/6 15:45
-     * @Param: null
-     * @return 
-     */
-    Product getProductByQtyUnit(Integer unit);
-
-    /**
-     * create by: Bin Liu
-     * description: 根据用户商品的单价查询商品
-     * create time: 2018/11/6 15:46
-     * @Param: null
-     * @return 
-     */
-    Product getProductByUnitPrice(Double unitPrice);
     /**
      * create by: Bin Liu
      * description: 插入一条产品信息

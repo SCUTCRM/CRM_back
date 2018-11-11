@@ -36,7 +36,7 @@ public class LeadsDaoTest {
     @Test
     //@Ignore
     public void getLeads() {
-        System.out.println(leadsDao.getLeads(1));
+        System.out.println(leadsDao.getLeadsById(1));
     }
 
     @Test

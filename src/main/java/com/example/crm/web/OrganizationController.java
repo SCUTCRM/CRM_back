@@ -61,7 +61,7 @@ public class OrganizationController {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
-            Organization organization = organizationService.getOrganization(organizationId);
+            Organization organization = organizationService.getOrganizationById(organizationId);
             resultMap.put("organization", organization);
             resultMap.put("success", true);
             resultMap.put("code", 200);

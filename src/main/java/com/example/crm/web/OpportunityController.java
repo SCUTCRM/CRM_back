@@ -61,7 +61,7 @@ public class OpportunityController {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int opportunityId = HttpServletRequestUtil.getInt(request, "opportunityId");
-            Opportunity opportunity = opportunityService.getOpportunity(opportunityId);
+            Opportunity opportunity = opportunityService.getOpportunityById(opportunityId);
             resultMap.put("opportunity", opportunity);
             resultMap.put("success", true);
             resultMap.put("code", 200);

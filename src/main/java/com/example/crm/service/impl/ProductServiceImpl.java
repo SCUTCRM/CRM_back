@@ -33,33 +33,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductByProductName(String productName) {
-        return productDao.getProductByProductName(productName);
-    }
-
-    @Override
-    public Product getProductByPartNumber(Integer partNumber) {
-        return productDao.getProductByPartNumber(partNumber);
-    }
-
-    @Override
-    public Product getProductByCommissionRate(Double commissionRate) {
-        return productDao.getProductByCommissionRate(commissionRate);
-    }
-
-    @Override
-    public Product getProductByQtyInStock(Integer qtyInStock) {
-        return productDao.getProductByQtyInStock(qtyInStock);
-    }
-
-    @Override
-    public Product getProductByQtyUnit(Integer unit) {
-        return productDao.getProductByQtyUnit(unit);
-    }
-
-    @Override
-    public Product getProductByUnitPrice(Double unitPrice) {
-        return productDao.getProductByUnitPrice(unitPrice);
+    public Product getProduct(Product product) {
+        return productDao.getProduct(product);
     }
 
     @Transactional

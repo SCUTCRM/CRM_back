@@ -63,7 +63,7 @@ public class TicketController {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int ticketId = HttpServletRequestUtil.getInt(request, "ticketId");
-            Ticket ticket = ticketService.getTicket(ticketId);
+            Ticket ticket = ticketService.getTicketById(ticketId);
             resultMap.put("ticket", ticket);
             resultMap.put("success", true);
             resultMap.put("code", 200);

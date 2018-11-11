@@ -15,19 +15,7 @@ public interface ContactService {
 
     Contact getContactById(Integer contactId);
 
-    Contact getContactByFirstName(String firstName);
-
-    Contact getContactByLastName(String lastName);
-
-    Contact getContactByTitle(String title);
-
-    Contact getContactByOrganizationName(String organizationName);
-
-    Contact getContactByPrimaryEmail(String primaryEmail);
-
-    Contact getContactByOfficePhone(String officePhone);
-
-    Contact getContactByAssignTo(Integer assignTo);
+    Contact getContact(Contact contact);
 
     int insertContact(Contact contact);
 

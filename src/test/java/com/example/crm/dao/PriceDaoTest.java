@@ -21,33 +21,32 @@ public class PriceDaoTest {
     private PriceDao priceDao;
 
     @Test
-    @Ignore
+    //@Ignore
     public void getPrice() {
-        System.out.println(priceDao.getPrice(1));
+        System.out.println(priceDao.getPrice(2));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertPrice() {
         Price price=new Price();
-        price.setPriceId(1);
         price.setCommissionRate(20.01);
         price.setUnitPrice(5.0);
         System.out.println(priceDao.insertPrice(price));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void updatePrice() {
         Price price=new Price();
         price.setPriceId(1);
-        price.setCommissionRate(20.01);
+        price.setCommissionRate(10.01);
         price.setUnitPrice(5.0);
         System.out.println(priceDao.updatePrice(price));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deletePrice() {
         System.out.println(priceDao.deletePrice(1));
     }

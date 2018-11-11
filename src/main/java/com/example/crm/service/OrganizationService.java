@@ -29,7 +29,9 @@ public interface OrganizationService {
      * @return
      * @Param: null
      */
-    Organization getOrganization(Integer organizationId);
+    Organization getOrganizationById(Integer organizationId);
+
+    Organization getOrganization(Organization organization);
 
     /**
      * create by: Bin Liu
