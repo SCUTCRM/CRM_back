@@ -10,6 +10,7 @@ CREATE TABLE `stock_info` (
   PRIMARY KEY (`stock_info_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 DROP TABLE IF EXISTS `price`;
 CREATE TABLE `price` (
   `price_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '价格id',
@@ -17,6 +18,23 @@ CREATE TABLE `price` (
   `commission_rate` double(4,2) NOT NULL COMMENT '佣金率',
   PRIMARY KEY (`price_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE `address` (
+  `address_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '地址id',
+  `mail_street` varchar(30) NOT NULL COMMENT '街道',
+  `mail_po_box` varchar(30) NOT NULL COMMENT '邮箱',
+  `mail_city` varchar(30) NOT NULL COMMENT '城市',
+  `mail_country` varchar(30) NOT NULL COMMENT '乡村',
+  `mail_state` varchar(30) NOT NULL COMMENT '州',
+  `other_street` varchar(30) NOT NULL COMMENT '街道',
+  `other_po_box` varchar(30) NOT NULL COMMENT '邮箱',
+  `other_city` varchar(30) NOT NULL COMMENT '城市',
+  `other_country` varchar(30) NOT NULL COMMENT '国家',
+  PRIMARY KEY (`address_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
@@ -37,34 +55,20 @@ CREATE TABLE `product` (
   `description` varchar(150) NOT NULL COMMENT '描述',
   `update_info` varchar(30) NOT NULL COMMENT '更改',
   `price_id` int(11) NOT NULL COMMENT '价格id',
-  `stock_info_id` int(11) NOT NULL COMMENT '股票id',
+  `stock_info_id` int(11) NOT NULL COMMENT '库存id',
   PRIMARY KEY (`product_id`),
   FOREIGN KEY (`price_id`) REFERENCES `price` (`price_id`),
   FOREIGN KEY (`stock_info_id`) REFERENCES `stock_info` (`stock_info_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `address`;
-CREATE TABLE `address` (
-  `address_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '地址id',
-  `mail_street` varchar(30) NOT NULL COMMENT '街道',
-  `mail_po_box` varchar(30) NOT NULL COMMENT '邮箱',
-  `mail_city` varchar(30) NOT NULL COMMENT '城市',
-  `mail_country` varchar(30) NOT NULL COMMENT '乡村',
-  `mail_state` varchar(30) NOT NULL COMMENT '州',
-  `other_street` varchar(30) NOT NULL COMMENT '街道',
-  `other_po_box` varchar(30) NOT NULL COMMENT '邮箱',
-  `other_city` varchar(30) NOT NULL COMMENT '城市',
-  `other_country` varchar(30) NOT NULL COMMENT '国家',
-  PRIMARY KEY (`address_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `organization`;
 CREATE TABLE `organization` (
   `organization_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '组织id',
   `organization_name` varchar(30) NOT NULL COMMENT '组织名称',
-  `city` varchar(30) NOT NULL COMMENT '城市',
+  `billing_city` varchar(30) NOT NULL COMMENT '城市',
   `website` varchar(30) NOT NULL COMMENT '网站',
-  `phone` int(11) NOT NULL COMMENT '电话',
+  `primary_phone` int(11) NOT NULL COMMENT '电话',
   `assign_to` varchar(30) NOT NULL COMMENT '分配给',
   `update_info` varchar(30) NOT NULL COMMENT '更新',
   `is_from_lead` varchar(2) NOT NULL COMMENT '是否是来自于线索',
@@ -77,6 +81,7 @@ CREATE TABLE `organization` (
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `address_id` int(11) NOT NULL COMMENT '地址id',
   `description` varchar(150) NOT NULL COMMENT '描述',
+  `address_id` int(11) NOT NULL COMMENT '地址id',
   PRIMARY KEY (`organization_id`),
   FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -86,20 +91,21 @@ CREATE TABLE `leads` (
   `lead_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '线索id',
   `first_name` varchar(30) NOT NULL COMMENT '名字',
   `last_name` varchar(30) NOT NULL COMMENT '姓',
-  `organization_id` int(11) NOT NULL COMMENT '组织id',
+  `company` varchar(30) NOT NULL COMENT '公司',
   `primary_phone` int(11) NOT NULL COMMENT '常用电话',
   `website` varchar(30) NOT NULL COMMENT '网站',
   `primary_email` varchar(30) NOT NULL COMMENT '常用邮箱',
   `assign_to` int(11) NOT NULL COMMENT '分配给',
-  `product_id` int(11) NOT NULL COMMENT '产品id',
   `annual_revenue` double(11,2) NOT NULL COMMENT '年收入',
   `phone` int(11) DEFAULT NULL COMMENT '电话',
   `email` varchar(30) NOT NULL COMMENT '邮箱',
-  `address_id` int(11) NOT NULL COMMENT '地址id',
   `update_info` varchar(30) NOT NULL COMMENT '更改',
   `description` varchar(150) NOT NULL COMMENT '描述',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `modified_time` datetime NOT NULL COMMENT '修改时间',
+  `product_id` int(11) NOT NULL COMMENT '产品id',
+  `organization_id` int(11) NOT NULL COMMENT '组织id',
+  `address_id` int(11) NOT NULL COMMENT '地址id',
   PRIMARY KEY (`lead_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
   FOREIGN KEY (`organization_id`) REFERENCES `organization` (`organization_id`),
@@ -112,13 +118,11 @@ CREATE TABLE `contact` (
   `first_name` varchar(30) NOT NULL COMMENT '名字',
   `last_name` varchar(30) NOT NULL COMMENT '姓',
   `title` varchar(30) NOT NULL COMMENT '称呼（头衔）',
-  `organization_id` int(11) NOT NULL COMMENT '组织id', 
   `primary_email` varchar(30) NOT NULL COMMENT '邮件',
   `office_phone` int(11) NOT NULL COMMENT '办公室电话',
   `assign_to` int(11) NOT NULL COMMENT '分配给',
   `is_from_lead` varchar(2) NOT NULL COMMENT '是否是来自于线索',
   `home_phone` int(11) NOT NULL COMMENT '家的电话',
-  `address_id` int(11) NOT NULL COMMENT '地址id',
   `update_info` varchar(30) NOT NULL COMMENT '更改',
   `lead_state` int(2) NOT NULL COMMENT '线索状态',
   `industry` varchar(30) NOT NULL COMMENT '行业',
@@ -130,6 +134,8 @@ CREATE TABLE `contact` (
   `assistant_phone` int(11) NOT NULL COMMENT '助理电话',
   `profile_picture` varchar(100) NOT NULL COMMENT'个人资料图片',
   `description` varchar(150) NOT NULL COMMENT '描述',
+  `organization_id` int(11) NOT NULL COMMENT '组织id',
+  `address_id` int(11) NOT NULL COMMENT '地址id',
   PRIMARY KEY (`contact_id`),
   FOREIGN KEY (`organization_id`) REFERENCES `organization` (`organization_id`),
   FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`)
@@ -161,17 +167,20 @@ CREATE TABLE `opportunity` (
   `forcast_amount` double(11,2) NOT NULL COMMENT '预测金额',
   `is_from_lead` varchar(2) NOT NULL COMMENT '是否是来自于线索',
   `assign_to` int(11) NOT NULL COMMENT '分配给',
-  `contact_id` int(11) NOT NULL COMMENT '联系人id',
+  `organization_id` int(11) NOT NULL COMMENT '组织id',
+  `sales_stage` varchar(30) NOT NULL COMMENT '销售阶段',
   `lead_source` varchar(30) NOT NULL COMMENT '线索来源',
   `update_info` varchar(30) NOT NULL COMMENT '更改',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `modified_time` datetime NOT NULL COMMENT '修改时间',
   `opport_type` varchar(30) NOT NULL COMMENT '类型',
-  `exp_close_time` datetime NOT NULL COMMENT '结束时间',
+  `expected_close_date` datetime NOT NULL COMMENT '预期结束时间',
   `description` varchar(150) NOT NULL COMMENT '描述',
+  `contact_id` int(11) NOT NULL COMMENT '联系人id',
   PRIMARY KEY (`opport_id`),
   FOREIGN KEY (`contact_id`) REFERENCES `contact` (`contact_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE `ticket` (
@@ -188,7 +197,7 @@ CREATE TABLE `ticket` (
   `days` int NOT NULL COMMENT '天数',
   `description` varchar(150) NOT NULL COMMENT '描述',
   `update_info` varchar(30) NOT NULL COMMENT '更改',
-  `organization_id` int(11) NOT NULL COMMENT '组织id',
+  `organization_id` int(11) NOT NULL COMMENT '组织id',,
   `product_id` int(11) NOT NULL COMMENT '产品id',
   PRIMARY KEY (`ticket_id`),
   FOREIGN KEY (`organization_id`) REFERENCES `organization` (`organization_id`),
@@ -218,7 +227,6 @@ CREATE TABLE `campaign` (
   `expected_revenue` double(11,2) NOT NULL COMMENT '预期收入',
   `expected_close_date` datetime NOT NULL COMMENT '预期结束时间',
   `assign_to` int(11) NOT NULL COMMENT '分配给',
-  `product_id` int(11) NOT NULL COMMENT '产品id',
   `target_size` int(5) NOT NULL COMMENT '目标大小',
   `num_sent` int(5) NOT NULL COMMENT '发送数量',
   `target_audience` varchar(30) NOT NULL COMMENT '目标听众',
@@ -227,6 +235,7 @@ CREATE TABLE `campaign` (
   `sponsor` int(11) NOT NULL COMMENT '赞助',
   `description` varchar(30) NOT NULL COMMENT '联系人',
   `update_info` varchar(11) NOT NULL COMMENT '联系电话',
+  `product_id` int(11) NOT NULL COMMENT '产品id',
   `exp_actual_id` int(11) NOT NULL COMMENT '预期和实际id',
   `opport_id` int(11) NOT NULL COMMENT '机会id',
   PRIMARY KEY (`campaign_id`),

@@ -31,7 +31,7 @@
         order by ticket_id ASC
     </select>
 
-    <select id="getTicket" resultMap="ticketMap">
+    <select id="getTicketById" resultMap="ticketMap">
         select t.*
         from ticket t
         where t.ticket_id = #{ticketId}
@@ -73,5 +73,30 @@
         from ticket t
         where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
         and modified_time &lt; CURRENT_DATE
+    </select>
+
+    <select id="getTicket" resultMap="ticketMap">
+        select t.*
+        from ticket t
+        <where>
+            <if test="title!=null">
+                title=#{title}
+            </if>
+            <if test="organization !=null and organization.organizationId !=null and organization.organizationName !=null">
+                and organization_id = #{organizationId}
+            </if>
+            <if test="status !=null">
+                and status=#{status}
+            </if>
+            <if test="priority !=null">
+                and priority=#{priority}
+            </if>
+            <if test="assignTo !=null">
+                and assignTo = #{assignTo}
+            </if>
+            <if test="contact !=null and contact.contactId !=null and contact.contactName !=null">
+                and contact_id = #{contactId}
+            </if>
+        </where>
     </select>
 </mapper>

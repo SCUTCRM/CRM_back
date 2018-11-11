@@ -18,6 +18,8 @@ public class Leads {
     private String lastName;
     //常用电话
     private Integer primaryPhone;
+    //公司
+    private String company;
     //网站
     private String website;
     //常用邮箱
@@ -46,6 +48,7 @@ public class Leads {
     private Product product;
     //地址
     private Address address;
+
 
     public Integer getLeadId() {
         return leadId;
@@ -77,6 +80,14 @@ public class Leads {
 
     public void setPrimaryPhone(Integer primaryPhone) {
         this.primaryPhone = primaryPhone;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getWebsite() {
@@ -182,4 +193,5 @@ public class Leads {
     public void setAddress(Address address) {
         this.address = address;
     }
+
 }

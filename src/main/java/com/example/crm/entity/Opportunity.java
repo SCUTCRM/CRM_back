@@ -22,6 +22,8 @@ public class Opportunity {
     private String isFromLead;
     //分配给
     private Integer assignTo;
+    //销售阶段
+    private String salesStage;
     //线索来源
     private String leadSource;
     //更改
@@ -35,7 +37,7 @@ public class Opportunity {
     //类型
     private String opportType;
     //期望结束时间
-    private Date expCloseTime;
+    private Date expectedCloseDate;
     //描述
     private String description;
     //联系人
@@ -89,6 +91,14 @@ public class Opportunity {
         this.assignTo = assignTo;
     }
 
+    public String getSalesStage() {
+        return salesStage;
+    }
+
+    public void setSalesStage(String salesStage) {
+        this.salesStage = salesStage;
+    }
+
     public String getLeadSource() {
         return leadSource;
     }
@@ -129,12 +139,12 @@ public class Opportunity {
         this.opportType = opportType;
     }
 
-    public Date getExpCloseTime() {
-        return expCloseTime;
+    public Date getExpectedCloseDate() {
+        return expectedCloseDate;
     }
 
-    public void setExpCloseTime(Date expCloseTime) {
-        this.expCloseTime = expCloseTime;
+    public void setExpectedCloseDate(Date expectedCloseDate) {
+        this.expectedCloseDate = expectedCloseDate;
     }
 
     public String getDescription() {

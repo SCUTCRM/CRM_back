@@ -13,7 +13,7 @@
         <result column="create_time" property="createTime"/>
         <result column="modified_time" property="modifiedTime"/>
         <result column="opport_type" property="opportType"/>
-        <result column="exp_close_time" property="expCloseTime"/>
+        <result column="expected_close_date" property="expectedCloseDate"/>
         <result column="description" property="description"/>
         <association property="contact" column="contact_id"
                      javaType="com.example.crm.entity.Contact">
@@ -34,8 +34,8 @@
     </select>
 
     <insert id="insertOpportunity" parameterType="com.example.crm.entity.Opportunity" keyProperty="opportId" keyColumn="opport_id">
-        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,contact_id,lead_source,update_info,create_time,modified_time,opport_type,exp_close_time,description)
-        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{opportType},#{expCloseTime},#{description})
+        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,contact_id,lead_source,update_info,create_time,modified_time,opport_type,expected_close_date,description)
+        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{opportType},#{expectedCloseDate},#{description})
     </insert>
 
     <update id="updateOpportunity">
@@ -51,7 +51,7 @@
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="opportType != null">opport_type = #{opportType},</if>
-            <if test="expCloseTime != null">exp_close_time = #{expCloseTime},</if>
+            <if test="expectedCloseDate != null">expected_close_date = #{expectedCloseDate},</if>
             <if test="description != null">description = #{description},</if>
             <if test="contact != null and contact.contactId != null">contact_id = #{contact.contactId}</if>
         </set>
@@ -68,5 +68,36 @@
         from opportunity o
         where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
         and modified_time &lt; CURRENT_DATE
+    </select>
+
+    <select id="getOpportunity" resultMap="opportunityMap">
+        select o.*
+        from opportunity o
+        <where>
+            <if test="opportName!=null">
+                opport_name=#{opportName}
+            </if>
+            <if test="organization != null and organization.organizationName !=null and organization.organizationId != null">
+                and organization_id=#{organizationId}
+            </if>
+            <if test="salesStatus !=null">
+                and sales_status=#{salesStatus}
+            </if>
+            <if test="leadSource !=null">
+                and lead_source = #{leadSource}
+            </if>
+            <if test="expectedCloseDate!=null">
+                and expected_close_date=#{expectedCloseDate}
+            </if>
+            <if test="forcastAmount !=null">
+                and forcast_amount = #{forcastAmount}
+            </if>
+            <if test="assignTo!=null">
+                and assign_to=#{assignTo}
+            </if>
+            <if test="contact != null and contact.contactName !=null and contact.contactId != null">
+                and contact_id=#{contactId}
+            </if>
+        </where>
     </select>
 </mapper>

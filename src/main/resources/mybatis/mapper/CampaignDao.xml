@@ -59,11 +59,11 @@
             <if test="expectedRevenue !=null">
                 and expected_revenue = #{expectedRevenue}
             </if>
-            <if test="expectedCloseDate!=null">
+            <if test="expectedCloseDate !=null">
                 and expected_close_date=#{expectedCloseDate}
             </if>
-            <if test="campaignType!=null">
-                and assign_to=#{assignTo};
+            <if test="assignTo !=null">
+                and assign_to=#{assignTo}
             </if>
         </where>
     </select>
@@ -92,7 +92,7 @@
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="productId != null and product.productId != null">product_id = #{product.productId},</if>
             <if test="expActual != null and expActual.expActualId != null">exp_actual_id = #{expActual.expActualId},</if>
-            <if test="opportunity != null and opportunity.opportId != null">opport_id = #{opportunity.opportId}</if>
+            <if test="contact != null and contact.contactId != null">contact_id = #{contact.contactId}</if>
         </set>
         where campaign_id = #{campaignId}
     </update>

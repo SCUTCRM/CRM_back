@@ -29,7 +29,7 @@ public interface OpportunityDao {
      * @Param: null
      * @return
      */
-    Opportunity getOpportunity(Integer opportunityId);
+    Opportunity getOpportunityById(Integer opportunityId);
 
     /**
      * create by: Bin Liu

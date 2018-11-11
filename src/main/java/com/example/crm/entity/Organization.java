@@ -14,12 +14,12 @@ public class Organization {
     private Integer organizationId;
     //组织名字
     private String organizationName;
-    //城市
-    private String city;
+    //计费城市
+    private String billingCity;
     //网站
     private String website;
     //电话
-    private Integer phone;
+    private Integer primaryPhone;
     //分配给
     private Integer assignTo;
     //更改
@@ -63,12 +63,12 @@ public class Organization {
         this.organizationName = organizationName;
     }
 
-    public String getCity() {
-        return city;
+    public String getBillingCity() {
+        return billingCity;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setBillingCity(String billingCity) {
+        this.billingCity = billingCity;
     }
 
     public String getWebsite() {
@@ -79,12 +79,12 @@ public class Organization {
         this.website = website;
     }
 
-    public Integer getPhone() {
-        return phone;
+    public Integer getPrimaryPhone() {
+        return primaryPhone;
     }
 
-    public void setPhone(Integer phone) {
-        this.phone = phone;
+    public void setPrimaryPhone(Integer primaryPhone) {
+        this.primaryPhone = primaryPhone;
     }
 
     public Integer getAssignTo() {

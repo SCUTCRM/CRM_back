@@ -21,7 +21,7 @@ public class Campaign {
     //预期收入
     private Double expectedRevenue;
     //预期结束时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date expectedCloseDate;
     //分配给
     private Integer assignTo;

@@ -4,9 +4,9 @@
     <resultMap id="organizationMap" type="com.example.crm.entity.Organization">
         <id column="organization_id" property="organizationId"/>
         <result column="organization_name" property="organizationName"/>
-        <result column="city" property="city"/>
+        <result column="billing_city" property="billingCity"/>
         <result column="website" property="website"/>
-        <result column="phone" property="phone"/>
+        <result column="primary_phone" property="primaryPhone"/>
         <result column="assign_to" property="assignTo"/>
         <result column="update_info" property="updateInfo"/>
         <result column="is_from_lead" property="isFromLead"/>
@@ -37,17 +37,17 @@
     </select>
 
     <insert id="insertOrganization" parameterType="com.example.crm.entity.Organization" keyProperty="organizationId" keyColumn="organization_id">
-        insert into organization(organization_name,city,website,phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description)
-        values(#{organizationName},#{city},#{website},#{phone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.addressId},#{description})
+        insert into organization(organization_name,billing_city,website,primary_phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description)
+        values (#{organizationName},#{billingCity},#{website},#{primaryPhone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.addressId},#{description})
     </insert>
 
     <update id="updateOrganization">
         update organization
         <set>
             <if test="organizationName != null">organization_name = #{organizationName},</if>
-            <if test="city != null">city = #{city},</if>
+            <if test="billingCity != null">billing_city = #{billingCity},</if>
             <if test="website != null">website = #{website},</if>
-            <if test="phone != null">phone = #{phone},</if>
+            <if test="primaryPhone != null">primary_phone = #{primaryPhone},</if>
             <if test="assignTo != null">assign_to = #{assignTo},</if>
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="isFromLead != null">is_from_lead = #{isFromLead},</if>
@@ -74,5 +74,27 @@
         from organization
         where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
         and modified_time &lt; CURRENT_DATE
+    </select>
+
+    <select id="getOrganization" resultMap="organizationMap">
+        select o.*
+        from organization o
+        <where>
+            <if test="organizationName!=null">
+                organization_name=#{organizationName}
+            </if>
+            <if test="billingCity !=null">
+                and billing_city = #{billingCity}
+            </if>
+            <if test="website !=null">
+                and website = #{website}
+            </if>
+            <if test="primaryPhone !=null">
+                and primary_phone = #{primaryPhone}
+            </if>
+            <if test="assignTo !=null">
+                and assign_to=#{assignTo}
+            </if>
+        </where>
     </select>
 </mapper>

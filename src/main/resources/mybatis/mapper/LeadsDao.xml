@@ -6,6 +6,7 @@
         <result column="first_name" property="firstName"/>
         <result column="last_name" property="lastName"/>
         <result column="primary_phone" property="primaryPhone"/>
+        <result column="company" property="company"/>
         <result column="website" property="website"/>
         <result column="primary_email" property="primaryEmail"/>
         <result column="assign_to" property="assignTo"/>
@@ -46,30 +47,33 @@
         select l.*
         from leads l
         <where>
-            <if test="campaignName!=null">
-                campaign_name=#{campaignName}
+            <if test="firstName!=null">
+                first_name=#{firstName}
             </if>
-            <if test="campaignType!=null">
-                and campaign_type=#{campaignType}
+            <if test="lastName !=null">
+                and last_name=#{lastName}
             </if>
-            <if test="campaignStatus !=null">
+            <if test="company!=null">
                 and campaign_status=#{campaignStatus}
             </if>
-            <if test="expectedRevenue !=null">
-                and expected_revenue = #{expectedRevenue}
+            <if test="primaryPhone !=null">
+                and primary_phone = #{primaryPhone}
             </if>
-            <if test="expectedCloseDate!=null">
-                and expected_close_date=#{expectedCloseDate}
+            <if test="website!=null">
+                and website=#{website}
             </if>
-            <if test="campaignType!=null">
-                and assign_to=#{assignTo};
+            <if test="primaryEmail !=null">
+                and primary_email = #{primaryEmail}
+            </if>
+            <if test="asignTo!=null">
+                and assign_to=#{assignTo}
             </if>
         </where>
     </select>
 
     <insert id="insertLeads" parameterType="com.example.crm.entity.Leads" keyProperty="leadId" keyColumn="lead_id">
-        insert into leads(first_name,last_name,organization_id,primary_phone,website,primary_email,assign_to,product_id,annual_revenue,phone,email,address_id,update_info,description,create_time,modified_time)
-        values(#{firstName},#{lastName},#{organization.organizationId},#{primaryPhone},#{website},#{primaryEmail},#{assignTo},#{product.productId},#{annualRevenue},#{phone},#{email},#{address.addressId},#{updateInfo},#{description},#{createTime},#{modifiedTime})
+        insert into leads(first_name,last_name,organization_id,primary_phone,company,website,primary_email,assign_to,product_id,annual_revenue,phone,email,address_id,update_info,description,create_time,modified_time)
+        values(#{firstName},#{lastName},#{organization.organizationId},#{primaryPhone},#{company},#{website},#{primaryEmail},#{assignTo},#{product.productId},#{annualRevenue},#{phone},#{email},#{address.addressId},#{updateInfo},#{description},#{createTime},#{modifiedTime})
     </insert>
 
     <update id="updateLeads">
@@ -78,6 +82,7 @@
             <if test="firstName != null">first_name = #{firstName},</if>
             <if test="lastName != null">last_name = #{lastName},</if>
             <if test="primaryPhone != null">primary_phone = #{primaryPhone},</if>
+            <if test="company!=null">company = #{company},</if>
             <if test="website != null">website = #{website},</if>
             <if test="primaryEmail != null">primary_email = #{primaryEmail},</if>
             <if test="assignTo != null">assign_to = #{assignTo},</if>
