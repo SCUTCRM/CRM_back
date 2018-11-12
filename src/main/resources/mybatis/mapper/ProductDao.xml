@@ -22,7 +22,7 @@
                      javaType="com.example.crm.entity.Price">
             <id column="price_id" property="priceId"/>
         </association>
-        <association property="stockInfoId" column="stock_info_id"
+        <association property="stockInfo" column="stock_info_id"
                      javaType="com.example.crm.entity.StockInfo">
             <id column="stock_info_id" property="stockInfoId"/>
         </association>

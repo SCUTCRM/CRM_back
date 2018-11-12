@@ -31,11 +31,4 @@
         delete from price
         where price_id = #{priceId}
     </delete>
-
-    <select id="getRecentlyModified" resultMap="priceMap">
-        select p.*
-        from price p
-        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
-        and modified_time &lt; CURRENT_DATE
-    </select>
 </mapper>

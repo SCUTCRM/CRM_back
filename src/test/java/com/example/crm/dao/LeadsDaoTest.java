@@ -28,7 +28,7 @@ public class LeadsDaoTest {
     private LeadsDao leadsDao;
 
     @Test
-    @Ignore
+    //@Ignore
     public void getLeadsList() {
         System.out.println(leadsDao.getLeadsList());
     }
@@ -40,7 +40,7 @@ public class LeadsDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertLeads() {
         Leads leads=new Leads();
         leads.setFirstName("刘");
@@ -48,15 +48,16 @@ public class LeadsDaoTest {
         Organization organization=new Organization();
         organization.setOrganizationId(1);
         leads.setOrganization(organization);
-        leads.setPrimaryPhone(1576634545);
+        leads.setPrimaryPhone("1576634545");
         leads.setWebsite("www.baidu.com");
         leads.setPrimaryEmail("1145054472@qq.com");
+        leads.setCompany("谷歌");
         leads.setAssignTo(1);
         Product product=new Product();
         product.setProductId(1);
         leads.setProduct(product);
         leads.setAnnualRevenue(100.0);
-        leads.setPhone(7887227);
+        leads.setPhone("7887227");
         leads.setEmail("liubin2018v@gmail.com");
         Address address=new Address();
         address.setAddressId(1);
@@ -69,23 +70,24 @@ public class LeadsDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void updateLeads() {
-        Leads leads=new Leads();
+        Leads leads=leadsDao.getLeadsById(2);
         leads.setFirstName("刘");
         leads.setLastName("斌");
         Organization organization=new Organization();
         organization.setOrganizationId(1);
         leads.setOrganization(organization);
-        leads.setPrimaryPhone(1576634545);
+        leads.setPrimaryPhone("1576634545");
         leads.setWebsite("www.baidu.com");
+        leads.setCompany("腾讯");
         leads.setPrimaryEmail("1145054472@qq.com");
         leads.setAssignTo(1);
         Product product=new Product();
         product.setProductId(1);
         leads.setProduct(product);
         leads.setAnnualRevenue(2000.0);
-        leads.setPhone(7887227);
+        leads.setPhone("7887227");
         leads.setEmail("liubin2018v@gmail.com");
         Address address=new Address();
         address.setAddressId(1);
@@ -98,8 +100,8 @@ public class LeadsDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deleteLeads() {
-        System.out.println(leadsDao.deleteLeads(1));
+        System.out.println(leadsDao.deleteLeads(2));
     }
 }

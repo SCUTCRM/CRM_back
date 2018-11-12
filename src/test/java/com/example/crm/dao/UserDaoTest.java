@@ -35,6 +35,7 @@ public class UserDaoTest {
     //@Ignore
     public void insertUser() {
         User user = new User();
+        user.setUserId(1);
         user.setUserName("刘斌");
         user.setEmail("1145054472@qq.com");
         user.setPassWord("123456");

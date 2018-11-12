@@ -28,19 +28,19 @@ public class TicketDaoTest {
     private TicketDao ticketDao;
 
     @Test
-    @Ignore
+    //@Ignore
     public void getTicketList() {
         System.out.println(ticketDao.getTicketList());
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void getTicket() {
         System.out.println(ticketDao.getTicketById(1));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertTicket() {
         Ticket ticket=new Ticket();
         ticket.setTicketId(1);
@@ -68,9 +68,8 @@ public class TicketDaoTest {
     @Test
     //@Ignore
     public void updateTicket() {
-        Ticket ticket=new Ticket();
-        ticket.setTicketId(1);
-        ticket.setTitle("thinkpad售后");
+        Ticket ticket=ticketDao.getTicketById(2);
+        ticket.setTitle("macbookpro售后");
         ticket.setStatus(1);
         ticket.setPriority(1);
         ticket.setAssignTo(1);
@@ -92,8 +91,8 @@ public class TicketDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deleteTicket() {
-        System.out.println(ticketDao.deleteTicket(1));
+        System.out.println(ticketDao.deleteTicket(2));
     }
 }

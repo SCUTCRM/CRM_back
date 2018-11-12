@@ -18,7 +18,7 @@ public interface ExpActualDao {
      * @Param: null
      * @return
      */
-    ExpActual getExpActual(ExpActual expActual);
+    ExpActual getExpActual(Integer expActualId);
 
     /**
      * create by: Bin Liu
@@ -45,5 +45,5 @@ public interface ExpActualDao {
      * @Param: null
      * @return
      */
-    int deleteExpActual(ExpActual expActualId);
+    int deleteExpActual(Integer expActualId);
 }

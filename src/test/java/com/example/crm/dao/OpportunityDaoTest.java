@@ -27,7 +27,7 @@ public class OpportunityDaoTest {
     private OpportunityDao opportunityDao;
 
     @Test
-    @Ignore
+    //@Ignore
     public void getOpportunityList() {
         System.out.println(opportunityDao.getOpportunityList());
     }
@@ -39,17 +39,18 @@ public class OpportunityDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertOpportunity() {
         Opportunity opportunity=new Opportunity();
         opportunity.setOpportId(1);
         opportunity.setOpportName("offor");
+        opportunity.setSalesStage("开始阶段");
         opportunity.setProb(11.0);
         opportunity.setForcastAmount(11.0);
         opportunity.setIsFromLead("Y");
         opportunity.setAssignTo(1);
         Contact contact=new Contact();
-        contact.setContactId(2);
+        contact.setContactId(1);
         opportunity.setContact(contact);
         opportunity.setLeadSource("手册");
         opportunity.setUpdateInfo("插入机会");
@@ -62,17 +63,17 @@ public class OpportunityDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void updateOpportunity() {
-        Opportunity opportunity=new Opportunity();
-        opportunity.setOpportId(1);
+        Opportunity opportunity=opportunityDao.getOpportunityById(2);
         opportunity.setOpportName("offor");
         opportunity.setProb(11.0);
+        opportunity.setSalesStage("结束阶段");
         opportunity.setForcastAmount(11.0);
         opportunity.setIsFromLead("Y");
         opportunity.setAssignTo(1);
         Contact contact=new Contact();
-        contact.setContactId(2);
+        contact.setContactId(1);
         opportunity.setContact(contact);
         opportunity.setLeadSource("手册");
         opportunity.setUpdateInfo("更改机会");
@@ -85,8 +86,8 @@ public class OpportunityDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deleteOpportunity() {
-        System.out.println(opportunityDao.deleteOpportunity(1));
+        System.out.println(opportunityDao.deleteOpportunity(2));
     }
 }

@@ -25,19 +25,19 @@ public class ContactDaoTest {
     private ContactDao contactDao;
 
     @Test
-    @Ignore
+    //@Ignore
     public void getContactList() {
         System.out.println(contactDao.getContactList());
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void getContact() {
         System.out.println(contactDao.getContactById(1));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertContact() {
         Contact contact=new Contact();
         contact.setContactId(1);
@@ -48,9 +48,9 @@ public class ContactDaoTest {
         organization.setOrganizationId(1);
         contact.setOrganization(organization);
         contact.setPrimaryEmail("1145054472@qq.com");
-        contact.setOfficePhone(788);
+        contact.setOfficePhone("788");
         contact.setIsFromLead("Y");
-        contact.setHomePhone(7887227);
+        contact.setHomePhone("7887227");
         contact.setAssignTo(1);
         Address address=new Address();
         address.setAddressId(1);
@@ -63,17 +63,16 @@ public class ContactDaoTest {
         contact.setDayOfBirth(new Date(1998,05,06));
         contact.setDepartment("华工软件");
         contact.setAssistant("林少辉");
-        contact.setAssistantPhone(1576698);
+        contact.setAssistantPhone("1576698");
         contact.setProfilePicture("c://picture");
         contact.setDescription("测试");
         System.out.println(contactDao.insertContact(contact));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void updateContact() {
-        Contact contact=new Contact();
-        contact.setContactId(1);
+        Contact contact=contactDao.getContactById(2);
         contact.setFirstName("刘");
         contact.setLastName("斌");
         contact.setTitle("学生");
@@ -81,9 +80,9 @@ public class ContactDaoTest {
         organization.setOrganizationId(1);
         contact.setOrganization(organization);
         contact.setPrimaryEmail("1145054472@qq.com");
-        contact.setOfficePhone(788);
+        contact.setOfficePhone("788");
         contact.setIsFromLead("Y");
-        contact.setHomePhone(788722);
+        contact.setHomePhone("788722");
         contact.setAssignTo(1);
         Address address=new Address();
         address.setAddressId(1);
@@ -96,15 +95,15 @@ public class ContactDaoTest {
         contact.setDayOfBirth(new Date(1998,05,06));
         contact.setDepartment("华工软件");
         contact.setAssistant("狗辉");
-        contact.setAssistantPhone(1576698);
+        contact.setAssistantPhone("1576698");
         contact.setProfilePicture("c://picture");
         contact.setDescription("测试");
         System.out.println(contactDao.updateContact(contact));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deleteContact() {
-        System.out.println(contactDao.deleteContact(1));
+        System.out.println(contactDao.deleteContact(2));
     }
 }

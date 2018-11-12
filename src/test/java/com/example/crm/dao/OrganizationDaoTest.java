@@ -24,7 +24,7 @@ public class OrganizationDaoTest {
     private OrganizationDao organizationDao;
 
     @Test
-    @Ignore
+    //@Ignore
     public void getOrganizationList() {
         System.out.println(organizationDao.getOrganizationList());
     }
@@ -36,14 +36,14 @@ public class OrganizationDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertOrganization() {
         Organization organization=new Organization();
         organization.setOrganizationId(1);
         organization.setOrganizationName("华工");
         organization.setBillingCity("广州");
         organization.setWebsite("www.scut.edu.cn");
-        organization.setPrimaryPhone(123456);
+        organization.setPrimaryPhone("123456");
         organization.setAssignTo(1);
         organization.setUpdateInfo("插入组织");
         organization.setIsFromLead("Y");
@@ -64,12 +64,11 @@ public class OrganizationDaoTest {
     @Test
     //@Ignore
     public void updateOrganization() {
-        Organization organization=new Organization();
-        organization.setOrganizationId(1);
+        Organization organization=organizationDao.getOrganizationById(2);
         organization.setOrganizationName("华工");
         organization.setBillingCity("广州");
         organization.setWebsite("www.scut.edu.cn");
-        organization.setPrimaryPhone(123456);
+        organization.setPrimaryPhone("123456");
         organization.setAssignTo(1);
         organization.setUpdateInfo("修改组织");
         organization.setIsFromLead("Y");
@@ -88,8 +87,8 @@ public class OrganizationDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deleteOrganization() {
-        System.out.println(organizationDao.deleteOrganization(1));
+        System.out.println(organizationDao.deleteOrganization(2));
     }
 }

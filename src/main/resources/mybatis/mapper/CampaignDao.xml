@@ -90,9 +90,8 @@
             <if test="sponsor != null">sponsor = #{sponsor},</if>
             <if test="description != null">description = #{description},</if>
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
-            <if test="productId != null and product.productId != null">product_id = #{product.productId},</if>
-            <if test="expActual != null and expActual.expActualId != null">exp_actual_id = #{expActual.expActualId},</if>
-            <if test="contact != null and contact.contactId != null">contact_id = #{contact.contactId}</if>
+            <if test="product != null and product.productId != null">product_id = #{product.productId},</if>
+            <if test="expActual != null and expActual.expActualId != null">exp_actual_id = #{expActual.expActualId}</if>
         </set>
         where campaign_id = #{campaignId}
     </update>

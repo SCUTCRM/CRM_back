@@ -19,7 +19,7 @@ public class Organization {
     //网站
     private String website;
     //电话
-    private Integer primaryPhone;
+    private String primaryPhone;
     //分配给
     private Integer assignTo;
     //更改
@@ -79,11 +79,11 @@ public class Organization {
         this.website = website;
     }
 
-    public Integer getPrimaryPhone() {
+    public String getPrimaryPhone() {
         return primaryPhone;
     }
 
-    public void setPrimaryPhone(Integer primaryPhone) {
+    public void setPrimaryPhone(String primaryPhone) {
         this.primaryPhone = primaryPhone;
     }
 

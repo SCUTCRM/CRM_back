@@ -34,16 +34,17 @@ public class CampaignDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void getCampaign() {
         System.out.println(campaignDao.getCampaignById(1));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertCampaign() {
         Campaign campaign=new Campaign();
         campaign.setCampaignType("篮球");
+        campaign.setCampaignName("篮球活动");
         campaign.setCampaignStatus(1);
         campaign.setExpectedRevenue(100.0);
         campaign.setExpectedCloseDate(new Date());
@@ -69,10 +70,11 @@ public class CampaignDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void updateCampaign() {
-        Campaign campaign=new Campaign();
-        campaign.setCampaignType("篮球");
+        Campaign campaign=campaignDao.getCampaignById(2);
+        campaign.setCampaignType("足球");
+        campaign.setCampaignName("足球活动");
         campaign.setCampaignStatus(1);
         campaign.setExpectedRevenue(100.0);
         campaign.setExpectedCloseDate(new Date());
@@ -92,8 +94,8 @@ public class CampaignDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deleteCampaign() {
-        System.out.println(campaignDao.deleteCampaign(1));
+        System.out.println(campaignDao.deleteCampaign(2));
     }
 }

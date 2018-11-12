@@ -17,7 +17,7 @@ public class Leads {
     //姓
     private String lastName;
     //常用电话
-    private Integer primaryPhone;
+    private String primaryPhone;
     //公司
     private String company;
     //网站
@@ -29,7 +29,7 @@ public class Leads {
     //年收入
     private Double annualRevenue;
     //电话
-    private Integer phone;
+    private String phone;
     //邮件
     private String email;
     //更新
@@ -74,12 +74,16 @@ public class Leads {
         this.lastName = lastName;
     }
 
-    public Integer getPrimaryPhone() {
+    public String getPrimaryPhone() {
         return primaryPhone;
     }
 
-    public void setPrimaryPhone(Integer primaryPhone) {
+    public void setPrimaryPhone(String primaryPhone) {
         this.primaryPhone = primaryPhone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getCompany() {
@@ -120,14 +124,6 @@ public class Leads {
 
     public void setAnnualRevenue(Double annualRevenue) {
         this.annualRevenue = annualRevenue;
-    }
-
-    public Integer getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Integer phone) {
-        this.phone = phone;
     }
 
     public String getEmail() {

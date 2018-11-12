@@ -38,7 +38,7 @@ public class PriceDaoTest {
     @Test
     //@Ignore
     public void updatePrice() {
-        Price price=new Price();
+        Price price=priceDao.getPrice(1);
         price.setPriceId(1);
         price.setCommissionRate(10.01);
         price.setUnitPrice(5.0);

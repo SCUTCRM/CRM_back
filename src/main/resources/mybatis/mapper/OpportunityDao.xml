@@ -8,6 +8,7 @@
         <result column="forcast_amount" property="forcastAmount"/>
         <result column="is_from_lead" property="isFromLead"/>
         <result column="assign_to" property="assignTo"/>
+        <result column="sales_stage" property="salesStage" />
         <result column="lead_source" property="leadSource"/>
         <result column="update_info" property="updateInfo"/>
         <result column="create_time" property="createTime"/>
@@ -34,8 +35,8 @@
     </select>
 
     <insert id="insertOpportunity" parameterType="com.example.crm.entity.Opportunity" keyProperty="opportId" keyColumn="opport_id">
-        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,contact_id,lead_source,update_info,create_time,modified_time,opport_type,expected_close_date,description)
-        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{opportType},#{expectedCloseDate},#{description})
+        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,sales_stage,contact_id,lead_source,update_info,create_time,modified_time,opport_type,expected_close_date,description)
+        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{salesStage},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{opportType},#{expectedCloseDate},#{description})
     </insert>
 
     <update id="updateOpportunity">
@@ -46,6 +47,7 @@
             <if test="forcastAmount != null">forcast_amount = #{forcastAmount},</if>
             <if test="isFromLead != null">is_from_lead = #{isFromLead},</if>
             <if test="assignTo != null">assign_to = #{assignTo},</if>
+            <if test="salesStage !=null">sales_stage =#{salesStage},</if>
             <if test="leadSource != null">lead_source = #{leadSource},</if>
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="createTime != null">create_time = #{createTime},</if>

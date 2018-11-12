@@ -27,25 +27,25 @@ public class ProductDaoTest {
     private ProductDao productDao;
 
     @Test
-    @Ignore
+    //@Ignore
     public void getProductList() {
         System.out.println(productDao.getProductList());
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void getProduct() {
         System.out.println(productDao.getProductById(1));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void insertProduct() {
         Product product=new Product();
         product.setProductId(1);
         product.setProductName("thinkpad");
         product.setPartNumber(1);
-        product.setSaleStartDate(new Date(2018,1,2));
+        product.setSaleStartDate(new Date());
         product.setProductCategory("电脑");
         product.setActive("T");
         product.setSaleEndDate(new Date());
@@ -68,13 +68,12 @@ public class ProductDaoTest {
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void updateProduct() {
-        Product product=new Product();
-        product.setProductId(1);
-        product.setProductName("thinkpad");
+        Product product=productDao.getProductById(2);
+        product.setProductName("thinkpad X1");
         product.setPartNumber(1);
-        product.setSaleStartDate(new Date(2018,1,2));
+        product.setSaleStartDate(new Date());
         product.setProductCategory("电脑");
         product.setActive("T");
         product.setSaleEndDate(new Date());
@@ -91,14 +90,14 @@ public class ProductDaoTest {
         price.setPriceId(1);
         product.setPrice(price);
         StockInfo stockInfo=new StockInfo();
-        stockInfo.setStockInfoId(1);
+        stockInfo.setStockInfoId(3);
         product.setStockInfo(stockInfo);
         System.out.println(productDao.updateProduct(product));
     }
 
     @Test
-    @Ignore
+    //@Ignore
     public void deleteProduct() {
-        System.out.println(productDao.deleteProduct(1));
+        System.out.println(productDao.deleteProduct(2));
     }
 }

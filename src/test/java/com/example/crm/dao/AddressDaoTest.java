@@ -50,8 +50,7 @@ public class AddressDaoTest {
     @Test
     //@Ignore
     public void updateAddress(){
-        Address address= new Address();
-        address.setAddressId(1);
+        Address address= addressDao.getAddress(2);
         address.setMailStreet("小谷围街道");
         address.setMailPoBox("邮箱1");
         address.setMailCity("番禺");

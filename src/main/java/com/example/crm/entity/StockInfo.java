@@ -9,7 +9,7 @@ package com.example.crm.entity;
 public class StockInfo {
     private Integer stockInfoId;
     //库存的使用单位
-    private Integer usageUnit;
+    private String usageUnit;
     //库存数量
     private Integer qtyInStock;
     //数量/单价
@@ -25,11 +25,11 @@ public class StockInfo {
         this.stockInfoId = stockInfoId;
     }
 
-    public Integer getUsageUnit() {
+    public String getUsageUnit() {
         return usageUnit;
     }
 
-    public void setUsageUnit(Integer usageUnit) {
+    public void setUsageUnit(String usageUnit) {
         this.usageUnit = usageUnit;
     }
 

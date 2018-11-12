@@ -21,13 +21,13 @@ public class Contact {
     //邮件
     private String primaryEmail;
     //办公室电话
-    private Integer officePhone;
+    private String officePhone;
     //分配给
     private Integer assignTo;
     //是否是来自于线索 T和F
     private String isFromLead;
     //家的电话
-    private Integer homePhone;
+    private String homePhone;
     //更改
     private String updateInfo;
     //线索状态
@@ -48,7 +48,7 @@ public class Contact {
     //助理
     private String assistant;
     //助理电话
-    private Integer assistantPhone;
+    private String assistantPhone;
     //个人资料图片
     private String profilePicture;
     //描述
@@ -98,11 +98,11 @@ public class Contact {
         this.primaryEmail = primaryEmail;
     }
 
-    public Integer getOfficePhone() {
+    public String getOfficePhone() {
         return officePhone;
     }
 
-    public void setOfficePhone(Integer officePhone) {
+    public void setOfficePhone(String officePhone) {
         this.officePhone = officePhone;
     }
 
@@ -114,12 +114,20 @@ public class Contact {
         this.isFromLead = isFromLead;
     }
 
-    public Integer getHomePhone() {
+    public String getHomePhone() {
         return homePhone;
     }
 
-    public void setHomePhone(Integer homePhone) {
+    public void setHomePhone(String homePhone) {
         this.homePhone = homePhone;
+    }
+
+    public String getAssistantPhone() {
+        return assistantPhone;
+    }
+
+    public void setAssistantPhone(String assistantPhone) {
+        this.assistantPhone = assistantPhone;
     }
 
     public String getUpdateInfo() {
@@ -192,14 +200,6 @@ public class Contact {
 
     public void setAssistant(String assistant) {
         this.assistant = assistant;
-    }
-
-    public Integer getAssistantPhone() {
-        return assistantPhone;
-    }
-
-    public void setAssistantPhone(Integer assistantPhone) {
-        this.assistantPhone = assistantPhone;
     }
 
     public String getProfilePicture() {

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.StockInfoDao" >
+    <resultMap id="stockInfoMap" type="com.example.crm.entity.StockInfo">
+        <id column="stock_info_id" property="stockInfoId"/>
+        <result column="usage_unit" property="usageUnit"/>
+        <result column="qty_in_stock" property="qtyInStock"/>
+        <result column="unit" property="unit"/>
+        <result column="qty_in_demand" property="qtyInDemand"/>
+    </resultMap>
+
+    <select id="getStockInfo" resultMap="stockInfoMap">
+        select s.*
+        from stock_info s
+        where s.stock_info_id = #{stockInfoId}
+    </select>
+
+    <insert id="insertStockInfo" parameterType="com.example.crm.entity.StockInfo" keyProperty="stockInfoId" keyColumn="stock_info_id">
+        insert into stock_info(usage_unit,qty_in_stock,unit,qty_in_demand)
+        values(#{usageUnit},#{qtyInStock},#{unit},#{qtyInDemand})
+    </insert>
+
+    <update id="updateStockInfo">
+        update stock_info
+        <set>
+            <if test="usageUnit != null">usage_unit = #{usageUnit},</if>
+            <if test="qtyInStock != null">qty_in_stock = #{qtyInStock},</if>
+            <if test="unit != null">unit = #{unit},</if>
+            <if test="qtyInDemand != null">qty_in_demand = #{qtyInDemand}</if>
+        </set>
+        where stock_info_id = #{stockInfoId}
+    </update>
+
+    <delete id="deleteStockInfo">
+        delete from stock_info
+        where stock_info_id = #{stockInfoId}
+    </delete>
+</mapper>
