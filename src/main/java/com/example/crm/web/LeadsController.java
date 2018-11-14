@@ -56,12 +56,12 @@ public class LeadsController {
         return resultMap;
     }
 
-    @GetMapping("/leads/getLeads")
-    private HashMap<String, Object> getLeads(HttpServletRequest request) {
+    @GetMapping("/leads/getLeadsById")
+    private HashMap<String, Object> getLeadsById(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int leadsId = HttpServletRequestUtil.getInt(request, "leadsId");
-            Leads leads = leadsService.getLeads(leadsId);
+            Leads leads = leadsService.getLeadsById(leadsId);
             resultMap.put("leads", leads);
             resultMap.put("success", true);
             resultMap.put("code", 200);

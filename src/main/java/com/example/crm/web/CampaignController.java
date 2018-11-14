@@ -57,12 +57,12 @@ public class CampaignController {
         return resultMap;
     }
 
-    @GetMapping("/campaign/getCampaign")
+    @GetMapping("/campaign/getCampaignById")
     private HashMap<String, Object> getCampaign(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int campaignId = HttpServletRequestUtil.getInt(request, "campaignId");
-            Campaign campaign = campaignService.getCampaign(campaignId);
+            Campaign campaign = campaignService.getCampaignById(campaignId);
             resultMap.put("campaign", campaign);
             resultMap.put("success", true);
             resultMap.put("code", 200);

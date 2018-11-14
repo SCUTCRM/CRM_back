@@ -13,7 +13,7 @@ import java.util.List;
 public interface LeadsService {
     List<Leads> getLeadsList();
 
-    Leads getLeads(Integer leadId);
+    Leads getLeadsById(Integer leadId);
 
     int insertLeads(Leads leads);
 
@@ -24,4 +24,6 @@ public interface LeadsService {
     List<Leads> getRecentlyModified();
 
     Leads getLeads(Leads leads);
+
+    Leads getLeadsByProductId(Integer productId);
 }

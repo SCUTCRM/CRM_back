@@ -24,4 +24,6 @@ public interface OpportunityService {
     int deleteOpportunity(Integer opportunity);
 
     List<Opportunity> getRecentlyModified();
+
+    Opportunity getOpportunityByContactId(Integer contactId);
 }

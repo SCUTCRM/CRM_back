@@ -71,4 +71,6 @@ public interface OrganizationService {
      * @return
      */
     List<Organization> getRecentlyModified();
+
+    Organization getOrganizationByProductId(Integer productId);
 }

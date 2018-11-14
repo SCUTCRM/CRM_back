@@ -82,4 +82,14 @@ public class TicketServiceImpl implements TicketService {
     public List<Ticket> getRecentlyModified() {
         return ticketDao.getRecentlyModified();
     }
+
+    @Override
+    public Ticket getUpdateInfo(Integer ticketId) {
+        return ticketDao.getUpdateInfo(ticketId);
+    }
+
+    @Override
+    public Ticket getTicketByProductId(Integer productId) {
+        return ticketDao.getTicketByProductId(productId);
+    }
 }

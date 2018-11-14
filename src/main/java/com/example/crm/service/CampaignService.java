@@ -13,7 +13,9 @@ import java.util.List;
 public interface CampaignService {
     List<Campaign> getCampaignList();
 
-    Campaign getCampaign(Integer campaignId);
+    Campaign getCampaignById(Integer campaignId);
+
+    Campaign getCampaign(Campaign campaign);
 
     int insertCampaign(Campaign campaign);
 
@@ -22,4 +24,6 @@ public interface CampaignService {
     int deleteCampaign(Integer campaignId);
 
     List<Campaign> getRecentlyModified();
+
+    Campaign getUpdateInfo(Integer campaignId);
 }

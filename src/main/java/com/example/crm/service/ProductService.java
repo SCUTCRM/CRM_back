@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.entity.Leads;
 import com.example.crm.entity.Product;
 
 import java.util.List;
@@ -78,4 +79,16 @@ public interface ProductService {
      * @return
      */
     List<Product> getRecentlyModified();
+
+    /**
+     * create by: Bin Liu
+     * description: 根据id获取更新信息
+     * create time: 2018/11/14 22:46
+     * @Param: null
+     * @return
+     */
+    Product getUpdateInfo(Integer productId);
+
+    //int findDuplicates();
+    Leads getLeadsByProductId(Integer productId);
 }

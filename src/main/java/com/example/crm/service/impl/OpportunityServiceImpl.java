@@ -81,4 +81,9 @@ public class OpportunityServiceImpl implements OpportunityService {
     public List<Opportunity> getRecentlyModified() {
         return opportunityDao.getRecentlyModified();
     }
+
+    @Override
+    public Opportunity getOpportunityByContactId(Integer contactId) {
+        return opportunityDao.getOpportunityByContactId(contactId);
+    }
 }

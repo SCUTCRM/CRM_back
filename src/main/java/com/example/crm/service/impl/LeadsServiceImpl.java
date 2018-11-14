@@ -27,8 +27,13 @@ public class LeadsServiceImpl implements LeadsService {
     }
 
     @Override
-    public Leads getLeads(Integer leadId) {
+    public Leads getLeadsById(Integer leadId) {
         return leadsDao.getLeadsById(leadId);
+    }
+
+    @Override
+    public Leads getLeads(Leads leads) {
+        return leadsDao.getLeads(leads);
     }
 
     @Transactional
@@ -79,9 +84,7 @@ public class LeadsServiceImpl implements LeadsService {
     }
 
     @Override
-    public Leads getLeads(Leads leads) {
-        return leadsDao.getLeads(leads);
+    public Leads getLeadsByProductId(Integer productId) {
+        return leadsDao.getLeadsByProductId(productId);
     }
-
-
 }

@@ -37,6 +37,11 @@ public class ContatcServiceImpl implements ContactService {
         return contactDao.getContact(contact);
     }
 
+    @Override
+    public Contact getContactByOrganizationId(Integer organizationId) {
+        return contactDao.getContactByOrganizationId(organizationId);
+    }
+
     @Transactional
     @Override
     public int insertContact(Contact contact) {
@@ -82,5 +87,10 @@ public class ContatcServiceImpl implements ContactService {
     @Override
     public List<Contact> getRecentlyModified() {
         return contactDao.getRecentlyModified();
+    }
+
+    @Override
+    public Contact getUpdateInfo(Integer contactId) {
+        return contactDao.getUpdateInfo(contactId);
     }
 }

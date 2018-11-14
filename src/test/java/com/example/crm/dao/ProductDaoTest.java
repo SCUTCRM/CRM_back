@@ -114,8 +114,8 @@ public class ProductDaoTest {
         StockInfo stockInfo=new StockInfo();
         stockInfo.setQtyInStock(100);
         stockInfo.setUnit(1);
-        StockInfo stockInfolTest=stockInfoDao.getStockInfo(stockInfo);
-        product.setStockInfo(stockInfo);
+        StockInfo stockInfoTest=stockInfoDao.getStockInfo(stockInfo);
+        product.setStockInfo(stockInfoTest);
         System.out.println(productDao.getProduct(product));
     }
 

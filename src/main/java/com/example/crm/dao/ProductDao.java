@@ -100,31 +100,4 @@ public interface ProductDao {
      * @return 
      */
     Product getUpdateInfo(Integer productId);
-
-    /**
-     * create by: Bin Liu
-     * description: 查看相关的机会信息
-     * create time: 2018/11/14 19:53
-     * @Param: null
-     * @return 
-     */
-    Opportunity getOpportunityByProductId(Integer productId);
-    
-    /**
-     * create by: Bin Liu
-     * description: 查看相关的组织信息
-     * create time: 2018/11/14 19:54
-     * @Param: null
-     * @return 
-     */
-    Organization getOrganizationByProductId(Integer productId);
-
-    /**
-     * create by: Bin Liu
-     * description: 查看相关的联系人信息
-     * create time: 2018/11/14 19:58
-     * @Param: null
-     * @return 
-     */
-    Contact getContactByProductId(Integer productId);
  }

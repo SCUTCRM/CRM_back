@@ -82,4 +82,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     public List<Organization> getRecentlyModified() {
         return organizationDao.getRecentlyModified();
     }
+
+    @Override
+    public Organization getOrganizationByProductId(Integer productId) {
+        return organizationDao.getOrganizationByProductId(productId);
+    }
 }

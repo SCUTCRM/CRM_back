@@ -1,6 +1,8 @@
 package com.example.crm.service.impl;
 
+import com.example.crm.dao.LeadsDao;
 import com.example.crm.dao.ProductDao;
+import com.example.crm.entity.Leads;
 import com.example.crm.entity.Product;
 import com.example.crm.exception.OrganizationException;
 import com.example.crm.exception.ProductException;
@@ -21,6 +23,9 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private LeadsDao leadsDao;
+
 
     @Override
     public List<Product> getProductList() {
@@ -83,4 +88,16 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getRecentlyModified() {
         return productDao.getRecentlyModified();
     }
+
+    @Override
+    public Product getUpdateInfo(Integer productId) {
+        return productDao.getUpdateInfo(productId);
+    }
+
+    @Override
+    public Leads getLeadsByProductId(Integer productId) {
+        return leadsDao.getLeadsByProductId(productId);
+    }
+
+
 }

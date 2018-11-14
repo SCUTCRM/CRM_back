@@ -17,6 +17,8 @@ public interface ContactService {
 
     Contact getContact(Contact contact);
 
+    Contact getContactByOrganizationId(Integer organizationId);
+
     int insertContact(Contact contact);
 
     int updateContact(Contact contact);
@@ -24,4 +26,6 @@ public interface ContactService {
     int deleteContact(Integer contactId);
 
     List<Contact> getRecentlyModified();
+
+    Contact getUpdateInfo(Integer contactId);
 }

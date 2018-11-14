@@ -27,8 +27,13 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public Campaign getCampaign(Integer campaignId) {
+    public Campaign getCampaignById(Integer campaignId) {
         return campaignDao.getCampaignById(campaignId);
+    }
+
+    @Override
+    public Campaign getCampaign(Campaign campaign) {
+        return null;
     }
 
     @Transactional
@@ -77,4 +82,10 @@ public class CampaignServiceImpl implements CampaignService {
     public List<Campaign> getRecentlyModified() {
         return campaignDao.getRecentlyModified();
     }
+
+    @Override
+    public Campaign getUpdateInfo(Integer campaignId) {
+        return campaignDao.getUpdateInfo(campaignId);
+    }
+
 }

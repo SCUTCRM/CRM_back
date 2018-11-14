@@ -24,4 +24,8 @@ public interface TicketService {
     int deleteTicket(Integer ticketId);
 
     List<Ticket> getRecentlyModified();
+
+    Ticket getUpdateInfo(Integer ticketId);
+
+    Ticket getTicketByProductId(Integer productId);
 }
