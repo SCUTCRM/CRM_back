@@ -79,4 +79,13 @@ public interface TicketDao {
      * @return 
      */
     List<Ticket> getRecentlyModified();
+
+    /**
+     * create by: Bin Liu
+     * description: 获取更新信息
+     * create time: 2018/11/12 23:13
+     * @Param: null
+     * @return
+     */
+    Ticket getUpdateInfo(Integer ticketId);
 }

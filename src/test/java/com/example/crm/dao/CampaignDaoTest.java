@@ -35,21 +35,21 @@ public class CampaignDaoTest {
 
     @Test
     //@Ignore
-    public void getCampaign() {
+    public void getCampaignById() {
         System.out.println(campaignDao.getCampaignById(1));
     }
 
     @Test
     //@Ignore
     public void insertCampaign() {
-        Campaign campaign=new Campaign();
+        Campaign campaign = new Campaign();
         campaign.setCampaignType("篮球");
         campaign.setCampaignName("篮球活动");
         campaign.setCampaignStatus(1);
         campaign.setExpectedRevenue(100.0);
         campaign.setExpectedCloseDate(new Date());
         campaign.setAssignTo(1);
-        Product product=new Product();
+        Product product = new Product();
         product.setProductId(1);
         campaign.setProduct(product);
         campaign.setTargetSize(1);
@@ -60,10 +60,10 @@ public class CampaignDaoTest {
         campaign.setSponsor(100);
         campaign.setDescription("测试");
         campaign.setUpdateInfo("测试插入");
-        ExpActual expActual=new ExpActual();
+        ExpActual expActual = new ExpActual();
         expActual.setExpActualId(1);
         campaign.setExpActual(expActual);
-        Opportunity opportunity= new Opportunity();
+        Opportunity opportunity = new Opportunity();
         opportunity.setOpportId(1);
         campaign.setOpportunity(opportunity);
         System.out.println(campaignDao.insertCampaign(campaign));
@@ -72,7 +72,7 @@ public class CampaignDaoTest {
     @Test
     //@Ignore
     public void updateCampaign() {
-        Campaign campaign=campaignDao.getCampaignById(2);
+        Campaign campaign = campaignDao.getCampaignById(2);
         campaign.setCampaignType("足球");
         campaign.setCampaignName("足球活动");
         campaign.setCampaignStatus(1);
@@ -97,5 +97,23 @@ public class CampaignDaoTest {
     //@Ignore
     public void deleteCampaign() {
         System.out.println(campaignDao.deleteCampaign(2));
+    }
+
+    @Test
+    //@Ignore
+    public void getUpdateInfo() {
+        System.out.println(campaignDao.getUpdateInfo(1));
+    }
+
+    @Test
+    //@Ignore
+    public void getCampaign() {
+        Campaign campaign=new Campaign();
+        campaign.setCampaignName("足球活动");
+        campaign.setCampaignType("足球");
+        campaign.setCampaignStatus(1);
+        campaign.setExpectedRevenue(100.0);
+        campaign.setAssignTo(1);
+        System.out.println(campaignDao.getCampaign(campaign));
     }
 }

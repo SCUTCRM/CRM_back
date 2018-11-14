@@ -18,7 +18,7 @@ public interface StockInfoDao {
      * @Param: null
      * @return
      */
-    StockInfo getStockInfo(Integer stockInfoId);
+    StockInfo getStockInfoById(Integer stockInfoId);
 
     /**
      * create by: Bin Liu
@@ -46,4 +46,13 @@ public interface StockInfoDao {
      * @return
      */
     int deleteStockInfo(Integer stockInfoId);
+    
+    /**
+     * create by: Bin Liu
+     * description: 动态获取库存信息
+     * create time: 2018/11/13 22:57
+     * @Param: null
+     * @return 
+     */
+    StockInfo getStockInfo(StockInfo stockInfo);
 }

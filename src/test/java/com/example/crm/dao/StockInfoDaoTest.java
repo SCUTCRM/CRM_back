@@ -25,7 +25,7 @@ public class StockInfoDaoTest {
     @Test
     //@Ignore
     public void getStockInfo() {
-        System.out.println(stockInfoDao.getStockInfo(1));
+        System.out.println(stockInfoDao.getStockInfoById(1));
     }
 
     @Test
@@ -42,9 +42,9 @@ public class StockInfoDaoTest {
     @Test
     //@Ignore
     public void updateStockInfo() {
-        StockInfo stockInfo=stockInfoDao.getStockInfo(2);
+        StockInfo stockInfo=stockInfoDao.getStockInfoById(2);
         stockInfo.setUsageUnit("T");
-        stockInfo.setQtyInStock(10000);
+        stockInfo.setQtyInStock(2000);
         stockInfo.setUnit(5);
         stockInfo.setQtyInDemand(5000);
         System.out.println(stockInfoDao.updateStockInfo(stockInfo));

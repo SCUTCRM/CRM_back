@@ -9,10 +9,23 @@
         <result column="qty_in_demand" property="qtyInDemand"/>
     </resultMap>
 
-    <select id="getStockInfo" resultMap="stockInfoMap">
+    <select id="getStockInfoById" resultMap="stockInfoMap">
         select s.*
         from stock_info s
         where s.stock_info_id = #{stockInfoId}
+    </select>
+
+    <select id="getStockInfo" resultMap="stockInfoMap">
+        select s.*
+        from stock_info s
+        <where>
+            <if test="qtyInStock!=null">
+                qty_in_stock=#{qtyInStock}
+            </if>
+            <if test="unit !=null">
+                and unit = #{unit}
+            </if>
+        </where>
     </select>
 
     <insert id="insertStockInfo" parameterType="com.example.crm.entity.StockInfo" keyProperty="stockInfoId" keyColumn="stock_info_id">

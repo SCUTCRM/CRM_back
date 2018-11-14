@@ -1,5 +1,6 @@
 package com.example.crm.dao;
 
+import com.example.crm.entity.Contact;
 import com.example.crm.entity.Organization;
 import com.example.crm.entity.Product;
 import com.example.crm.entity.Ticket;
@@ -26,6 +27,10 @@ import static org.junit.Assert.*;
 public class TicketDaoTest {
     @Autowired
     private TicketDao ticketDao;
+    @Autowired
+    private OrganizationDao organizationDao;
+    @Autowired
+    private ContactDao contactDao;
 
     @Test
     //@Ignore
@@ -35,7 +40,7 @@ public class TicketDaoTest {
 
     @Test
     //@Ignore
-    public void getTicket() {
+    public void getTicketById() {
         System.out.println(ticketDao.getTicketById(1));
     }
 
@@ -94,5 +99,29 @@ public class TicketDaoTest {
     //@Ignore
     public void deleteTicket() {
         System.out.println(ticketDao.deleteTicket(2));
+    }
+
+    @Test
+    //@Ignore
+    public void getUpdateInfo() {
+        System.out.println(ticketDao.getUpdateInfo(1));
+    }
+
+    @Test
+    //@Ignore
+    public void getTicket() {
+        Ticket ticket=new Ticket();
+        ticket.setTitle("macbookpro售后");
+        String organizationName="华工";
+        Organization organization=organizationDao.getOrganizationByName(organizationName);
+        ticket.setStatus(1);
+        ticket.setPriority(1);
+        ticket.setAssignTo(1);
+      /*  String firstName="刘";
+        String lastName="斌";
+        Contact contact=contactDao.getContactByName(firstName,lastName);
+        Organization organization2=contact.getOrganization();*/
+        ticket.setOrganization(organization);
+        System.out.println(ticketDao.getTicket(ticket));
     }
 }

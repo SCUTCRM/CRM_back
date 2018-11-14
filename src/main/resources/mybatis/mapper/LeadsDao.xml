@@ -54,7 +54,7 @@
                 and last_name=#{lastName}
             </if>
             <if test="company!=null">
-                and campaign_status=#{campaignStatus}
+                and company=#{company}
             </if>
             <if test="primaryPhone !=null">
                 and primary_phone = #{primaryPhone}
@@ -65,7 +65,7 @@
             <if test="primaryEmail !=null">
                 and primary_email = #{primaryEmail}
             </if>
-            <if test="asignTo!=null">
+            <if test="assignTo!=null">
                 and assign_to=#{assignTo}
             </if>
         </where>
@@ -110,5 +110,11 @@
         from leads l
         where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
         and modified_time &lt; CURRENT_DATE
+    </select>
+
+    <select id="getUpdateInfo" resultMap="leadsMap">
+        select l.update_info
+        from leads l
+        where lead_id=#{leadId}
     </select>
 </mapper>

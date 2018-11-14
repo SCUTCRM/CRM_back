@@ -1,5 +1,6 @@
 package com.example.crm.dao;
 
+import com.alibaba.druid.sql.visitor.functions.Concat;
 import com.example.crm.entity.Address;
 import com.example.crm.entity.Contact;
 import com.example.crm.entity.Organization;
@@ -24,6 +25,9 @@ public class ContactDaoTest {
     @Autowired
     private ContactDao contactDao;
 
+    @Autowired
+    private OrganizationDao organizationDao;
+
     @Test
     //@Ignore
     public void getContactList() {
@@ -32,19 +36,19 @@ public class ContactDaoTest {
 
     @Test
     //@Ignore
-    public void getContact() {
+    public void getContactById() {
         System.out.println(contactDao.getContactById(1));
     }
 
     @Test
     //@Ignore
     public void insertContact() {
-        Contact contact=new Contact();
+        Contact contact = new Contact();
         contact.setContactId(1);
         contact.setFirstName("刘");
         contact.setLastName("斌");
         contact.setTitle("学生");
-        Organization organization=new Organization();
+        Organization organization = new Organization();
         organization.setOrganizationId(1);
         contact.setOrganization(organization);
         contact.setPrimaryEmail("1145054472@qq.com");
@@ -52,7 +56,7 @@ public class ContactDaoTest {
         contact.setIsFromLead("Y");
         contact.setHomePhone("7887227");
         contact.setAssignTo(1);
-        Address address=new Address();
+        Address address = new Address();
         address.setAddressId(1);
         contact.setAddress(address);
         contact.setUpdateInfo("插入Contact");
@@ -60,7 +64,7 @@ public class ContactDaoTest {
         contact.setIndustry("教育");
         contact.setCreateTime(new Date());
         contact.setModifiedTime(new Date());
-        contact.setDayOfBirth(new Date(1998,05,06));
+        contact.setDayOfBirth(new Date(1998, 05, 06));
         contact.setDepartment("华工软件");
         contact.setAssistant("林少辉");
         contact.setAssistantPhone("1576698");
@@ -72,11 +76,11 @@ public class ContactDaoTest {
     @Test
     //@Ignore
     public void updateContact() {
-        Contact contact=contactDao.getContactById(2);
+        Contact contact = contactDao.getContactById(2);
         contact.setFirstName("刘");
         contact.setLastName("斌");
         contact.setTitle("学生");
-        Organization organization=new Organization();
+        Organization organization = new Organization();
         organization.setOrganizationId(1);
         contact.setOrganization(organization);
         contact.setPrimaryEmail("1145054472@qq.com");
@@ -84,7 +88,7 @@ public class ContactDaoTest {
         contact.setIsFromLead("Y");
         contact.setHomePhone("788722");
         contact.setAssignTo(1);
-        Address address=new Address();
+        Address address = new Address();
         address.setAddressId(1);
         contact.setAddress(address);
         contact.setUpdateInfo("更改Contact");
@@ -92,7 +96,7 @@ public class ContactDaoTest {
         contact.setIndustry("教育");
         contact.setCreateTime(new Date());
         contact.setModifiedTime(new Date());
-        contact.setDayOfBirth(new Date(1998,05,06));
+        contact.setDayOfBirth(new Date(1998, 05, 06));
         contact.setDepartment("华工软件");
         contact.setAssistant("狗辉");
         contact.setAssistantPhone("1576698");
@@ -105,5 +109,27 @@ public class ContactDaoTest {
     //@Ignore
     public void deleteContact() {
         System.out.println(contactDao.deleteContact(2));
+    }
+
+    @Test
+    //@Ignore
+    public void getUpdateInfo() {
+        System.out.println(contactDao.getUpdateInfo(1));
+    }
+
+    @Test
+    //@Ignore
+    public void getContact() {
+        Contact contact = new Contact();
+        contact.setFirstName("刘");
+        contact.setLastName("斌");
+        contact.setTitle("学生");
+        String organizationName = "华工";
+        Organization organization = organizationDao.getOrganizationByName(organizationName);
+        contact.setOrganization(organization);
+        contact.setPrimaryEmail("1145054472@qq.com");
+        contact.setOfficePhone("788");
+        contact.setAssignTo(1);
+        System.out.println(contactDao.getContact(contact));
     }
 }

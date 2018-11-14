@@ -75,4 +75,13 @@ public interface OpportunityDao {
      * @return 
      */
     Opportunity getOpportunity(Opportunity opportunity);
+
+    /**
+     * create by: Bin Liu
+     * description: 获取更新信息
+     * create time: 2018/11/12 23:12
+     * @Param: null
+     * @return
+     */
+    Opportunity getUpdateInfo(Integer opportId);
 }

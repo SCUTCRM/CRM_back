@@ -82,8 +82,8 @@
             <if test="title!=null">
                 title=#{title}
             </if>
-            <if test="organization !=null and organization.organizationId !=null and organization.organizationName !=null">
-                and organization_id = #{organizationId}
+            <if test="organization !=null and organization.organizationId !=null">
+                and organization_id = #{organization.organizationId}
             </if>
             <if test="status !=null">
                 and status=#{status}
@@ -92,11 +92,17 @@
                 and priority=#{priority}
             </if>
             <if test="assignTo !=null">
-                and assignTo = #{assignTo}
+                and assign_to = #{assignTo}
             </if>
-            <if test="contact !=null and contact.contactId !=null and contact.contactName !=null">
-                and contact_id = #{contactId}
+            <if test="organization !=null and organization.organizationId !=null">
+                and organization_id = #{organization.organizationId}
             </if>
         </where>
+    </select>
+
+    <select id="getUpdateInfo" resultMap="ticketMap">
+        select t.update_info
+        from ticket t
+        where ticket_id=#{ticketId}
     </select>
 </mapper>

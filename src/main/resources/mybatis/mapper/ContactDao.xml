@@ -44,7 +44,7 @@
         where c.contact_id = #{contactId}
     </select>
 
-    <select id="getContactByAssignTo" resultMap="contactMap">
+    <select id="getContact" resultMap="contactMap">
         select c.*
         from contact c
         <where>
@@ -57,8 +57,8 @@
             <if test="title !=null">
                 and title=#{title}
             </if>
-            <if test="organizationName !=null">
-                and organization_name = #{organizationName}
+            <if test="organization!=null and organization.organizationId !=null">
+                and organization_id = #{organization.organizationId}
             </if>
             <if test="primaryEmail !=null">
                 and primary_email = #{primaryEmail}
@@ -114,5 +114,23 @@
         from contact c
         where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
         and modified_time &lt; CURRENT_DATE
+    </select>
+
+    <select id="getUpdateInfo" resultMap="contactMap">
+        select c.update_info
+        from contact c
+        where contact_id=#{contactId}
+    </select>
+
+    <select id="getContactByOrganizationId" resultMap="contactMap">
+        select c.*
+        from contact c
+        where c.organization_id = #{organizationId}
+    </select>
+
+    <select id="getContactByName" resultMap="contactMap">
+        select c.*
+        from contact c
+        where c.first_name = #{firstName} and c.last_name=#{lastName}
     </select>
 </mapper>

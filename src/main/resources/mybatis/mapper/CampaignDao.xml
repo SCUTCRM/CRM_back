@@ -107,4 +107,10 @@
         where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
         and modified_time &lt; CURRENT_DATE
     </select>
+
+    <select id="getUpdateInfo" resultMap="campaignMap">
+        select c.update_info
+        from campaign c
+        where campaign_id=#{campaignId}
+    </select>
 </mapper>

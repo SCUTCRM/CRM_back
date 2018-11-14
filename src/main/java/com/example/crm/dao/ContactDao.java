@@ -36,6 +36,23 @@ public interface ContactDao {
 
     /**
      * create by: Bin Liu
+     * description: 根据organizationId获取联系人信息
+     * create time: 2018/11/14 15:24
+     * @Param: null
+     * @return 
+     */
+    Contact getContactByOrganizationId(Integer organizationId);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据姓名获取联系人信息
+     * create time: 2018/11/14 15:46
+     * @Param: null
+     * @return
+     */
+    Contact getContactByName(String firstName,String lastName);
+    /**
+     * create by: Bin Liu
      * description: 动态获取联系人信息
      * create time: 2018/11/6 16:57
      *
@@ -82,4 +99,13 @@ public interface ContactDao {
      * @return 
      */
     List<Contact> getRecentlyModified();
+
+    /**
+     * create by: Bin Liu
+     * description: 获取更新信息
+     * create time: 2018/11/12 23:08
+     * @Param: null
+     * @return
+     */
+    Contact getUpdateInfo(Integer contactId);
 }

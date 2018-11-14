@@ -31,7 +31,7 @@ public class OrganizationDaoTest {
 
     @Test
     //@Ignore
-    public void getOrganization() {
+    public void getOrganizationById() {
         System.out.println(organizationDao.getOrganizationById(1));
     }
 
@@ -90,5 +90,17 @@ public class OrganizationDaoTest {
     //@Ignore
     public void deleteOrganization() {
         System.out.println(organizationDao.deleteOrganization(2));
+    }
+
+    @Test
+    //@Ignore
+    public void getOrganization() {
+        Organization organization=new Organization();
+        organization.setOrganizationName("华工");
+        organization.setBillingCity("广州");
+        organization.setWebsite("www.scut.edu.cn");
+        organization.setPrimaryPhone("123456");
+        organization.setAssignTo(1);
+        System.out.println(organizationDao.getOrganization(organization));
     }
 }

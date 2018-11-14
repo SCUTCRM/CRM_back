@@ -1,9 +1,8 @@
 package com.example.crm.dao;
 
-import com.alibaba.druid.sql.visitor.functions.Concat;
 import com.example.crm.entity.Contact;
 import com.example.crm.entity.Opportunity;
-import org.junit.Ignore;
+import com.example.crm.entity.Organization;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
-
-import static org.junit.Assert.*;
 
 /**
  * @ Author     ：Bin Liu
@@ -25,6 +22,10 @@ import static org.junit.Assert.*;
 public class OpportunityDaoTest {
     @Autowired
     private OpportunityDao opportunityDao;
+    @Autowired
+    private OrganizationDao organizationDao;
+    @Autowired
+    private ContactDao contactDao;
 
     @Test
     //@Ignore
@@ -34,14 +35,14 @@ public class OpportunityDaoTest {
 
     @Test
     //@Ignore
-    public void getOpportunity() {
+    public void getOpportunityById() {
         System.out.println(opportunityDao.getOpportunityById(1));
     }
 
     @Test
     //@Ignore
     public void insertOpportunity() {
-        Opportunity opportunity=new Opportunity();
+        Opportunity opportunity = new Opportunity();
         opportunity.setOpportId(1);
         opportunity.setOpportName("offor");
         opportunity.setSalesStage("开始阶段");
@@ -49,7 +50,7 @@ public class OpportunityDaoTest {
         opportunity.setForcastAmount(11.0);
         opportunity.setIsFromLead("Y");
         opportunity.setAssignTo(1);
-        Contact contact=new Contact();
+        Contact contact = new Contact();
         contact.setContactId(1);
         opportunity.setContact(contact);
         opportunity.setLeadSource("手册");
@@ -65,14 +66,14 @@ public class OpportunityDaoTest {
     @Test
     //@Ignore
     public void updateOpportunity() {
-        Opportunity opportunity=opportunityDao.getOpportunityById(2);
+        Opportunity opportunity = opportunityDao.getOpportunityById(2);
         opportunity.setOpportName("offor");
         opportunity.setProb(11.0);
         opportunity.setSalesStage("结束阶段");
         opportunity.setForcastAmount(11.0);
         opportunity.setIsFromLead("Y");
         opportunity.setAssignTo(1);
-        Contact contact=new Contact();
+        Contact contact = new Contact();
         contact.setContactId(1);
         opportunity.setContact(contact);
         opportunity.setLeadSource("手册");
@@ -89,5 +90,27 @@ public class OpportunityDaoTest {
     //@Ignore
     public void deleteOpportunity() {
         System.out.println(opportunityDao.deleteOpportunity(2));
+    }
+
+    @Test
+    //@Ignore
+    public void getUpdateInfo() {
+        System.out.println(opportunityDao.getUpdateInfo(1));
+    }
+
+    @Test
+    //@Ignore
+    public void getOpportunity() {
+        Opportunity opportunity = new Opportunity();
+        opportunity.setOpportName("offer");
+        String organizationName = "华工";
+        Organization organization = organizationDao.getOrganizationByName(organizationName);
+        Contact contact=contactDao.getContactByOrganizationId(organization.getOrganizationId());
+        opportunity.setContact(contact);
+        opportunity.setSalesStage("结束阶段");
+        opportunity.setLeadSource("手册");
+        opportunity.setForcastAmount(11.0);
+        opportunity.setAssignTo(1);
+        System.out.println(opportunityDao.getOpportunityById(1));
     }
 }

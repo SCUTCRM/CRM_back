@@ -1,6 +1,7 @@
 package com.example.crm.dao;
 
 import com.example.crm.entity.Price;
+import com.example.crm.entity.Product;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,8 +20,16 @@ public interface PriceDao {
      * @return
      * @Param: null
      */
-    Price getPrice(Integer priceId);
+    Price getPriceById(Integer priceId);
 
+    /**
+     * create by: Bin Liu
+     * description: 动态获取价格信息
+     * create time: 2018/11/13 16:46
+     * @Param: null
+     * @return
+     */
+    Price getPrice(Price price);
     /**
      * create by: Bin Liu
      * description: 插入一条价格信息

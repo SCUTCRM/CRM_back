@@ -35,7 +35,7 @@ public class LeadsDaoTest {
 
     @Test
     //@Ignore
-    public void getLeads() {
+    public void getLeadsById() {
         System.out.println(leadsDao.getLeadsById(1));
     }
 
@@ -103,5 +103,25 @@ public class LeadsDaoTest {
     //@Ignore
     public void deleteLeads() {
         System.out.println(leadsDao.deleteLeads(2));
+    }
+
+    @Test
+    //@Ignore
+    public void getUpdateInfo() {
+        System.out.println(leadsDao.getUpdateInfo(1));
+    }
+
+    @Test
+    //@Ignore
+    public void getLeads() {
+        Leads leads=new Leads();
+        leads.setFirstName("刘");
+        leads.setLastName("斌");
+        leads.setCompany("谷歌");
+        leads.setPrimaryPhone("15766345459");
+        leads.setWebsite("www.baidu.com");
+        leads.setPrimaryEmail("1145054472@qq.com");
+        leads.setAssignTo(1);
+        System.out.println(leadsDao.getLeads(leads));
     }
 }

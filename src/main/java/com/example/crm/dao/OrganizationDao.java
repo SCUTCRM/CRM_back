@@ -35,6 +35,14 @@ public interface OrganizationDao {
 
     /**
      * create by: Bin Liu
+     * description: 根据organizationName获取指定组织
+     * create time: 2018/11/13 23:31
+     * @Param: null
+     * @return
+     */
+    Organization getOrganizationByName(String organizationName);
+    /**
+     * create by: Bin Liu
      * description: 增加一个组织
      * create time: 2018/10/31 20:01
      *
@@ -80,4 +88,13 @@ public interface OrganizationDao {
      * @return 
      */
     Organization getOrganization(Organization organization);
+
+    /**
+     * create by: Bin Liu
+     * description: 获取更新信息
+     * create time: 2018/11/12 23:13
+     * @Param: null
+     * @return
+     */
+    Organization getUpdateInfo(Integer organizationId);
 }

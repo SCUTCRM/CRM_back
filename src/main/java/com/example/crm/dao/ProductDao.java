@@ -1,6 +1,8 @@
 package com.example.crm.dao;
 
+import com.example.crm.entity.Price;
 import com.example.crm.entity.Product;
+import com.example.crm.entity.StockInfo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -40,7 +42,7 @@ public interface ProductDao {
      * @Param: null
      * @return 
      */
-    Product getProduct(Product product);
+    List<Product> getProduct(Product product);
     /**
      * create by: Bin Liu
      * description: 增加一个产品
@@ -96,5 +98,5 @@ public interface ProductDao {
      * @Param: null
      * @return 
      */
-    String getUpdateInfo(Integer productId);
+    Product getUpdateInfo(Integer productId);
  }

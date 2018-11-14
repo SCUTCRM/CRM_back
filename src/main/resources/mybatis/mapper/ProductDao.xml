@@ -50,22 +50,12 @@
             <if test="partNumber">
                 and part_number = #{partNumber}
             </if>
-            <choose>
-            <when test="price !=null and price.commissionRate!=null and price.priceId !=null">
-                and price_id=#{priceId}
-            </when>
-            <when test="price !=null and price.unitPrice!=null and price.priceId !=null">
-                and price_id=#{priceId}
-            </when>
-            </choose>
-            <choose>
-            <when test="stockInfo !=null and stockInfo.qtyInStock!=null and stockInfo.stockInfoId !=null">
-                and stock_info_id=#{stockInfoId}
-            </when>
-            <when test="stockInfo !=null and stockInfo.unit !=null and stockInfo.stockInfoId !=null">
-                and stock_info_id=#{stockInfoId}
-            </when>
-            </choose>
+            <if test="price !=null and price.priceId !=null">
+                and price_id=#{price.priceId}
+            </if>
+            <if test="stockInfo !=null and stockInfo.stockInfoId !=null">
+                and stock_info_id=#{stockInfo.stockInfoId}
+            </if>
         </where>
     </select>
 

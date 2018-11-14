@@ -22,8 +22,17 @@ public class PriceDaoTest {
 
     @Test
     //@Ignore
+    public void getPriceById() {
+        System.out.println(priceDao.getPriceById(2));
+    }
+
+    @Test
+    //@Ignore
     public void getPrice() {
-        System.out.println(priceDao.getPrice(2));
+        Price price=new Price();
+        price.setUnitPrice(5.0);
+        price.setCommissionRate(10.01);
+        System.out.println(priceDao.getPrice(price));
     }
 
     @Test
@@ -38,7 +47,7 @@ public class PriceDaoTest {
     @Test
     //@Ignore
     public void updatePrice() {
-        Price price=priceDao.getPrice(1);
+        Price price=new Price();
         price.setPriceId(1);
         price.setCommissionRate(10.01);
         price.setUnitPrice(5.0);

@@ -36,6 +36,12 @@
         where o.organization_id = #{organizationId}
     </select>
 
+    <select id="getOrganizationByName" resultMap="organizationMap">
+        select o.*
+        from organization o
+        where o.organization_name = #{organizationName}
+    </select>
+
     <insert id="insertOrganization" parameterType="com.example.crm.entity.Organization" keyProperty="organizationId" keyColumn="organization_id">
         insert into organization(organization_name,billing_city,website,primary_phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description)
         values (#{organizationName},#{billingCity},#{website},#{primaryPhone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.addressId},#{description})
@@ -96,5 +102,11 @@
                 and assign_to=#{assignTo}
             </if>
         </where>
+    </select>
+
+    <select id="getUpdateInfo" resultMap="organizationMap">
+        select o.update_info
+        from organization o
+        where organization_id=#{organizationId}
     </select>
 </mapper>

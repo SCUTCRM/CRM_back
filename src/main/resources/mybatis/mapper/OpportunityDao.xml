@@ -79,8 +79,8 @@
             <if test="opportName!=null">
                 opport_name=#{opportName}
             </if>
-            <if test="organization != null and organization.organizationName !=null and organization.organizationId != null">
-                and organization_id=#{organizationId}
+            <if test="contact.organization != null and contact.contactId != null">
+                and contact_id=#{contactId}
             </if>
             <if test="salesStatus !=null">
                 and sales_status=#{salesStatus}
@@ -97,9 +97,15 @@
             <if test="assignTo!=null">
                 and assign_to=#{assignTo}
             </if>
-            <if test="contact != null and contact.contactName !=null and contact.contactId != null">
-                and contact_id=#{contactId}
+            <if test="contact != null and contact.contactId != null">
+                and contact_id=#{contact.contactId}
             </if>
         </where>
+    </select>
+
+    <select id="getUpdateInfo" resultMap="opportunityMap">
+        select o.update_info
+        from opportunity o
+        where opport_id=#{opportId}
     </select>
 </mapper>

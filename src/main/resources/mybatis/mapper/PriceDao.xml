@@ -7,10 +7,23 @@
         <result column="commission_rate" property="commissionRate"/>
     </resultMap>
 
-    <select id="getPrice" resultMap="priceMap">
+    <select id="getPriceById" resultMap="priceMap">
         select p.*
         from price p
         where p.price_id = #{priceId}
+    </select>
+
+    <select id="getPrice" resultMap="priceMap">
+        select p.*
+        from price p
+        <where>
+            <if test="commissionRate!=null">
+                commission_rate=#{commissionRate}
+            </if>
+            <if test="unitPrice !=null">
+                and unit_price = #{unitPrice}
+            </if>
+        </where>
     </select>
 
     <insert id="insertPrice" parameterType="com.example.crm.entity.Price" keyProperty="priceId" keyColumn="price_id">

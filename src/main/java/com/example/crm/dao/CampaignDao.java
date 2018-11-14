@@ -80,4 +80,13 @@ public interface CampaignDao {
      * @return 
      */
     List<Campaign> getRecentlyModified();
+
+    /**
+     * create by: Bin Liu
+     * description: 获取更新信息
+     * create time: 2018/11/12 23:07
+     * @Param: null
+     * @return
+     */
+    Campaign getUpdateInfo(Integer campaignId);
 }

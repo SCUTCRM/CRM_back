@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProduct(Product product) {
+    public List<Product> getProduct(Product product) {
         return productDao.getProduct(product);
     }
 

@@ -38,7 +38,7 @@ public interface ProductService {
      * @Param: null
      * @return
      */
-    Product getProduct(Product product);
+    List<Product> getProduct(Product product);
 
     /**
      * create by: Bin Liu
