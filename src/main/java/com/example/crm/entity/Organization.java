@@ -46,6 +46,8 @@ public class Organization {
     private Address address;
     //描述
     private String description;
+    //产品
+    private Product product;
 
     public Integer getOrganizationId() {
         return organizationId;
@@ -181,5 +183,13 @@ public class Organization {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

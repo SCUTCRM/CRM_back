@@ -132,4 +132,12 @@ public class ContactDaoTest {
         contact.setAssignTo(1);
         System.out.println(contactDao.getContact(contact));
     }
+
+    @Test
+    //@Ignore
+    public void getContactByOrganizationId() {
+        Integer productId=1;
+        Organization organization=organizationDao.getOrganizationByProductId(productId);
+        System.out.println(contactDao.getContactByOrganizationId(organization.getOrganizationId()));
+    }
 }

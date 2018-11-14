@@ -124,4 +124,11 @@ public class TicketDaoTest {
         ticket.setOrganization(organization);
         System.out.println(ticketDao.getTicket(ticket));
     }
+
+    @Test
+    //@Ignore
+    public void getTicketByProductId(){
+        Integer productId=1;
+        System.out.println(ticketDao.getTicketByProductId(productId));
+    }
 }

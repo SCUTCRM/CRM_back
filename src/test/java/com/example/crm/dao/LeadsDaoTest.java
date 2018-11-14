@@ -124,4 +124,11 @@ public class LeadsDaoTest {
         leads.setAssignTo(1);
         System.out.println(leadsDao.getLeads(leads));
     }
+
+    @Test
+    //@Ignore
+    public void getLeadsByProductId(){
+        Integer productId=1;
+        System.out.println(leadsDao.getLeadsByProductId(productId));
+    }
 }

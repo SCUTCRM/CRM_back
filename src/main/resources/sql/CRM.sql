@@ -81,8 +81,10 @@ CREATE TABLE `organization` (
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `address_id` int(11) NOT NULL COMMENT '地址id',
   `description` varchar(150) NOT NULL COMMENT '描述',
+  `product_id` int(11) NOT NULL COMMENT '产品id',
   PRIMARY KEY (`organization_id`),
-  FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`)
+  FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`),
+  FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `leads`;

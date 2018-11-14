@@ -105,4 +105,11 @@
         from ticket t
         where ticket_id=#{ticketId}
     </select>
+
+
+    <select id="getTicketByProductId" resultMap="ticketMap">
+        select t.*
+        from ticket t
+        where t.product_id = #{productId}
+    </select>
 </mapper>

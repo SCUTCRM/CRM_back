@@ -113,4 +113,13 @@ public class OpportunityDaoTest {
         opportunity.setAssignTo(1);
         System.out.println(opportunityDao.getOpportunityById(1));
     }
+
+    @Test
+    //@Ignore
+    public void getOpportunityByContactId() {
+        Integer productId=1;
+        Organization organization=organizationDao.getOrganizationByProductId(productId);
+        Contact contact= contactDao.getContactByOrganizationId(organization.getOrganizationId());
+        System.out.println(opportunityDao.getOpportunityByContactId(contact.getContactId()));
+    }
 }

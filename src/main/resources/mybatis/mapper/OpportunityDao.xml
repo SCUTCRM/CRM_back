@@ -108,4 +108,10 @@
         from opportunity o
         where opport_id=#{opportId}
     </select>
+
+    <select id="getOpportunityByContactId" resultMap="opportunityMap">
+        select o.*
+        from opportunity o
+        where o.contact_id = #{contactId}
+    </select>
 </mapper>

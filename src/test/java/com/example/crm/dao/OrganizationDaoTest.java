@@ -2,6 +2,7 @@ package com.example.crm.dao;
 
 import com.example.crm.entity.Address;
 import com.example.crm.entity.Organization;
+import com.example.crm.entity.Product;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,13 +59,16 @@ public class OrganizationDaoTest {
         address.setAddressId(1);
         organization.setAddress(address);
         organization.setDescription("测试");
+        Product product=new Product();
+        product.setProductId(3);
+        organization.setProduct(product);
         System.out.println(organizationDao.insertOrganization(organization));
     }
 
     @Test
     //@Ignore
     public void updateOrganization() {
-        Organization organization=organizationDao.getOrganizationById(2);
+        Organization organization=organizationDao.getOrganizationById(3);
         organization.setOrganizationName("华工");
         organization.setBillingCity("广州");
         organization.setWebsite("www.scut.edu.cn");
@@ -83,6 +87,9 @@ public class OrganizationDaoTest {
         address.setAddressId(1);
         organization.setAddress(address);
         organization.setDescription("测试");
+        Product product=new Product();
+        product.setProductId(3);
+        organization.setProduct(product);
         System.out.println(organizationDao.updateOrganization(organization));
     }
 
@@ -102,5 +109,12 @@ public class OrganizationDaoTest {
         organization.setPrimaryPhone("123456");
         organization.setAssignTo(1);
         System.out.println(organizationDao.getOrganization(organization));
+    }
+
+    @Test
+    //@Ignore
+    public void getOrganizationByProductId() {
+        Integer productId=1;
+        System.out.println(organizationDao.getOrganizationByProductId(1));
     }
 }

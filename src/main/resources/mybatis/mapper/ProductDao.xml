@@ -105,4 +105,17 @@
         from product p
         where product_id=#{productId}
     </select>
+
+    <select id="getOpportunityByProductId" resultMap="productMap">
+        select
+    </select>
+
+    <select id="getOrganizationByProductId" resultMap="productMap">
+        select
+    </select>
+
+    <select id="getContactByProductId" resultMap="productMap">
+        select c
+        from contact c,product p
+    </select>
 </mapper>

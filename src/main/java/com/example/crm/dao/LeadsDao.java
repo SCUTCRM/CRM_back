@@ -92,4 +92,13 @@ public interface LeadsDao {
      * @return 
      */
     Leads getUpdateInfo(Integer leadId);
+
+    /**
+     * create by: Bin Liu
+     * description: 查看相关的潜在客户信息
+     * create time: 2018/11/14 19:55
+     * @Param: null
+     * @return
+     */
+    Leads getLeadsByProductId(Integer productId);
 }

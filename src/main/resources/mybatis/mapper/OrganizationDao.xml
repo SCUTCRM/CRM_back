@@ -22,6 +22,10 @@
                      javaType="com.example.crm.entity.Address">
             <id column="address_id" property="addressId"/>
         </association>
+        <association property="product" column="product_id"
+                     javaType="com.example.crm.entity.Product">
+            <id column="product_id" property="productId"/>
+        </association>
     </resultMap>
 
     <select id="getOrganizationList" resultMap="organizationMap">
@@ -43,8 +47,8 @@
     </select>
 
     <insert id="insertOrganization" parameterType="com.example.crm.entity.Organization" keyProperty="organizationId" keyColumn="organization_id">
-        insert into organization(organization_name,billing_city,website,primary_phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description)
-        values (#{organizationName},#{billingCity},#{website},#{primaryPhone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.addressId},#{description})
+        insert into organization(organization_name,billing_city,website,primary_phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description,product_id)
+        values (#{organizationName},#{billingCity},#{website},#{primaryPhone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.addressId},#{description},#{product.productId})
     </insert>
 
     <update id="updateOrganization">
@@ -65,6 +69,7 @@
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="description != null">description = #{description},</if>
+            <if test="product != null and product.productId != null">product_id = #{product.productId},</if>
             <if test="address != null and address.addressId != null">address_id = #{address.addressId}</if>
         </set>
         where organization_id = #{organizationId}
@@ -108,5 +113,11 @@
         select o.update_info
         from organization o
         where organization_id=#{organizationId}
+    </select>
+
+    <select id="getOrganizationByProductId" resultMap="organizationMap">
+        select o.*
+        from organization o
+        where product_id=#{productId}
     </select>
 </mapper>

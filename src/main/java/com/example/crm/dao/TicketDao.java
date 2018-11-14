@@ -88,4 +88,14 @@ public interface TicketDao {
      * @return
      */
     Ticket getUpdateInfo(Integer ticketId);
+
+
+    /**
+     * create by: Bin Liu
+     * description: 查看相关的售后信息
+     * create time: 2018/11/14 19:54
+     * @Param: null
+     * @return
+     */
+    Ticket getTicketByProductId(Integer productId);
 }

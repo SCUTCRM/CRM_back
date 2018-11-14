@@ -117,4 +117,10 @@
         from leads l
         where lead_id=#{leadId}
     </select>
+
+    <select id="getLeadsByProductId" resultMap="leadsMap">
+        select l.*
+        from leads l
+        where l.product_id = #{productId}
+    </select>
 </mapper>
