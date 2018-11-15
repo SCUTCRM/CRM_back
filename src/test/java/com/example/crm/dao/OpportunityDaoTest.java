@@ -1,6 +1,7 @@
 package com.example.crm.dao;
 
 import com.example.crm.entity.Contact;
+import com.example.crm.entity.Document;
 import com.example.crm.entity.Opportunity;
 import com.example.crm.entity.Organization;
 import org.junit.Test;
@@ -60,6 +61,9 @@ public class OpportunityDaoTest {
         opportunity.setOpportType("工作");
         opportunity.setExpectedCloseDate(new Date());
         opportunity.setDescription("测试");
+        Document document=new Document();
+        document.setDocumentId(1);
+        opportunity.setDocument(document);
         System.out.println(opportunityDao.insertOpportunity(opportunity));
     }
 
@@ -83,6 +87,9 @@ public class OpportunityDaoTest {
         opportunity.setOpportType("工作");
         opportunity.setExpectedCloseDate(new Date());
         opportunity.setDescription("测试");
+        Document document=new Document();
+        document.setDocumentId(1);
+        opportunity.setDocument(document);
         System.out.println(opportunityDao.updateOpportunity(opportunity));
     }
 

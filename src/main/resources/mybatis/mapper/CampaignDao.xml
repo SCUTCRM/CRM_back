@@ -29,6 +29,10 @@
                      javaType="com.example.crm.entity.Opportunity">
             <id column="opport_id" property="opportId"/>
         </association>
+        <association property="document" column="document_id"
+                     javaType="com.example.crm.entity.Document">
+            <id column="document_id" property="documentId"/>
+        </association>
     </resultMap>
 
     <select id="getCampaignList" resultMap="campaignMap">
@@ -69,8 +73,8 @@
     </select>
 
     <insert id="insertCampaign" parameterType="com.example.crm.entity.Campaign" keyProperty="campaignId" keyColumn="campaign_id">
-        insert into campaign(campaign_name,campaign_type,campaign_status,expected_revenue,expected_close_date,assign_to,product_id,target_size,num_sent,target_audience,create_time,modified_time,sponsor,description,update_info,exp_actual_id,opport_id)
-        values(#{campaignName},#{campaignType},#{campaignStatus},#{expectedRevenue},#{expectedCloseDate},#{assignTo},#{product.productId},#{targetSize},#{numSent},#{targetAudience},#{createTime},#{modifiedTime},#{sponsor},#{description},#{updateInfo},#{expActual.expActualId},#{opportunity.opportId})
+        insert into campaign(campaign_name,campaign_type,campaign_status,expected_revenue,expected_close_date,assign_to,product_id,target_size,num_sent,target_audience,create_time,modified_time,sponsor,description,update_info,exp_actual_id,opport_id,document_id)
+        values(#{campaignName},#{campaignType},#{campaignStatus},#{expectedRevenue},#{expectedCloseDate},#{assignTo},#{product.productId},#{targetSize},#{numSent},#{targetAudience},#{createTime},#{modifiedTime},#{sponsor},#{description},#{updateInfo},#{expActual.expActualId},#{opportunity.opportId},#{document.documentId})
     </insert>
 
     <update id="updateCampaign">
@@ -91,7 +95,8 @@
             <if test="description != null">description = #{description},</if>
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="product != null and product.productId != null">product_id = #{product.productId},</if>
-            <if test="expActual != null and expActual.expActualId != null">exp_actual_id = #{expActual.expActualId}</if>
+            <if test="expActual != null and expActual.expActualId != null">exp_actual_id = #{expActual.expActualId},</if>
+            <if test="document != null and document.documentId != null">document_id = #{document.documentId}</if>
         </set>
         where campaign_id = #{campaignId}
     </update>
@@ -104,8 +109,7 @@
     <select id="getRecentlyModified" resultMap="campaignMap">
         select c.*
         from campaign c
-        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
-        and modified_time &lt; CURRENT_DATE
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(modified_time)
     </select>
 
     <select id="getUpdateInfo" resultMap="campaignMap">

@@ -76,7 +76,7 @@ public interface ProductDao {
 
     /**
      * create by: Bin Liu
-     * description: 获取最近修改的产品信息
+     * description: 获取最近更新信息
      * create time: 2018/11/6 21:57
      * @Param: null
      * @return 

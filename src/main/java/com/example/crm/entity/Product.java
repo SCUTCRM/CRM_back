@@ -50,6 +50,8 @@ public class Product {
     private Price price;
     //库存
     private StockInfo stockInfo;
+    //文件
+    private Document document;
 
     public Integer getProductId() {
         return productId;
@@ -193,5 +195,13 @@ public class Product {
 
     public void setStockInfo(StockInfo stockInfo) {
         this.stockInfo = stockInfo;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
     }
 }

@@ -23,7 +23,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Transactional
     @Override
-    public RegisterResult registerByUser(User user) throws RegisterException {
+    public RegisterResult register(User user) throws RegisterException {
         RegisterResult result = new RegisterResult();
         //判断输入是否为空
         if (user == null ) {

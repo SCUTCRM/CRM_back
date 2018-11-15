@@ -28,6 +28,6 @@ public class RegisterServiceImplTest {
         user.setEmail("1316095861@qq.com");
         user.setPassWord("123456");
         user.setPhone("13265940904");
-        System.out.println(registerService.registerByUser(user));
+        System.out.println(registerService.register(user));
     }
 }

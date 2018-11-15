@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
     private UserDao userDao;
 
     @Override
-    public LoginResult loginByUser(String userName, String passWord) {
+    public LoginResult login(String userName, String passWord) {
         LoginResult loginResult = new LoginResult();
         if (userName == null || passWord == null){
             loginResult.setCode(LoginResultEnum.INPUT_NULL.getCode());
@@ -47,4 +47,33 @@ public class LoginServiceImpl implements LoginService {
             throw new LoginException(SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg(),SystemErrorEnum.SYSTEM_INNER_ERROR.getCode());
         }
     }
+
+    @Override
+    public LoginResult findPassWord(String userName, String email) {
+        LoginResult loginResult = new LoginResult();
+        if (userName == null || email == null){
+            loginResult.setCode(LoginResultEnum.INPUT_NULL.getCode());
+            loginResult.setMsg(LoginResultEnum.INPUT_NULL.getMsg());
+            return loginResult;
+        }
+        try{
+            User u = userDao.getUser(userName);
+            if (u == null){  //用户是否存在
+                loginResult.setCode(LoginResultEnum.USER_NOT_EXIT.getCode());
+                loginResult.setMsg(LoginResultEnum.USER_NOT_EXIT.getMsg());
+            } else if (null != u.getEmail() && !u.getEmail().equals(email)){  //用户名邮箱是否一致
+                loginResult.setCode(LoginResultEnum.NOT_MATCH.getCode());
+                loginResult.setMsg(LoginResultEnum.NOT_MATCH.getMsg());
+            } else{
+                loginResult.setCode(LoginResultEnum.SUCCESS.getCode());
+                loginResult.setMsg(LoginResultEnum.SUCCESS.getMsg());
+                loginResult.setUser(u);
+            }
+            return loginResult;
+        }catch (Exception e){
+            throw new LoginException(SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg(),SystemErrorEnum.SYSTEM_INNER_ERROR.getCode());
+        }
+    }
+
+
 }

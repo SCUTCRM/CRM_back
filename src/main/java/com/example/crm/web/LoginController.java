@@ -44,7 +44,44 @@ public class LoginController {
         String userName = HttpServletRequestUtil.getString(request,"userName");
         String passWord = HttpServletRequestUtil.getString(request,"passWord");
         try{
-            LoginResult result = loginService.loginByUser(userName,passWord);
+            LoginResult result = loginService.login(userName,passWord);
+            if (result.getCode() == LoginResultEnum.SUCCESS.getCode()){
+                resultMap.put("success",true);
+                //将user返回给前端之后需要使用
+                resultMap.put("user",result.getUser());
+            }else {
+                resultMap.put("success",false);
+            }
+            resultMap.put("code",result.getCode());
+            resultMap.put("msg",result.getMsg());
+            //将用户信息存入session中
+            if (result.getUser() != null) {
+                request.getSession().setAttribute("user",result.getUser());
+            }
+        }catch (LoginException ex){
+            resultMap.put("success",false);
+            resultMap.put("code",ex.getCode());
+            resultMap.put("msg",ex.getMessage());
+        }
+        return resultMap;
+    }
+
+    //用户登录
+    @PostMapping("/users/findPassWord")
+    private HashMap<String,Object> findPassWord(HttpServletRequest request){
+        HashMap<String,Object> resultMap = new HashMap<>();
+        //1.判断验证码
+        if (!KaptchaUtil.checkVerifyCode(request)){
+            resultMap.put("success",false);
+            resultMap.put("msg", SystemErrorEnum.KAPTCHA_INPUT_ERROR.getMsg());
+            resultMap.put("code", SystemErrorEnum.KAPTCHA_INPUT_ERROR.getCode());
+            return resultMap;
+        }
+        //根据前端传递的参数发起登录请求
+        String userName = HttpServletRequestUtil.getString(request,"userName");
+        String email = HttpServletRequestUtil.getString(request,"email");
+        try{
+            LoginResult result = loginService.findPassWord(userName,email);
             if (result.getCode() == LoginResultEnum.SUCCESS.getCode()){
                 resultMap.put("success",true);
                 //将user返回给前端之后需要使用

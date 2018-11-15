@@ -49,6 +49,8 @@ public class Campaign {
     private ExpActual expActual;
     //机会
     private Opportunity opportunity;
+    //文件
+    private Document document;
 
     public Integer getCampaignId() {
         return campaignId;
@@ -192,5 +194,13 @@ public class Campaign {
 
     public void setOpportunity(Opportunity opportunity) {
         this.opportunity = opportunity;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
     }
 }

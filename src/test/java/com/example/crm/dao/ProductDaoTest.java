@@ -1,5 +1,6 @@
 package com.example.crm.dao;
 
+import com.example.crm.entity.Document;
 import com.example.crm.entity.Price;
 import com.example.crm.entity.Product;
 import com.example.crm.entity.StockInfo;
@@ -69,6 +70,9 @@ public class ProductDaoTest {
         StockInfo stockInfo = new StockInfo();
         stockInfo.setStockInfoId(1);
         product.setStockInfo(stockInfo);
+        Document document=new Document();
+        document.setDocumentId(1);
+        product.setDocument(document);
         System.out.println(productDao.insertProduct(product));
     }
 
@@ -97,6 +101,9 @@ public class ProductDaoTest {
         StockInfo stockInfo = new StockInfo();
         stockInfo.setStockInfoId(3);
         product.setStockInfo(stockInfo);
+        Document document=new Document();
+        document.setDocumentId(1);
+        product.setDocument(document);
         System.out.println(productDao.updateProduct(product));
     }
 

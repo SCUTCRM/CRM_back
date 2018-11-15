@@ -73,7 +73,7 @@ public interface TicketDao {
     
     /**
      * create by: Bin Liu
-     * description: 根据id获取更新信息
+     * description: 获取最近更新信息
      * create time: 2018/11/6 22:48
      * @Param: null
      * @return 

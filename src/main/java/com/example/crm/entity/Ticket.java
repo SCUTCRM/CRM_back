@@ -42,6 +42,8 @@ public class Ticket {
     private Organization organization;
     //产品
     private Product product;
+    //文件
+    private Document document;
 
     public Integer getTicketId() {
         return ticketId;
@@ -161,5 +163,13 @@ public class Ticket {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
     }
 }

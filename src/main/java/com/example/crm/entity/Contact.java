@@ -57,6 +57,8 @@ public class Contact {
     private Organization organization;
     //地址
     private Address address;
+    //文件
+    private Document document;
 
     public Integer getContactId() {
         return contactId;
@@ -232,5 +234,13 @@ public class Contact {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
     }
 }

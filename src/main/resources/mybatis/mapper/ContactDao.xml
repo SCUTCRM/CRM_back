@@ -30,6 +30,10 @@
                      javaType="com.example.crm.entity.Organization">
             <id column="organization_id" property="organizationId"/>
         </association>
+        <association property="document" column="document_id"
+                     javaType="com.example.crm.entity.Document">
+            <id column="document_id" property="documentId"/>
+        </association>
     </resultMap>
 
     <select id="getContactList" resultMap="contactMap">
@@ -73,8 +77,8 @@
     </select>
 
     <insert id="insertContact" parameterType="com.example.crm.entity.Contact" keyProperty="contactId" keyColumn="contact_id">
-        insert into contact(first_name,last_name,title,organization_id,primary_email,office_phone,assign_to,is_from_lead,home_phone,address_id,update_info,lead_state,industry,create_time,modified_time,day_of_birth,department,assistant,assistant_phone,profile_picture,description)
-        values(#{firstName},#{lastName},#{title},#{organization.organizationId},#{primaryEmail},#{officePhone},#{assignTo},#{isFromLead},#{homePhone},#{address.addressId},#{updateInfo},#{leadState},#{industry},#{createTime},#{modifiedTime},#{dayOfBirth},#{department},#{assistant},#{assistantPhone},#{profilePicture},#{description})
+        insert into contact(first_name,last_name,title,organization_id,primary_email,office_phone,assign_to,is_from_lead,home_phone,address_id,update_info,lead_state,industry,create_time,modified_time,day_of_birth,department,assistant,assistant_phone,profile_picture,description,document_id)
+        values(#{firstName},#{lastName},#{title},#{organization.organizationId},#{primaryEmail},#{officePhone},#{assignTo},#{isFromLead},#{homePhone},#{address.addressId},#{updateInfo},#{leadState},#{industry},#{createTime},#{modifiedTime},#{dayOfBirth},#{department},#{assistant},#{assistantPhone},#{profilePicture},#{description},#{document.documentId})
     </insert>
 
     <update id="updateContact">
@@ -99,7 +103,8 @@
             <if test="assistantPhone != null">assistant_phone = #{assistantPhone},</if>
             <if test="profilePicture != null">profile_picture = #{profilePicture},</if>
             <if test="description != null">description = #{description},</if>
-            <if test="organization != null and organization.organizationId != null">organization_id = #{organization.organizationId}</if>
+            <if test="organization != null and organization.organizationId != null">organization_id = #{organization.organizationId},</if>
+            <if test="document != null and document.documentId != null">document_id = #{document.documentId}</if>
         </set>
         where contact_id = #{contactId}
     </update>
@@ -112,8 +117,7 @@
     <select id="getRecentlyModified" resultMap="contactMap">
         select c.*
         from contact c
-        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
-        and modified_time &lt; CURRENT_DATE
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(modified_time)
     </select>
 
     <select id="getUpdateInfo" resultMap="contactMap">

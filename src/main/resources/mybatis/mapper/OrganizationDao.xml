@@ -26,6 +26,10 @@
                      javaType="com.example.crm.entity.Product">
             <id column="product_id" property="productId"/>
         </association>
+        <association property="document" column="document_id"
+                     javaType="com.example.crm.entity.Document">
+            <id column="document_id" property="documentId"/>
+        </association>
     </resultMap>
 
     <select id="getOrganizationList" resultMap="organizationMap">
@@ -47,8 +51,8 @@
     </select>
 
     <insert id="insertOrganization" parameterType="com.example.crm.entity.Organization" keyProperty="organizationId" keyColumn="organization_id">
-        insert into organization(organization_name,billing_city,website,primary_phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description,product_id)
-        values (#{organizationName},#{billingCity},#{website},#{primaryPhone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.addressId},#{description},#{product.productId})
+        insert into organization(organization_name,billing_city,website,primary_phone,assign_to,update_info,is_from_lead,owner_ship,annual_revenue,member_of,employee,industry,modified_time,create_time,address_id,description,product_id,document_id)
+        values (#{organizationName},#{billingCity},#{website},#{primaryPhone},#{assignTo},#{updateInfo},#{isFromLead},#{ownerShip},#{annualRevenue},#{memberOf},#{employee},#{industry},#{modifiedTime},#{createTime},#{address.addressId},#{description},#{product.productId},#{document.documentId})
     </insert>
 
     <update id="updateOrganization">
@@ -70,7 +74,8 @@
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="description != null">description = #{description},</if>
             <if test="product != null and product.productId != null">product_id = #{product.productId},</if>
-            <if test="address != null and address.addressId != null">address_id = #{address.addressId}</if>
+            <if test="address != null and address.addressId != null">address_id = #{address.addressId},</if>
+            <if test="document != null and document.documentId != null">document_id = #{document.documentId}</if>
         </set>
         where organization_id = #{organizationId}
     </update>
@@ -83,8 +88,7 @@
     <select id="getRecentlyModified" resultMap="organizationMap">
         select o.*
         from organization
-        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
-        and modified_time &lt; CURRENT_DATE
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(modified_time)
     </select>
 
     <select id="getOrganization" resultMap="organizationMap">

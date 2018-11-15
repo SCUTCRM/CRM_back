@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.DocumentDao" >
+    <resultMap id="documentMap" type="com.example.crm.entity.Document">
+        <id column="document_id" property="documentId"/>
+        <result column="title" property="title"/>
+        <result column="file_name" property="fileName"/>
+        <result column="document_no" property="documentNo"/>
+        <result column="assign_to" property="assignTo"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="update_info" property="updateInfo"/>
+        <result column="description" property="description"/>
+    </resultMap>
+
+    <select id="getDocumentList" resultMap="documentMap">
+        select d.*
+        from document d
+    </select>
+
+    <select id="getDocumentById" resultMap="documentMap">
+        select d.*
+        from document d
+        where d.document_id = #{documentId}
+    </select>
+
+    <select id="getDocument" resultMap="documentMap">
+        select d.*
+        from document d
+        <where>
+            <if test="title!=null">
+                title=#{title}
+            </if>
+            <if test="fileName!=null">
+                and file_name=#{fileName}
+            </if>
+            <if test="modifiedTime !=null">
+                and modified_time=#{modifiedTime}
+            </if>
+            <if test="assignTo !=null">
+                and assign_to = #{assignTo}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertDocument" parameterType="com.example.crm.entity.Document" keyProperty="documentId" keyColumn="document_id">
+        insert into document(title,file_name,document_no,assign_to,create_time,modified_time,update_info,description)
+        values(#{title},#{fileName},#{documentNo},#{assignTo},#{createTime},#{modifiedTime},#{updateInfo},#{description})
+    </insert>
+
+    <update id="updateDocument">
+        update document
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="fileName != null">file_name = #{fileName},</if>
+            <if test="documentNo != null">document_no = #{documentNo},</if>
+            <if test="assignTo != null">assign_to = #{assignTo},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
+            <if test="updateInfo != null">update_info = #{updateInfo},</if>
+            <if test="description != null">description = #{description}</if>
+        </set>
+        where document_id = #{documentId}
+    </update>
+
+    <delete id="deleteDocument">
+        delete from document
+        where document_id = #{documentId}
+    </delete>
+
+    <select id="getRecentlyModified" resultMap="documentMap">
+        select d.*
+        from document d
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(modified_time)
+    </select>
+
+    <select id="getUpdateInfo" resultMap="documentMap">
+        select d.update_info
+        from document d
+        where document_id=#{documentId}
+    </select>
+</mapper>

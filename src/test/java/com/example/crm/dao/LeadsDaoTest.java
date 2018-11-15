@@ -1,9 +1,6 @@
 package com.example.crm.dao;
 
-import com.example.crm.entity.Address;
-import com.example.crm.entity.Leads;
-import com.example.crm.entity.Organization;
-import com.example.crm.entity.Product;
+import com.example.crm.entity.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,6 +63,9 @@ public class LeadsDaoTest {
         leads.setDescription("测试");
         leads.setCreateTime(new Date());
         leads.setModifiedTime(new Date());
+        Document document=new Document();
+        document.setDocumentId(1);
+        leads.setDocument(document);
         System.out.println(leadsDao.insertLeads(leads));
     }
 
@@ -96,6 +96,9 @@ public class LeadsDaoTest {
         leads.setDescription("测试");
         leads.setCreateTime(new Date());
         leads.setModifiedTime(new Date());
+        Document document=new Document();
+        document.setDocumentId(1);
+        leads.setDocument(document);
         System.out.println(leadsDao.updateLeads(leads));
     }
 

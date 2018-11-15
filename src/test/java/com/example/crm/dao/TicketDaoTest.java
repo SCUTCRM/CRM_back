@@ -1,9 +1,6 @@
 package com.example.crm.dao;
 
-import com.example.crm.entity.Contact;
-import com.example.crm.entity.Organization;
-import com.example.crm.entity.Product;
-import com.example.crm.entity.Ticket;
+import com.example.crm.entity.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -67,6 +64,9 @@ public class TicketDaoTest {
         Product product=new Product();
         product.setProductId(1);
         ticket.setProduct(product);
+        Document document=new Document();
+        document.setDocumentId(1);
+        ticket.setDocument(document);
         System.out.println(ticketDao.insertTicket(ticket));
     }
 
@@ -92,6 +92,9 @@ public class TicketDaoTest {
         Product product=new Product();
         product.setProductId(1);
         ticket.setProduct(product);
+        Document document=new Document();
+        document.setDocumentId(1);
+        ticket.setDocument(document);
         System.out.println(ticketDao.updateTicket(ticket));
     }
 

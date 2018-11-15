@@ -23,6 +23,10 @@
                      javaType="com.example.crm.entity.Product">
             <id column="product_id" property="productId"/>
         </association>
+        <association property="document" column="document_id"
+                     javaType="com.example.crm.entity.Document">
+            <id column="document_id" property="documentId"/>
+        </association>
     </resultMap>
 
     <select id="getTicketList" resultMap="ticketMap">
@@ -38,8 +42,8 @@
     </select>
 
     <insert id="insertTicket" parameterType="com.example.crm.entity.Ticket" keyProperty="ticketId" keyColumn="ticket_id">
-        insert into ticket(title,status,priority,assign_to,hour_num,category,create_time,modified_time,severity,days,description,update_info,organization_id,product_id)
-        values(#{title},#{status},#{priority},#{assignTo},#{hourNum},#{category},#{createTime},#{modifiedTime},#{severity},#{days},#{description},#{updateInfo},#{organization.organizationId},#{product.productId})
+        insert into ticket(title,status,priority,assign_to,hour_num,category,create_time,modified_time,severity,days,description,update_info,organization_id,product_id,document_id)
+        values(#{title},#{status},#{priority},#{assignTo},#{hourNum},#{category},#{createTime},#{modifiedTime},#{severity},#{days},#{description},#{updateInfo},#{organization.organizationId},#{product.productId},#{document.documentId})
     </insert>
 
     <update id="updateTicket">
@@ -58,7 +62,8 @@
             <if test="description != null">description = #{description},</if>
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="organization != null and organization.organizationId != null">organization_id = #{organization.organizationId},</if>
-            <if test="product != null and product.productId != null">product_id = #{product.productId}</if>
+            <if test="product != null and product.productId != null">product_id = #{product.productId},</if>
+            <if test="document != null and document.documentId != null">document_id = #{document.documentId}</if>
         </set>
         where ticket_id = #{ticketId}
     </update>
@@ -71,8 +76,7 @@
     <select id="getRecentlyModified" resultMap="ticketMap">
         select t.*
         from ticket t
-        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
-        and modified_time &lt; CURRENT_DATE
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(modified_time)
     </select>
 
     <select id="getTicket" resultMap="ticketMap">

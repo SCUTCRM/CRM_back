@@ -22,11 +22,11 @@ public class LoginServiceImplTest {
 
     @Test
     public void loginByUser() {
-        System.out.println(loginService.loginByUser("rain","123456"));
-        System.out.println(loginService.loginByUser("123","123456"));
-        System.out.println(loginService.loginByUser("rain","123"));
-        System.out.println(loginService.loginByUser("rain","123456"));
-        System.out.println(loginService.loginByUser("rain","19960610")); //被调离已测试通过
-        System.out.println(loginService.loginByUser("1","123456"));
+        System.out.println(loginService.login("rain","123456"));
+        System.out.println(loginService.login("123","123456"));
+        System.out.println(loginService.login("rain","123"));
+        System.out.println(loginService.login("rain","123456"));
+        System.out.println(loginService.login("rain","19960610")); //被调离已测试通过
+        System.out.println(loginService.login("1","123456"));
     }
 }

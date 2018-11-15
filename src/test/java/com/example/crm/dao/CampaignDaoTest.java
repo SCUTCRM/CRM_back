@@ -1,9 +1,6 @@
 package com.example.crm.dao;
 
-import com.example.crm.entity.Campaign;
-import com.example.crm.entity.ExpActual;
-import com.example.crm.entity.Opportunity;
-import com.example.crm.entity.Product;
+import com.example.crm.entity.*;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,6 +63,9 @@ public class CampaignDaoTest {
         Opportunity opportunity = new Opportunity();
         opportunity.setOpportId(1);
         campaign.setOpportunity(opportunity);
+        Document document=new Document();
+        document.setDocumentId(1);
+        campaign.setDocument(document);
         System.out.println(campaignDao.insertCampaign(campaign));
     }
 
@@ -90,6 +90,9 @@ public class CampaignDaoTest {
         campaign.setUpdateInfo("测试更改");
         campaign.setExpActual(new ExpActual());
         campaign.setOpportunity(new Opportunity());
+        Document document=new Document();
+        document.setDocumentId(1);
+        campaign.setDocument(document);
         System.out.println(campaignDao.updateCampaign(campaign));
     }
 

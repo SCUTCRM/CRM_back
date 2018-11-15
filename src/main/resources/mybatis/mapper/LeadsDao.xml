@@ -29,6 +29,10 @@
                      javaType="com.example.crm.entity.Address">
             <id column="address_id" property="addressId"/>
         </association>
+        <association property="document" column="document_id"
+                     javaType="com.example.crm.entity.Document">
+            <id column="document_id" property="documentId"/>
+        </association>
     </resultMap>
 
     <select id="getLeadsList" resultMap="leadsMap">
@@ -72,8 +76,8 @@
     </select>
 
     <insert id="insertLeads" parameterType="com.example.crm.entity.Leads" keyProperty="leadId" keyColumn="lead_id">
-        insert into leads(first_name,last_name,organization_id,primary_phone,company,website,primary_email,assign_to,product_id,annual_revenue,phone,email,address_id,update_info,description,create_time,modified_time)
-        values(#{firstName},#{lastName},#{organization.organizationId},#{primaryPhone},#{company},#{website},#{primaryEmail},#{assignTo},#{product.productId},#{annualRevenue},#{phone},#{email},#{address.addressId},#{updateInfo},#{description},#{createTime},#{modifiedTime})
+        insert into leads(first_name,last_name,organization_id,primary_phone,company,website,primary_email,assign_to,product_id,annual_revenue,phone,email,address_id,update_info,description,create_time,modified_time,document_id)
+        values(#{firstName},#{lastName},#{organization.organizationId},#{primaryPhone},#{company},#{website},#{primaryEmail},#{assignTo},#{product.productId},#{annualRevenue},#{phone},#{email},#{address.addressId},#{updateInfo},#{description},#{createTime},#{modifiedTime},#{document.documentId})
     </insert>
 
     <update id="updateLeads">
@@ -95,7 +99,8 @@
             <if test="modifiedTime != null">modified_time = #{modifiedTime},</if>
             <if test="organization != null and organization.organizationId != null">organization_id = #{organization.organizationId},</if>
             <if test="product != null and product.productId != null">product_id = #{product.productId},</if>
-            <if test="address != null and address.addressId != null">address_id = #{address.addressId}</if>
+            <if test="address != null and address.addressId != null">address_id = #{address.addressId},</if>
+            <if test="document != null and document.documentId != null">document_id = #{document.documentId}</if>
         </set>
         where lead_id = #{leadId}
     </update>
@@ -108,8 +113,7 @@
     <select id="getRecentlyModified" resultMap="leadsMap">
         select l.*
         from leads l
-        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
-        and modified_time &lt; CURRENT_DATE
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(modified_time)
     </select>
 
     <select id="getUpdateInfo" resultMap="leadsMap">

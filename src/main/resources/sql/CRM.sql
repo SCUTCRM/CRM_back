@@ -35,6 +35,19 @@ CREATE TABLE `address` (
   PRIMARY KEY (`address_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `document`;
+CREATE TABLE `document` (
+  `document_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '文件id',
+  `title` varchar(30) NOT NULL COMMENT '标题',
+  `file_name` varchar(30) NOT NULL COMMENT '文件名',
+  `document_no` varchar(30) NOT NULL COMMENT '文件序号',
+  `assign_to` varchar(30) NOT NULL COMMENT '分配给',
+  `create_time` datetime NOT NULL COMMENT '创造时间',
+  `modified_time` datetime NOT NULL COMMENT '修改时间',
+  `update_info` varchar(150) NOT NULL COMMENT '更改',
+  `description` varchar(150) NOT NULL COMMENT '描述',
+  PRIMARY KEY (`document_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
@@ -55,9 +68,11 @@ CREATE TABLE `product` (
   `description` varchar(150) NOT NULL COMMENT '描述',
   `update_info` varchar(150) NOT NULL COMMENT '更改',
   `price_id` int(11) NOT NULL COMMENT '价格id',
+  `document_id` int(11) NOT NULL COMMENT '文件id',
   `stock_info_id` int(11) NOT NULL COMMENT '库存id',
   PRIMARY KEY (`product_id`),
   FOREIGN KEY (`price_id`) REFERENCES `price` (`price_id`),
+  FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
   FOREIGN KEY (`stock_info_id`) REFERENCES `stock_info` (`stock_info_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -81,9 +96,11 @@ CREATE TABLE `organization` (
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `address_id` int(11) NOT NULL COMMENT '地址id',
   `description` varchar(150) NOT NULL COMMENT '描述',
+  `document_id` int(11) NOT NULL COMMENT '文件id',
   `product_id` int(11) NOT NULL COMMENT '产品id',
   PRIMARY KEY (`organization_id`),
   FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`),
+  FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -106,10 +123,12 @@ CREATE TABLE `leads` (
   `modified_time` datetime NOT NULL COMMENT '修改时间',
   `product_id` int(11) NOT NULL COMMENT '产品id',
   `organization_id` int(11) NOT NULL COMMENT '组织id',
+  `document_id` int(11) NOT NULL COMMENT '文件id',
   `address_id` int(11) NOT NULL COMMENT '地址id',
   PRIMARY KEY (`lead_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
   FOREIGN KEY (`organization_id`) REFERENCES `organization` (`organization_id`),
+  FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
   FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -136,9 +155,11 @@ CREATE TABLE `contact` (
   `profile_picture` varchar(100) NOT NULL COMMENT'个人资料图片',
   `description` varchar(150) NOT NULL COMMENT '描述',
   `organization_id` int(11) NOT NULL COMMENT '组织id',
+  `document_id` int(11) NOT NULL COMMENT '文件id',
   `address_id` int(11) NOT NULL COMMENT '地址id',
   PRIMARY KEY (`contact_id`),
   FOREIGN KEY (`organization_id`) REFERENCES `organization` (`organization_id`),
+  FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
   FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -176,8 +197,10 @@ CREATE TABLE `opportunity` (
   `opport_type` varchar(30) NOT NULL COMMENT '类型',
   `expected_close_date` datetime NOT NULL COMMENT '预期结束时间',
   `description` varchar(150) NOT NULL COMMENT '描述',
+  `document_id` int(11) NOT NULL COMMENT '文件id',
   `contact_id` int(11) NOT NULL COMMENT '联系人id',
   PRIMARY KEY (`opport_id`),
+  FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
   FOREIGN KEY (`contact_id`) REFERENCES `contact` (`contact_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -198,9 +221,11 @@ CREATE TABLE `ticket` (
   `description` varchar(150) NOT NULL COMMENT '描述',
   `update_info` varchar(150) NOT NULL COMMENT '更改',
   `organization_id` int(11) NOT NULL COMMENT '组织id',
+  `document_id` int(11) NOT NULL COMMENT '文件id',
   `product_id` int(11) NOT NULL COMMENT '产品id',
   PRIMARY KEY (`ticket_id`),
   FOREIGN KEY (`organization_id`) REFERENCES `organization` (`organization_id`),
+  FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -237,9 +262,11 @@ CREATE TABLE `campaign` (
   `update_info` varchar(150) NOT NULL COMMENT '更新',
   `product_id` int(11) NOT NULL COMMENT '产品id',
   `exp_actual_id` int(11) NOT NULL COMMENT '预期和实际id',
+  `document_id` int(11) NOT NULL COMMENT '文件id',
   `opport_id` int(11) NOT NULL COMMENT '机会id',
   PRIMARY KEY (`campaign_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
   FOREIGN KEY (`exp_actual_id`) REFERENCES `exp_actual` (`exp_actual_id`),
+  FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
   FOREIGN KEY (`opport_id`) REFERENCES `opportunity` (`opport_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

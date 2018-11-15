@@ -48,6 +48,8 @@ public class Organization {
     private String description;
     //产品
     private Product product;
+    //文件
+    private Document document;
 
     public Integer getOrganizationId() {
         return organizationId;
@@ -192,4 +194,13 @@ public class Organization {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
 }
+

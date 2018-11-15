@@ -26,6 +26,10 @@
                      javaType="com.example.crm.entity.StockInfo">
             <id column="stock_info_id" property="stockInfoId"/>
         </association>
+        <association property="document" column="document_id"
+                     javaType="com.example.crm.entity.Document">
+            <id column="document_id" property="documentId"/>
+        </association>
     </resultMap>
 
     <select id="getProductList" resultMap="productMap">
@@ -60,8 +64,8 @@
     </select>
 
     <insert id="insertProduct" parameterType="com.example.crm.entity.Product" keyProperty="productId" keyColumn="product_id">
-        insert into product(product_name,part_number,sale_start_date,product_category,active,sale_end_date,product_number,website,ventor_name,ventor_partno,create_time,modified_time,manufacturer,description,update_info,price_id,stock_info_id)
-        values(#{productName},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{updateInfo},#{price.priceId},#{stockInfo.stockInfoId})
+        insert into product(product_name,part_number,sale_start_date,product_category,active,sale_end_date,product_number,website,ventor_name,ventor_partno,create_time,modified_time,manufacturer,description,update_info,price_id,stock_info_id,document_id)
+        values(#{productName},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{updateInfo},#{price.priceId},#{stockInfo.stockInfoId},#{document.documentId})
     </insert>
 
     <update id="updateProduct">
@@ -83,7 +87,8 @@
             <if test="description != null">description = #{description},</if>
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="price != null and price.priceId != null">price_id = #{price.priceId},</if>
-            <if test="stockInfo != null and stockInfo.stockInfoId != null">stock_info_id = #{stockInfo.stockInfoId}</if>
+            <if test="stockInfo != null and stockInfo.stockInfoId != null">stock_info_id = #{stockInfo.stockInfoId},</if>
+            <if test="document != null and document.documentId != null">document_id = #{document.documentId}</if>
         </set>
         where product_id = #{productId}
     </update>
@@ -96,8 +101,7 @@
     <select id="getRecentlyModified" resultMap="productMap">
         select p.*
         from product p
-        where p.modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
-        and p.modified_time &lt; CURRENT_DATE
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(modified_time)
     </select>
 
     <select id="getUpdateInfo" resultMap="productMap">

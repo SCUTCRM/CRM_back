@@ -16,5 +16,14 @@ public interface LoginService {
      * @Param: null
      * @return
      */
-    LoginResult loginByUser(String userName, String passWord);
+    LoginResult login(String userName, String passWord);
+
+    /**
+     * create by: Bin Liu
+     * description: 用户可根据姓名和邮箱找回密码
+     * create time: 2018/11/15 14:50
+     * @Param: null
+     * @return
+     */
+    LoginResult findPassWord(String userName,String email);
 }

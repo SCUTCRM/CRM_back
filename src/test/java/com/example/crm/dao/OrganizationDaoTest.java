@@ -1,6 +1,7 @@
 package com.example.crm.dao;
 
 import com.example.crm.entity.Address;
+import com.example.crm.entity.Document;
 import com.example.crm.entity.Organization;
 import com.example.crm.entity.Product;
 import org.junit.Ignore;
@@ -62,6 +63,9 @@ public class OrganizationDaoTest {
         Product product=new Product();
         product.setProductId(3);
         organization.setProduct(product);
+        Document document=new Document();
+        document.setDocumentId(1);
+        organization.setDocument(document);
         System.out.println(organizationDao.insertOrganization(organization));
     }
 
@@ -90,6 +94,9 @@ public class OrganizationDaoTest {
         Product product=new Product();
         product.setProductId(3);
         organization.setProduct(product);
+        Document document=new Document();
+        document.setDocumentId(1);
+        organization.setDocument(document);
         System.out.println(organizationDao.updateOrganization(organization));
     }
 

@@ -17,5 +17,5 @@ public interface RegisterService {
      * @Param: null
      * @return
      */
-    RegisterResult registerByUser(User user);
+    RegisterResult register(User user);
 }

@@ -48,7 +48,8 @@ public class Leads {
     private Product product;
     //地址
     private Address address;
-
+    //文件
+    private Document document;
 
     public Integer getLeadId() {
         return leadId;
@@ -190,4 +191,15 @@ public class Leads {
         this.address = address;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
 }

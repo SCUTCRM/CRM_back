@@ -3,6 +3,7 @@ package com.example.crm.dao;
 import com.alibaba.druid.sql.visitor.functions.Concat;
 import com.example.crm.entity.Address;
 import com.example.crm.entity.Contact;
+import com.example.crm.entity.Document;
 import com.example.crm.entity.Organization;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -70,6 +71,9 @@ public class ContactDaoTest {
         contact.setAssistantPhone("1576698");
         contact.setProfilePicture("c://picture");
         contact.setDescription("测试");
+        Document document=new Document();
+        document.setDocumentId(1);
+        contact.setDocument(document);
         System.out.println(contactDao.insertContact(contact));
     }
 
@@ -102,6 +106,9 @@ public class ContactDaoTest {
         contact.setAssistantPhone("1576698");
         contact.setProfilePicture("c://picture");
         contact.setDescription("测试");
+        Document document=new Document();
+        document.setDocumentId(1);
+        contact.setDocument(document);
         System.out.println(contactDao.updateContact(contact));
     }
 

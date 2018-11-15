@@ -46,7 +46,7 @@ public class RegisterController {
         User user = null;
         //进行注册,user是由是由前端传递过来的json字符串
         try {
-            RegisterResult result = registerService.registerByUser(user);
+            RegisterResult result = registerService.register(user);
             if (result.getCode() == RegisterResultEnum.SUCCESS.getCode()) {
                 resultMap.put("success", true);
             } else {

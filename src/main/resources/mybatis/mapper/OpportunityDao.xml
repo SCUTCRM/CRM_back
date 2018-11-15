@@ -20,6 +20,10 @@
                      javaType="com.example.crm.entity.Contact">
             <id column="contact_id" property="contactId"/>
         </association>
+        <association property="document" column="document_id"
+                     javaType="com.example.crm.entity.Document">
+            <id column="document_id" property="documentId"/>
+        </association>
     </resultMap>
 
     <select id="getOpportunityList" resultMap="opportunityMap">
@@ -35,8 +39,8 @@
     </select>
 
     <insert id="insertOpportunity" parameterType="com.example.crm.entity.Opportunity" keyProperty="opportId" keyColumn="opport_id">
-        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,sales_stage,contact_id,lead_source,update_info,create_time,modified_time,opport_type,expected_close_date,description)
-        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{salesStage},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{opportType},#{expectedCloseDate},#{description})
+        insert into opportunity(opport_name,prob,forcast_amount,is_from_lead,assign_to,sales_stage,contact_id,lead_source,update_info,create_time,modified_time,opport_type,expected_close_date,description,document_id)
+        values(#{opportName},#{prob},#{forcastAmount},#{isFromLead},#{assignTo},#{salesStage},#{contact.contactId},#{leadSource},#{updateInfo},#{createTime},#{modifiedTime},#{opportType},#{expectedCloseDate},#{description},#{document.documentId})
     </insert>
 
     <update id="updateOpportunity">
@@ -55,7 +59,8 @@
             <if test="opportType != null">opport_type = #{opportType},</if>
             <if test="expectedCloseDate != null">expected_close_date = #{expectedCloseDate},</if>
             <if test="description != null">description = #{description},</if>
-            <if test="contact != null and contact.contactId != null">contact_id = #{contact.contactId}</if>
+            <if test="contact != null and contact.contactId != null">contact_id = #{contact.contactId},</if>
+            <if test="document != null and document.documentId != null">document_id = #{document.documentId}</if>
         </set>
         where opport_id = #{opportId}
     </update>
@@ -68,8 +73,7 @@
     <select id="getRecentlyModified" resultMap="opportunityMap">
         select o.*
         from opportunity o
-        where modified_time &gt;= (CURRENT_DATE - INTERVAL '30D')
-        and modified_time &lt; CURRENT_DATE
+        where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(modified_time)
     </select>
 
     <select id="getOpportunity" resultMap="opportunityMap">

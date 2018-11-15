@@ -42,6 +42,8 @@ public class Opportunity {
     private String description;
     //联系人
     private Contact contact;
+    //文件
+    private Document document;
 
     public Integer getOpportId() {
         return opportId;
@@ -161,5 +163,13 @@ public class Opportunity {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
     }
 }
