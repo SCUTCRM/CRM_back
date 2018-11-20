@@ -93,4 +93,13 @@ public interface OpportunityDao {
      * @return 
      */
     Opportunity getOpportunityByContactId(Integer contactId);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据organizationId获取机会信息
+     * create time: 2018/11/17 15:35
+     * @Param: null
+     * @return
+     */
+    Opportunity getOpportunityByOrganizationId(Integer organizationId);
 }

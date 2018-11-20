@@ -124,4 +124,10 @@
         from organization o
         where product_id=#{productId}
     </select>
+
+    <insert id="addComment" parameterType="com.example.crm.entity.Organization" keyProperty="organizationId" keyColumn="organization_id">
+        insert into organization(comment_id)
+        values (#{comment.commentId})
+        where organization_id = #{organizationId}
+    </insert>
 </mapper>

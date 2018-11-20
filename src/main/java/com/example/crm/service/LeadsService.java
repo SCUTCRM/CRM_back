@@ -26,4 +26,5 @@ public interface LeadsService {
     Leads getLeads(Leads leads);
 
     Leads getLeadsByProductId(Integer productId);
+
 }

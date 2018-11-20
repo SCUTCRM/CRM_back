@@ -10,7 +10,6 @@ CREATE TABLE `stock_info` (
   PRIMARY KEY (`stock_info_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 DROP TABLE IF EXISTS `price`;
 CREATE TABLE `price` (
   `price_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '价格id',
@@ -18,7 +17,6 @@ CREATE TABLE `price` (
   `commission_rate` double(4,2) NOT NULL COMMENT '佣金率',
   PRIMARY KEY (`price_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
@@ -48,6 +46,25 @@ CREATE TABLE `document` (
   `description` varchar(150) NOT NULL COMMENT '描述',
   PRIMARY KEY (`document_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `product_bundles`;
+CREATE TABLE `product_bundles` (
+  `bundle_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '捆绑产品id',
+  `bundled_id` int(11) NOT NULL COMMENT '被捆绑产品id',
+  PRIMARY KEY (`bundle_id`),
+  FOREIGN KEY (`bundle_id`) REFERENCES `product` (`product_id`),
+  FOREIGN KEY (`bundled_id`) REFERENCES `product` (`product_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `product_parents`;
+CREATE TABLE `parent_product` (
+  `parent_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '父代产品id',
+  `child_id` int(11) NOT NULL COMMENT '子代产品id',
+  PRIMARY KEY (`parent_id`),
+  FOREIGN KEY (`parent_id`) REFERENCES `product` (`product_id`),
+  FOREIGN KEY (`child_id`) REFERENCES `product` (`product_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
@@ -98,9 +115,11 @@ CREATE TABLE `organization` (
   `description` varchar(150) NOT NULL COMMENT '描述',
   `document_id` int(11) NOT NULL COMMENT '文件id',
   `product_id` int(11) NOT NULL COMMENT '产品id',
+  `comment_id` int(11) DEFAULT NULL COMMENT '评论id',
   PRIMARY KEY (`organization_id`),
   FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`),
   FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
+  FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`),
   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -180,6 +199,14 @@ CREATE TABLE `user` (
   FOREIGN KEY (`lead_id`) REFERENCES `leads` (`lead_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
+  `comment` varchar (100) NOT NULL COMMENT '评论',
+  `user_id` int(11) NOT NULL COMMENT '评论人',
+  PRIMARY KEY (`comment_id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `opportunity`;
 CREATE TABLE `opportunity` (
@@ -270,3 +297,4 @@ CREATE TABLE `campaign` (
   FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
   FOREIGN KEY (`opport_id`) REFERENCES `opportunity` (`opport_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

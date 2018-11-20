@@ -35,13 +35,13 @@ public class Contact {
     //行业
     private String industry;
     //创建时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date createTime;
     //修改时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date modifiedTime;
     //生日
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date dayOfBirth;
     //部门
     private String department;

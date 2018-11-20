@@ -106,4 +106,13 @@ public interface OrganizationDao {
      * @return 
      */
     Organization getOrganizationByProductId(Integer productId);
+
+    /**
+     * create by: Bin Liu
+     * description: 增加评论
+     * create time: 2018/11/19 17:00
+     * @Param: null
+     * @return
+     */
+    int addComment(Integer organizationId);
 }

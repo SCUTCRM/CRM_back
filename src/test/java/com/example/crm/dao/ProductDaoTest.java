@@ -137,4 +137,10 @@ public class ProductDaoTest {
     public void getUpdateInfo() {
         System.out.println(productDao.getUpdateInfo(1));
     }
+
+    @Test
+    //@Ignore
+    public void findDuplicates() {
+        System.out.println(productDao.findDuplicates());
+    }
 }

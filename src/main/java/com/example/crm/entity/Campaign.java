@@ -21,7 +21,7 @@ public class Campaign {
     //预期收入
     private Double expectedRevenue;
     //预期结束时间
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date expectedCloseDate;
     //分配给
     private Integer assignTo;
@@ -32,10 +32,10 @@ public class Campaign {
     //目标听众
     private String targetAudience;
     //创建时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date createTime;
     //修改时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date modifiedTime;
     //赞助
     private Integer sponsor;

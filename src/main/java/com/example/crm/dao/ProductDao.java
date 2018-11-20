@@ -90,7 +90,7 @@ public interface ProductDao {
      * @Param: null
      * @return 
      */
-    int findDuplicates();
+    List<Product> findDuplicates();
 
     /**
      * create by: Bin Liu
@@ -100,4 +100,13 @@ public interface ProductDao {
      * @return 
      */
     Product getUpdateInfo(Integer productId);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据organizationId获取产品信息
+     * create time: 2018/11/17 15:49
+     * @Param: null
+     * @return 
+     */
+    Product getProductByOrganizationId(Integer organizationId);
  }

@@ -92,10 +92,19 @@ public interface TicketDao {
 
     /**
      * create by: Bin Liu
-     * description: 查看相关的售后信息
+     * description: 根据productId查看相关的售后信息
      * create time: 2018/11/14 19:54
      * @Param: null
      * @return
      */
     Ticket getTicketByProductId(Integer productId);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据organizationId查看相关的售后信息
+     * create time: 2018/11/17 15:38
+     * @Param: null
+     * @return
+     */
+    Ticket getTicketByOrganizationId(Integer organizationId);
 }

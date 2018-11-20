@@ -23,9 +23,6 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductDao productDao;
-    @Autowired
-    private LeadsDao leadsDao;
-
 
     @Override
     public List<Product> getProductList() {
@@ -93,11 +90,4 @@ public class ProductServiceImpl implements ProductService {
     public Product getUpdateInfo(Integer productId) {
         return productDao.getUpdateInfo(productId);
     }
-
-    @Override
-    public Leads getLeadsByProductId(Integer productId) {
-        return leadsDao.getLeadsByProductId(productId);
-    }
-
-
 }

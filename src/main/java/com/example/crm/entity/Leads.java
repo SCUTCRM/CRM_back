@@ -37,10 +37,10 @@ public class Leads {
     //描述
     private String description;
     //创建时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date createTime;
     //修改时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date modifiedTime;
     //组织
     private Organization organization;

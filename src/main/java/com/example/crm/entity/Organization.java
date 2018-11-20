@@ -14,13 +14,13 @@ public class Organization {
     private Integer organizationId;
     //组织名字
     private String organizationName;
-    //计费城市
+    //账单城市
     private String billingCity;
-    //网站
+    //主页网址
     private String website;
-    //电话
+    //联系电话
     private String primaryPhone;
-    //分配给
+    //销售代表
     private Integer assignTo;
     //更改
     private String updateInfo;
@@ -50,6 +50,8 @@ public class Organization {
     private Product product;
     //文件
     private Document document;
+    //评论
+    private Comment comment;
 
     public Integer getOrganizationId() {
         return organizationId;
@@ -201,6 +203,14 @@ public class Organization {
 
     public void setDocument(Document document) {
         this.document = document;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 }
 

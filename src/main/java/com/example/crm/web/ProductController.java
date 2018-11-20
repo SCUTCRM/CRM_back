@@ -40,6 +40,8 @@ public class ProductController {
     @Autowired
     private LeadsService leadsService;
     @Autowired
+    private DocumentService documentService;
+    @Autowired
     private ContactService contactService;
     @Autowired
     private PriceDao priceDao;
@@ -97,20 +99,20 @@ public class ProductController {
             Product product=new Product();
             String productName = HttpServletRequestUtil.getString(request, "productName");
             Integer partNumber =  HttpServletRequestUtil.getInt(request, "partNumber");
-            Price price=new Price();
+            Price price1=new Price();
             Double unitPrice = HttpServletRequestUtil.getDouble(request, "unitPrice");
-            price.setUnitPrice(unitPrice);
+            price1.setUnitPrice(unitPrice);
             Double commissionRate = HttpServletRequestUtil.getDouble(request, "commissionRate");
-            price.setCommissionRate(commissionRate);
-            Price priceTest=priceDao.getPrice(price);
-            product.setPrice(priceTest);
-            StockInfo stockInfo=new StockInfo();
+            price1.setCommissionRate(commissionRate);
+            Price price=priceDao.getPrice(price1);
+            product.setPrice(price);
+            StockInfo stockInfo1=new StockInfo();
             Integer qtyInStock= HttpServletRequestUtil.getInt(request, "qtyInStock");
-            stockInfo.setQtyInStock(qtyInStock);
+            stockInfo1.setQtyInStock(qtyInStock);
             Integer unit= HttpServletRequestUtil.getInt(request, "unit");
-            stockInfo.setUnit(unit);
-            StockInfo stockInfoTest=stockInfoDao.getStockInfo(stockInfo);
-            product.setStockInfo(stockInfoTest);
+            stockInfo1.setUnit(unit);
+            StockInfo stockInfo=stockInfoDao.getStockInfo(stockInfo1);
+            product.setStockInfo(stockInfo);
             List<Product> products = productService.getProduct(product);
             resultMap.put("products", products);
             resultMap.put("success", true);
@@ -274,7 +276,7 @@ public class ProductController {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int productId = HttpServletRequestUtil.getInt(request, "productId");
-            Leads leads = productService.getLeadsByProductId(productId);
+            Leads leads = leadsService.getLeadsByProductId(productId);
             resultMap.put("leads", leads);
             resultMap.put("success", true);
             resultMap.put("code", 200);
@@ -331,6 +333,25 @@ public class ProductController {
             Organization organization=organizationService.getOrganizationByProductId(productId);
             Contact contact=contactService.getContactByOrganizationId(organization.getOrganizationId());
             resultMap.put("contact", contact);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("product/getDocumentByProductId")
+    private HashMap<String, Object> getDocumentByProductId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int productId = HttpServletRequestUtil.getInt(request, "productId");
+            Product product=productService.getProductById(productId);
+            Document document=documentService.getDocumentById(product.getDocument().getDocumentId());
+            resultMap.put("document", document);
             resultMap.put("success", true);
             resultMap.put("code", 200);
             resultMap.put("msg", "数据获取成功");

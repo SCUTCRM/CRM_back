@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.crm.dao.CommentDao" >
+    <resultMap id="commentMap" type="com.example.crm.entity.Comment">
+        <id column="comment_id" property="commentId"/>
+        <result column="comment" property="comment"/>
+        <association property="user" column="user_id"
+                     javaType="com.example.crm.entity.User">
+            <id column="user_id" property="userId"/>
+        </association>
+    </resultMap>
+
+    <select id="getCommentById" resultMap="commentMap">
+        select c.*
+        from comment c
+        where c.comment_id = #{commentId}
+    </select>
+
+    <insert id="insertComment" parameterType="com.example.crm.entity.Comment" keyProperty="commentId" keyColumn="comment_id">
+        insert into comment(comment,user_id)
+        values(#{comment},#{user.userId})
+    </insert>
+
+    <update id="updateComment">
+        update comment
+        <set>
+            <if test="comment != null">comment = #{comment},</if>
+            <if test="user != null and user.userId !=null">user_id = #{user.userId}</if>
+        </set>
+        where comment_id = #{commentId}
+    </update>
+
+    <delete id="deleteComment">
+        delete from comment
+        where comment_id = #{commentId}
+    </delete>
+</mapper>

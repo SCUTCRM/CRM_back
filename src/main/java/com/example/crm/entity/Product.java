@@ -35,10 +35,10 @@ public class Product {
     //供应商Id
     private Integer ventorPartno;
     //创建时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date createTime;
     //修改时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date modifiedTime;
     //生产厂家
     private String manufacturer;

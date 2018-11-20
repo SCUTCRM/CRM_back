@@ -32,7 +32,15 @@ public interface CampaignDao {
      * @Param: null
      */
     Campaign getCampaignById(Integer campaignId);
-    
+
+    /**
+     * create by: Bin Liu
+     * description: 根据OrganizationId获取活动信息
+     * create time: 2018/11/17 15:51
+     * @Param: null
+     * @return
+     */
+    Campaign getCampaignByOrganizationId(Integer organizationId);
     /**
      * create by: Bin Liu
      * description: 动态获取活动信息

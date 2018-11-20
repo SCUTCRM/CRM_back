@@ -110,16 +110,35 @@
         where product_id=#{productId}
     </select>
 
-    <select id="getOpportunityByProductId" resultMap="productMap">
-        select
+    <select id="findDuplicates" resultMap="productMap">
+        select p.*
+        from product p
+        where
+        <foreach collection="list" item="id" separator=",">
+            #{id}
+        </foreach> in
+        (select
+        <foreach collection="list" item="id" separator=",">
+            #{id}
+        </foreach>
+        from product p group by
+        <foreach collection="list" item="id" separator=",">
+            #{id}
+        </foreach>
+        having
+          count(
+        <foreach collection="list" item="id" separator=",">
+            #{id}
+        </foreach>
+        )>1)
+        <foreach collection="">
+
+        </foreach>
     </select>
 
-    <select id="getOrganizationByProductId" resultMap="productMap">
-        select
-    </select>
-
-    <select id="getContactByProductId" resultMap="productMap">
-        select c
-        from contact c,product p
+    <select id="getProductByOrganizationId" resultMap="productMap">
+        select p.*
+        from product p
+        where p.organization_id = #{organizationId}
     </select>
 </mapper>

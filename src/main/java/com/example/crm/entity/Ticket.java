@@ -25,10 +25,10 @@ public class Ticket {
     //种类
     private String category;
     //创建时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date createTime;
     //修改时间
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date modifiedTime;
     //问题严重性
     private Integer severity;

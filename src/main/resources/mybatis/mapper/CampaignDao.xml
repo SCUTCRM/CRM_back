@@ -117,4 +117,10 @@
         from campaign c
         where campaign_id=#{campaignId}
     </select>
+
+    <select id="getCampaignByOrganizationId" resultMap="campaignMap">
+        select c.*
+        from campaign c
+        where c.organization_id = #{organizationId}
+    </select>
 </mapper>
