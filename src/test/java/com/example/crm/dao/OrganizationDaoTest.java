@@ -46,7 +46,7 @@ public class OrganizationDaoTest {
         organization.setBillingCity("广州");
         organization.setWebsite("www.scut.edu.cn");
         organization.setPrimaryPhone("123456");
-        organization.setAssignTo(1);
+        organization.setAssignTo("1");
         organization.setUpdateInfo("插入组织");
         organization.setIsFromLead("Y");
         organization.setOwnerShip("教育部");
@@ -77,7 +77,7 @@ public class OrganizationDaoTest {
         organization.setBillingCity("广州");
         organization.setWebsite("www.scut.edu.cn");
         organization.setPrimaryPhone("123456");
-        organization.setAssignTo(1);
+        organization.setAssignTo("1");
         organization.setUpdateInfo("修改组织");
         organization.setIsFromLead("Y");
         organization.setOwnerShip("教育部");
@@ -114,7 +114,7 @@ public class OrganizationDaoTest {
         organization.setBillingCity("广州");
         organization.setWebsite("www.scut.edu.cn");
         organization.setPrimaryPhone("123456");
-        organization.setAssignTo(1);
+        organization.setAssignTo("1");
         System.out.println(organizationDao.getOrganization(organization));
     }
 

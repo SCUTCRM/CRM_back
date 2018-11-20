@@ -109,4 +109,22 @@ public interface ProductDao {
      * @return 
      */
     Product getProductByOrganizationId(Integer organizationId);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过productId获取产品的父类信息
+     * create time: 2018/11/20 18:57
+     * @Param: null
+     * @return 
+     */
+    Product getParentProduct(int productId);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过productId获取产品的绑定信息
+     * create time: 2018/11/20 18:57
+     * @Param: null
+     * @return
+     */
+    Product getBundleProduct(int productId);
  }

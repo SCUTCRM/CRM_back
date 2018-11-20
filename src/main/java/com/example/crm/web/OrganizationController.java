@@ -1,10 +1,11 @@
 package com.example.crm.web;
 
+import com.example.crm.dao.CommentDao;
 import com.example.crm.dto.OrganizationDto;
-import com.example.crm.entity.Organization;
+import com.example.crm.entity.*;
 import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.ProductException;
-import com.example.crm.service.OrganizationService;
+import com.example.crm.service.*;
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,20 @@ import java.util.List;
 public class OrganizationController {
     @Autowired
     private OrganizationService organizationService;
+    @Autowired
+    private OpportunityService opportunityService;
+    @Autowired
+    private ContactService contactService;
+    @Autowired
+    private DocumentService documentService;
+    @Autowired
+    private CommentDao commentDao;
+    @Autowired
+    private CampaignService campaignService;
+    @Autowired
+    private TicketService ticketService;
+    @Autowired
+    private ProductService productService;
 
     //获取组织信息
     @GetMapping("/organization/organizations")
@@ -56,12 +71,40 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @GetMapping("/organization/getOrganization")
-    private HashMap<String, Object> getOrganization(HttpServletRequest request) {
+    @GetMapping("/organization/getOrganizationById")
+    private HashMap<String, Object> getOrganizationById(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
             Organization organization = organizationService.getOrganizationById(organizationId);
+            resultMap.put("organization", organization);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("/organization/getOrganization")
+    private HashMap<String, Object> getOrganization(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            Organization organization1=new Organization();
+            String organizationName=HttpServletRequestUtil.getString(request, "organizationName");
+            organization1.setOrganizationName(organizationName);
+            String billingCity=HttpServletRequestUtil.getString(request, "billingCity");
+            organization1.setBillingCity(billingCity);
+            String website=HttpServletRequestUtil.getString(request, "website");
+            organization1.setWebsite(website);
+            String primaryPhone=HttpServletRequestUtil.getString(request, "primaryPhone");
+            organization1.setPrimaryPhone(primaryPhone);
+            String assignTo=HttpServletRequestUtil.getString(request, "assignTo");
+            organization1.setAssignTo(assignTo);
+            Organization organization = organizationService.getOrganization(organization1);
             resultMap.put("organization", organization);
             resultMap.put("success", true);
             resultMap.put("code", 200);
@@ -170,6 +213,156 @@ public class OrganizationController {
                 organizations.add(oto);
             }
             resultMap.put("organizations", organizations);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("organization/getUpdateInfo")
+    private HashMap<String, Object> getUpdateInfo(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Organization organization = organizationService.getUpdateInfo(organizationId);
+            resultMap.put("organization", organization);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("organization/getComment")
+    private HashMap<String, Object> getComment(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Organization organization=organizationService.getOrganizationById(organizationId);
+            Comment comment=commentDao.getCommentById(organization.getComment().getCommentId());
+            resultMap.put("comments", comment);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("organization/getContactByOrganizationId")
+    private HashMap<String, Object> getContactByOrganizationId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Contact contact= contactService.getContactByOrganizationId(organizationId);
+            resultMap.put("contact", contact);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("organization/getOpportunityByOrganizationId")
+    private HashMap<String, Object> getOpportunityByOrganizationId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Contact contact= contactService.getContactByOrganizationId(organizationId);
+            Opportunity opportunity=opportunityService.getOpportunityByContactId(contact.getContactId());
+            resultMap.put("opportunity", opportunity);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("/organization/getDocumentByOrganizationId")
+    private HashMap<String, Object> getgetDocumentByOrganizationId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Organization organization=organizationService.getOrganizationById(organizationId);
+            Document document=documentService.getDocumentById(organization.getDocument().getDocumentId());
+            resultMap.put("document", document);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("product/getTicketByOrganizationId")
+    private HashMap<String, Object> getTicketByOrganizationId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Ticket ticket = ticketService.getTicketByOrganizationId(organizationId);
+            resultMap.put("ticket", ticket);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("product/getProductByOrganizationId")
+    private HashMap<String, Object> getProductByOrganizationId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Organization organization=organizationService.getOrganizationById(organizationId);
+            Product product=organization.getProduct();
+            resultMap.put("product", product);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("product/getCampaignByOrganizationId")
+    private HashMap<String, Object> getCampaignByOrganizationId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Organization organization=organizationService.getOrganizationById(organizationId);
+            Product product=organization.getProduct();
+            Campaign campaign=campaignService.getCampaignByProductId(product.getProductId());
+            resultMap.put("campaign", campaign);
             resultMap.put("success", true);
             resultMap.put("code", 200);
             resultMap.put("msg", "数据获取成功");

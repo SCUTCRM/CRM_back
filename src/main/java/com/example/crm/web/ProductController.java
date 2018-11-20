@@ -308,7 +308,7 @@ public class ProductController {
     }
 
     @GetMapping("product/getTicketByProductId")
-    private HashMap<String, Object> getContactByTicketId(HttpServletRequest request) {
+    private HashMap<String, Object> getTicketByProductId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int productId = HttpServletRequestUtil.getInt(request, "productId");

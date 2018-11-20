@@ -89,5 +89,6 @@ public interface ProductService {
      */
     Product getUpdateInfo(Integer productId);
 
+
     //int findDuplicates();
 }

@@ -140,7 +140,13 @@ public class ProductDaoTest {
 
     @Test
     //@Ignore
-    public void findDuplicates() {
-        System.out.println(productDao.findDuplicates());
+    public void getParentProduct() {
+        System.out.println(productDao.getParentProduct(1));
+    }
+
+    @Test
+    //@Ignore
+    public void getBundleProduct() {
+        System.out.println(productDao.getBundleProduct(1));
     }
 }

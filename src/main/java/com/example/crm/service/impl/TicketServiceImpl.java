@@ -92,4 +92,9 @@ public class TicketServiceImpl implements TicketService {
     public Ticket getTicketByProductId(Integer productId) {
         return ticketDao.getTicketByProductId(productId);
     }
+
+    @Override
+    public Ticket getTicketByOrganizationId(Integer organizationId) {
+        return ticketDao.getTicketByOrganizationId(organizationId);
+    }
 }

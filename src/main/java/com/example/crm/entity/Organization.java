@@ -21,7 +21,7 @@ public class Organization {
     //联系电话
     private String primaryPhone;
     //销售代表
-    private Integer assignTo;
+    private String assignTo;
     //更改
     private String updateInfo;
     //是否来自线索
@@ -93,11 +93,11 @@ public class Organization {
         this.primaryPhone = primaryPhone;
     }
 
-    public Integer getAssignTo() {
+    public String getAssignTo() {
         return assignTo;
     }
 
-    public void setAssignTo(Integer assignTo) {
+    public void setAssignTo(String assignTo) {
         this.assignTo = assignTo;
     }
 

@@ -88,4 +88,9 @@ public class CampaignServiceImpl implements CampaignService {
         return campaignDao.getUpdateInfo(campaignId);
     }
 
+    @Override
+    public Campaign getCampaignByProductId(Integer productId) {
+        return campaignDao.getCampaignByProductId(productId);
+    }
+
 }

@@ -18,6 +18,8 @@
         <result column="manufacturer" property="manufacturer"/>
         <result column="description" property="description"/>
         <result column="update_info" property="updateInfo"/>
+        <result column="father_id" property="fatherId"/>
+        <result column="bundle_id" property="bundleId"/>
         <association property="price" column="price_id"
                      javaType="com.example.crm.entity.Price">
             <id column="price_id" property="priceId"/>
@@ -64,8 +66,8 @@
     </select>
 
     <insert id="insertProduct" parameterType="com.example.crm.entity.Product" keyProperty="productId" keyColumn="product_id">
-        insert into product(product_name,part_number,sale_start_date,product_category,active,sale_end_date,product_number,website,ventor_name,ventor_partno,create_time,modified_time,manufacturer,description,update_info,price_id,stock_info_id,document_id)
-        values(#{productName},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{updateInfo},#{price.priceId},#{stockInfo.stockInfoId},#{document.documentId})
+        insert into product(product_name,part_number,sale_start_date,product_category,active,sale_end_date,product_number,website,ventor_name,ventor_partno,create_time,modified_time,manufacturer,description,update_info,price_id,stock_info_id,document_id,father_id,bundle_id)
+        values(#{productName},#{partNumber},#{saleStartDate},#{productCategory},#{active},#{saleEndDate},#{productNumber},#{website},#{ventorName},#{ventorPartno},#{createTime},#{modifiedTime},#{manufacturer},#{description},#{updateInfo},#{price.priceId},#{stockInfo.stockInfoId},#{document.documentId},#{fatherId},#{bundleId})
     </insert>
 
     <update id="updateProduct">
@@ -88,7 +90,9 @@
             <if test="updateInfo != null">update_info = #{updateInfo},</if>
             <if test="price != null and price.priceId != null">price_id = #{price.priceId},</if>
             <if test="stockInfo != null and stockInfo.stockInfoId != null">stock_info_id = #{stockInfo.stockInfoId},</if>
-            <if test="document != null and document.documentId != null">document_id = #{document.documentId}</if>
+            <if test="document != null and document.documentId != null">document_id = #{document.documentId},</if>
+            <if test="fatherId != null">father_id = #{fatherId},</if>
+            <if test="bundleId != null ">bundle_id = #{bundleId}</if>
         </set>
         where product_id = #{productId}
     </update>
@@ -140,5 +144,23 @@
         select p.*
         from product p
         where p.organization_id = #{organizationId}
+    </select>
+
+    <select id="getParentProduct" resultMap="productMap">
+        select p.*
+        from product p,parent_product parent
+        where p.product_id in
+          (select parent.parent_id
+          from parent_product parent
+          where parent.product_id={productId})
+    </select>
+
+    <select id="getBundleProduct" resultMap="productMap">
+         select p.*
+        from product p,product_bundles bundle
+        where p.product_id in
+          (select bundle.bundle2_id
+          from product_bundles bundle
+          where bundle.bundle1_id={productId})
     </select>
 </mapper>

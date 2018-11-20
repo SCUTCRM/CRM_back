@@ -31,6 +31,13 @@ public interface OrganizationService {
      */
     Organization getOrganizationById(Integer organizationId);
 
+    /**
+     * create by: Bin Liu
+     * description: 动态获取组织信息
+     * create time: 2018/11/20 21:03
+     * @Param: null
+     * @return 
+     */
     Organization getOrganization(Organization organization);
 
     /**
@@ -72,5 +79,21 @@ public interface OrganizationService {
      */
     List<Organization> getRecentlyModified();
 
+    /**
+     * create by: Bin Liu
+     * description: 获取组织的更新信息
+     * create time: 2018/11/20 21:05
+     * @Param: null
+     * @return 
+     */
+    Organization getUpdateInfo(Integer organizationId);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过ProductId获取组织信息
+     * create time: 2018/11/20 21:06
+     * @Param: null
+     * @return
+     */
     Organization getOrganizationByProductId(Integer productId);
 }

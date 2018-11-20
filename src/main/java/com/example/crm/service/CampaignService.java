@@ -26,4 +26,6 @@ public interface CampaignService {
     List<Campaign> getRecentlyModified();
 
     Campaign getUpdateInfo(Integer campaignId);
+
+    Campaign getCampaignByProductId(Integer productId);
 }

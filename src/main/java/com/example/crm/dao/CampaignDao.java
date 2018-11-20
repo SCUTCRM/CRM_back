@@ -97,4 +97,13 @@ public interface CampaignDao {
      * @return
      */
     Campaign getUpdateInfo(Integer campaignId);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过productId获得获得信息
+     * create time: 2018/11/20 21:49
+     * @Param: null
+     * @return 
+     */
+    Campaign getCampaignByProductId(Integer productId);
 }

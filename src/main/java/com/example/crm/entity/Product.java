@@ -52,6 +52,10 @@ public class Product {
     private StockInfo stockInfo;
     //文件
     private Document document;
+    //产品父类
+    private Integer fatherId;
+    //产品绑定
+    private Integer bundleId;
 
     public Integer getProductId() {
         return productId;
@@ -203,5 +207,21 @@ public class Product {
 
     public void setDocument(Document document) {
         this.document = document;
+    }
+
+    public Integer getFatherId() {
+        return fatherId;
+    }
+
+    public void setFatherId(Integer fatherId) {
+        this.fatherId = fatherId;
+    }
+
+    public Integer getBundleId() {
+        return bundleId;
+    }
+
+    public void setBundleId(Integer bundleId) {
+        this.bundleId = bundleId;
     }
 }

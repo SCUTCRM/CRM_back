@@ -28,4 +28,6 @@ public interface TicketService {
     Ticket getUpdateInfo(Integer ticketId);
 
     Ticket getTicketByProductId(Integer productId);
+
+    Ticket getTicketByOrganizationId(Integer organizationId);
 }
