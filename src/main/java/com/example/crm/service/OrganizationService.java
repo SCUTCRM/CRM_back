@@ -96,4 +96,13 @@ public interface OrganizationService {
      * @return
      */
     Organization getOrganizationByProductId(Integer productId);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过organizationName获取组织信息
+     * create time: 2018/11/21 9:16
+     * @Param: null
+     * @return
+     */
+    Organization getOrganizationByName(String organizationName);
 }

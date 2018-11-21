@@ -249,7 +249,7 @@ public class OrganizationController {
             int organizationId = HttpServletRequestUtil.getInt(request, "organizationId");
             Organization organization=organizationService.getOrganizationById(organizationId);
             Comment comment=commentDao.getCommentById(organization.getComment().getCommentId());
-            resultMap.put("comments", comment);
+            resultMap.put("comment", comment);
             resultMap.put("success", true);
             resultMap.put("code", 200);
             resultMap.put("msg", "数据获取成功");

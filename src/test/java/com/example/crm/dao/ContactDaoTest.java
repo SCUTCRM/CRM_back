@@ -56,7 +56,7 @@ public class ContactDaoTest {
         contact.setOfficePhone("788");
         contact.setIsFromLead("Y");
         contact.setHomePhone("7887227");
-        contact.setAssignTo(1);
+        contact.setAssignTo("1");
         Address address = new Address();
         address.setAddressId(1);
         contact.setAddress(address);
@@ -91,7 +91,7 @@ public class ContactDaoTest {
         contact.setOfficePhone("788");
         contact.setIsFromLead("Y");
         contact.setHomePhone("788722");
-        contact.setAssignTo(1);
+        contact.setAssignTo("1");
         Address address = new Address();
         address.setAddressId(1);
         contact.setAddress(address);
@@ -136,7 +136,7 @@ public class ContactDaoTest {
         contact.setOrganization(organization);
         contact.setPrimaryEmail("1145054472@qq.com");
         contact.setOfficePhone("788");
-        contact.setAssignTo(1);
+        contact.setAssignTo("1");
         System.out.println(contactDao.getContact(contact));
     }
 

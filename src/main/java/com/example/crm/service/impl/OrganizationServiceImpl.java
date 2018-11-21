@@ -84,7 +84,17 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
+    public Organization getUpdateInfo(Integer organizationId) {
+        return organizationDao.getUpdateInfo(organizationId);
+    }
+
+    @Override
     public Organization getOrganizationByProductId(Integer productId) {
         return organizationDao.getOrganizationByProductId(productId);
+    }
+
+    @Override
+    public Organization getOrganizationByName(String organizationName) {
+        return organizationDao.getOrganizationByName(organizationName);
     }
 }

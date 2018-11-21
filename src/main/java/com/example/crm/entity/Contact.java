@@ -23,7 +23,7 @@ public class Contact {
     //办公室电话
     private String officePhone;
     //分配给
-    private Integer assignTo;
+    private String assignTo;
     //是否是来自于线索 T和F
     private String isFromLead;
     //家的电话
@@ -59,6 +59,8 @@ public class Contact {
     private Address address;
     //文件
     private Document document;
+    //评论
+    private Comment comment;
 
     public Integer getContactId() {
         return contactId;
@@ -140,11 +142,11 @@ public class Contact {
         this.updateInfo = updateInfo;
     }
 
-    public Integer getAssignTo() {
+    public String getAssignTo() {
         return assignTo;
     }
 
-    public void setAssignTo(Integer assignTo) {
+    public void setAssignTo(String assignTo) {
         this.assignTo = assignTo;
     }
 
@@ -242,5 +244,13 @@ public class Contact {
 
     public void setDocument(Document document) {
         this.document = document;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 }
