@@ -1,10 +1,14 @@
 package com.example.crm.web;
 
+import com.example.crm.dao.CommentDao;
 import com.example.crm.dto.LeadsDto;
-import com.example.crm.entity.Leads;
+import com.example.crm.entity.*;
 import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.LeadsException;
+import com.example.crm.service.CampaignService;
+import com.example.crm.service.DocumentService;
 import com.example.crm.service.LeadsService;
+import com.example.crm.service.ProductService;
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +33,14 @@ import java.util.List;
 public class LeadsController {
     @Autowired
     private LeadsService leadsService;
+    @Autowired
+    private CommentDao commentDao;
+    @Autowired
+    private DocumentService documentService;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private CampaignService campaignService;
 
     //获取潜在客户信息
     @GetMapping("/leads/leads")
@@ -60,8 +72,8 @@ public class LeadsController {
     private HashMap<String, Object> getLeadsById(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
-            int leadsId = HttpServletRequestUtil.getInt(request, "leadsId");
-            Leads leads = leadsService.getLeadsById(leadsId);
+            int leadId = HttpServletRequestUtil.getInt(request, "leadId");
+            Leads leads = leadsService.getLeadsById(leadId);
             resultMap.put("leads", leads);
             resultMap.put("success", true);
             resultMap.put("code", 200);
@@ -109,7 +121,7 @@ public class LeadsController {
         HashMap<String, Object> resultMap = new HashMap<>();
         //1.将前端传过来的线索json字符串转换成实体类
         ObjectMapper mapper = new ObjectMapper();
-        String leadsStr = HttpServletRequestUtil.getString(request, "contact");
+        String leadsStr = HttpServletRequestUtil.getString(request, "leads");
         Leads leads = null;
         try {
             leads = mapper.readValue(leadsStr, Leads.class);
@@ -169,6 +181,100 @@ public class LeadsController {
                 leads.add(lto);
             }
             resultMap.put("leads", leads);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("/leads/getUpdateInfo")
+    private HashMap<String, Object> getUpdateInfo(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int leadId = HttpServletRequestUtil.getInt(request, "leadId");
+            Leads lead=leadsService.getLeadsById(leadId);
+            resultMap.put("lead", lead);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("/leads/getComment")
+    private HashMap<String, Object> getComment(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int leadId = HttpServletRequestUtil.getInt(request, "organizationId");
+            Leads lead=leadsService.getLeadsById(leadId);
+            Comment comment=commentDao.getCommentById(lead.getComment().getCommentId());
+            resultMap.put("comment", comment);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("/leads/getDocumentByLeadId")
+    private HashMap<String, Object> getgetDocumentByLeadId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int leadId = HttpServletRequestUtil.getInt(request, "leadId");
+            Leads lead=leadsService.getLeadsById(leadId);
+            Document document=documentService.getDocumentById(lead.getDocument().getDocumentId());
+            resultMap.put("document", document);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("/leads/getProductByLeadId")
+    private HashMap<String, Object> getProductByOrganizationId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int leadId = HttpServletRequestUtil.getInt(request, "leadId");
+            Leads lead=leadsService.getLeadsById(leadId);
+            Product product=productService.getProductById(lead.getProduct().getProductId());
+            resultMap.put("product", product);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("/leads/getCampaignByLeadId")
+    private HashMap<String, Object> getCampaignByOrganizationId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int leadId = HttpServletRequestUtil.getInt(request, "leadId");
+            Leads lead=leadsService.getLeadsById(leadId);
+            Campaign campaign=campaignService.getCampaignByProductId(lead.getProduct().getProductId());
+            resultMap.put("campaign", campaign);
             resultMap.put("success", true);
             resultMap.put("code", 200);
             resultMap.put("msg", "数据获取成功");

@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.entity.Campaign;
 import com.example.crm.entity.Leads;
 
 import java.util.List;
@@ -23,7 +24,9 @@ public interface LeadsService {
 
     List<Leads> getRecentlyModified();
 
-    Leads getLeads(Leads leads);
+    List<Leads> getLeads(Leads leads);
+
+    Leads getUpdateInfo(Integer leadsId);
 
     Leads getLeadsByProductId(Integer productId);
 

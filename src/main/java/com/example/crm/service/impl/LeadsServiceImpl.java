@@ -32,8 +32,13 @@ public class LeadsServiceImpl implements LeadsService {
     }
 
     @Override
-    public Leads getLeads(Leads leads) {
+    public List<Leads> getLeads(Leads leads) {
         return leadsDao.getLeads(leads);
+    }
+
+    @Override
+    public Leads getUpdateInfo(Integer leadsId) {
+        return leadsDao.getUpdateInfo(leadsId);
     }
 
     @Transactional

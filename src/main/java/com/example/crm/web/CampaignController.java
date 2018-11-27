@@ -146,7 +146,7 @@ public class CampaignController {
         return resultMap;
     }
 
-    @PostMapping("/campaigns/update")
+    @PostMapping("/campaign/update")
     private HashMap<String, Object> updateCampaign(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         //1.将前端传过来的活动json字符串转换成实体类
@@ -198,7 +198,7 @@ public class CampaignController {
     }
 
     //获取活动信息
-    @GetMapping("campaign/recentlyModified")
+    @GetMapping("/campaign/recentlyModified")
     private HashMap<String, Object> getRecentlyModified() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -223,7 +223,7 @@ public class CampaignController {
         return resultMap;
     }
 
-    @GetMapping("campaign/getUpdateInfo")
+    @GetMapping("/campaign/getUpdateInfo")
     private HashMap<String, Object> getUpdateInfo(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -241,7 +241,7 @@ public class CampaignController {
         return resultMap;
     }
 
-    @GetMapping("campaign/getContactByCampaignId")
+    @GetMapping("/campaign/getContactByCampaignId")
     private HashMap<String, Object> getContactByCampaignId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -261,7 +261,7 @@ public class CampaignController {
         return resultMap;
     }
 
-    @GetMapping("campaign/getLeadsByCampaignId")
+    @GetMapping("/campaign/getLeadsByCampaignId")
     private HashMap<String, Object> getLeadsByCampaignId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -280,7 +280,7 @@ public class CampaignController {
         return resultMap;
     }
 
-    @GetMapping("campaign/getOpportunityByCampaignId")
+    @GetMapping("/campaign/getOpportunityByCampaignId")
     private HashMap<String, Object> getOpportunityByCampaignId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -299,7 +299,7 @@ public class CampaignController {
         return resultMap;
     }
 
-    @GetMapping("campaign/getOrganizationByCampaignId")
+    @GetMapping("/campaign/getOrganizationByCampaignId")
     private HashMap<String, Object> getOrganizationByProductId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {

@@ -153,7 +153,7 @@ public class ContactController {
     }
 
 
-    @PostMapping("/contacts/update")
+    @PostMapping("/contact/update")
     private HashMap<String, Object> updateContact(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         //1.将前端传过来的联系人json字符串转换成实体类
@@ -205,7 +205,7 @@ public class ContactController {
     }
 
     //获取联系人信息
-    @GetMapping("contact/recentlyModified")
+    @GetMapping("/contact/recentlyModified")
     private HashMap<String, Object> getRecentlyModified() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -230,7 +230,7 @@ public class ContactController {
         return resultMap;
     }
 
-    @GetMapping("contact/getUpdateInfo")
+    @GetMapping("/contact/getUpdateInfo")
     private HashMap<String, Object> getUpdateInfo(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -248,7 +248,7 @@ public class ContactController {
         return resultMap;
     }
 
-    @GetMapping("contact/getComment")
+    @GetMapping("/contact/getComment")
     private HashMap<String, Object> getComment(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -267,7 +267,7 @@ public class ContactController {
         return resultMap;
     }
 
-    @GetMapping("contact/getOpportunityByContactId")
+    @GetMapping("/contact/getOpportunityByContactId")
     private HashMap<String, Object> getOpportunityByProductId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -286,7 +286,7 @@ public class ContactController {
         return resultMap;
     }
 
-    @GetMapping("contact/getTicketByContactId")
+    @GetMapping("/contact/getTicketByContactId")
     private HashMap<String, Object> getTicketByOrganizationId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -306,7 +306,7 @@ public class ContactController {
         return resultMap;
     }
 
-    @GetMapping("contact/getProductByContactId")
+    @GetMapping("/contact/getProductByContactId")
     private HashMap<String, Object> getProductByOrganizationId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -345,7 +345,7 @@ public class ContactController {
         return resultMap;
     }
 
-    @GetMapping("contact/getCampaignByContactId")
+    @GetMapping("/contact/getCampaignByContactId")
     private HashMap<String, Object> getCampaignByOrganizationId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {

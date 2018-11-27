@@ -147,7 +147,7 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @PostMapping("/organizations/update")
+    @PostMapping("/organization/update")
     private HashMap<String, Object> updateOrganization(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         //1.将前端传过来的组织json字符串转换成实体类
@@ -224,7 +224,7 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @GetMapping("organization/getUpdateInfo")
+    @GetMapping("/organization/getUpdateInfo")
     private HashMap<String, Object> getUpdateInfo(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -242,7 +242,7 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @GetMapping("organization/getComment")
+    @GetMapping("/organization/getComment")
     private HashMap<String, Object> getComment(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -261,7 +261,7 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @GetMapping("organization/getContactByOrganizationId")
+    @GetMapping("/organization/getContactByOrganizationId")
     private HashMap<String, Object> getContactByOrganizationId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -279,7 +279,7 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @GetMapping("organization/getOpportunityByOrganizationId")
+    @GetMapping("/organization/getOpportunityByOrganizationId")
     private HashMap<String, Object> getOpportunityByOrganizationId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -317,7 +317,7 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @GetMapping("product/getTicketByOrganizationId")
+    @GetMapping("/organization/getTicketByOrganizationId")
     private HashMap<String, Object> getTicketByOrganizationId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -335,7 +335,7 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @GetMapping("product/getProductByOrganizationId")
+    @GetMapping("/organization/getProductByOrganizationId")
     private HashMap<String, Object> getProductByOrganizationId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
@@ -354,7 +354,7 @@ public class OrganizationController {
         return resultMap;
     }
 
-    @GetMapping("product/getCampaignByOrganizationId")
+    @GetMapping("/organization/getCampaignByOrganizationId")
     private HashMap<String, Object> getCampaignByOrganizationId(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {

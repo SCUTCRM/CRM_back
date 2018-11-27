@@ -208,7 +208,8 @@ CREATE TABLE `leads` (
   `product_id` int(11) NOT NULL COMMENT '产品id',
   `organization_id` int(11) NOT NULL COMMENT '组织id',
   `address_id` int(11) NOT NULL COMMENT '地址id',
-  `document_id` int(11) NOT NULL COMMENT '文件id',
+  `document_id` int(11) DEFAULT NULL COMMENT '文件id',
+  `comment_id` int(11) DEFAULT NULL COMMENT '评论id',
   PRIMARY KEY (`lead_id`),
   KEY `product_id` (`product_id`),
   KEY `organization_id` (`organization_id`),
@@ -217,7 +218,8 @@ CREATE TABLE `leads` (
   CONSTRAINT `leads_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
   CONSTRAINT `leads_ibfk_2` FOREIGN KEY (`organization_id`) REFERENCES `organization` (`organization_id`),
   CONSTRAINT `leads_ibfk_3` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`),
-  CONSTRAINT `leads_ibfk_4` FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`)
+  CONSTRAINT `leads_ibfk_4` FOREIGN KEY (`document_id`) REFERENCES `document` (`document_id`),
+  CONSTRAINT `leads_ibfk_5` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------

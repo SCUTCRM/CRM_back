@@ -82,7 +82,7 @@ public interface LeadsDao {
      * @return
      * @Param: null
      */
-    Leads getLeads(Leads leads);
+    List<Leads> getLeads(Leads leads);
 
     /**
      * create by: Bin Liu
@@ -101,4 +101,13 @@ public interface LeadsDao {
      * @return
      */
     Leads getLeadsByProductId(Integer productId);
+
+    /**
+     * create by: Bin Liu
+     * description: 增加评论
+     * create time: 2018/11/27 22:54
+     * @Param: null
+     * @return
+     */
+    int addComment(Integer productId);
 }
