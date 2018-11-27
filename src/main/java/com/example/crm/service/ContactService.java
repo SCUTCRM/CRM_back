@@ -15,7 +15,7 @@ public interface ContactService {
 
     Contact getContactById(Integer contactId);
 
-    Contact getContact(Contact contact);
+    List<Contact> getContact(Contact contact);
 
     Contact getContactByOrganizationId(Integer organizationId);
 

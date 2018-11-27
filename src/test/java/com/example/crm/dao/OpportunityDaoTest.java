@@ -50,7 +50,7 @@ public class OpportunityDaoTest {
         opportunity.setProb(11.0);
         opportunity.setForcastAmount(11.0);
         opportunity.setIsFromLead("Y");
-        opportunity.setAssignTo(1);
+        opportunity.setAssignTo("1");
         Contact contact = new Contact();
         contact.setContactId(1);
         opportunity.setContact(contact);
@@ -76,7 +76,7 @@ public class OpportunityDaoTest {
         opportunity.setSalesStage("结束阶段");
         opportunity.setForcastAmount(11.0);
         opportunity.setIsFromLead("Y");
-        opportunity.setAssignTo(1);
+        opportunity.setAssignTo("1");
         Contact contact = new Contact();
         contact.setContactId(1);
         opportunity.setContact(contact);
@@ -117,7 +117,7 @@ public class OpportunityDaoTest {
         opportunity.setSalesStage("结束阶段");
         opportunity.setLeadSource("手册");
         opportunity.setForcastAmount(11.0);
-        opportunity.setAssignTo(1);
+        opportunity.setAssignTo("1");
         System.out.println(opportunityDao.getOpportunityById(1));
     }
 

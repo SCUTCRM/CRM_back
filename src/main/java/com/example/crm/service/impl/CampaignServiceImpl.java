@@ -32,7 +32,7 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public Campaign getCampaign(Campaign campaign) {
+    public List<Campaign> getCampaign(Campaign campaign) {
         return null;
     }
 

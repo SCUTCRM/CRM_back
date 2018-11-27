@@ -21,7 +21,7 @@ public class Opportunity {
     //是否是来自于线索 T和F
     private String isFromLead;
     //分配给
-    private Integer assignTo;
+    private String assignTo;
     //销售阶段
     private String salesStage;
     //线索来源
@@ -85,11 +85,11 @@ public class Opportunity {
         this.isFromLead = isFromLead;
     }
 
-    public Integer getAssignTo() {
+    public String getAssignTo() {
         return assignTo;
     }
 
-    public void setAssignTo(Integer assignTo) {
+    public void setAssignTo(String assignTo) {
         this.assignTo = assignTo;
     }
 

@@ -33,7 +33,7 @@ public class ContatcServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact getContact(Contact contact) {
+    public List<Contact> getContact(Contact contact) {
         return contactDao.getContact(contact);
     }
 

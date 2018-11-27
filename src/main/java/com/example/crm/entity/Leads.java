@@ -25,7 +25,7 @@ public class Leads {
     //常用邮箱
     private String primaryEmail;
     //分配给
-    private Integer assignTo;
+    private String assignTo;
     //年收入
     private Double annualRevenue;
     //电话
@@ -111,11 +111,11 @@ public class Leads {
         this.primaryEmail = primaryEmail;
     }
 
-    public Integer getAssignTo() {
+    public String getAssignTo() {
         return assignTo;
     }
 
-    public void setAssignTo(Integer assignTo) {
+    public void setAssignTo(String assignTo) {
         this.assignTo = assignTo;
     }
 

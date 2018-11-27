@@ -49,7 +49,7 @@ public class LeadsDaoTest {
         leads.setWebsite("www.baidu.com");
         leads.setPrimaryEmail("1145054472@qq.com");
         leads.setCompany("谷歌");
-        leads.setAssignTo(1);
+        leads.setAssignTo("1");
         Product product=new Product();
         product.setProductId(1);
         leads.setProduct(product);
@@ -82,7 +82,7 @@ public class LeadsDaoTest {
         leads.setWebsite("www.baidu.com");
         leads.setCompany("腾讯");
         leads.setPrimaryEmail("1145054472@qq.com");
-        leads.setAssignTo(1);
+        leads.setAssignTo("1");
         Product product=new Product();
         product.setProductId(1);
         leads.setProduct(product);
@@ -124,7 +124,7 @@ public class LeadsDaoTest {
         leads.setPrimaryPhone("15766345459");
         leads.setWebsite("www.baidu.com");
         leads.setPrimaryEmail("1145054472@qq.com");
-        leads.setAssignTo(1);
+        leads.setAssignTo("1");
         System.out.println(leadsDao.getLeads(leads));
     }
 

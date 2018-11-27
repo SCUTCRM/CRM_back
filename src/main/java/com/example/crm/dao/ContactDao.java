@@ -59,7 +59,7 @@ public interface ContactDao {
      * @return
      * @Param: null
      */
-    Contact getContact(Contact contact);
+    List<Contact> getContact(Contact contact);
 
     /**
      * create by: Bin Liu

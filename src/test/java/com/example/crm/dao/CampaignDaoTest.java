@@ -45,7 +45,7 @@ public class CampaignDaoTest {
         campaign.setCampaignStatus(1);
         campaign.setExpectedRevenue(100.0);
         campaign.setExpectedCloseDate(new Date());
-        campaign.setAssignTo(1);
+        campaign.setAssignTo("1");
         Product product = new Product();
         product.setProductId(1);
         campaign.setProduct(product);
@@ -65,7 +65,6 @@ public class CampaignDaoTest {
         campaign.setOpportunity(opportunity);
         Document document=new Document();
         document.setDocumentId(1);
-        campaign.setDocument(document);
         System.out.println(campaignDao.insertCampaign(campaign));
     }
 
@@ -78,7 +77,7 @@ public class CampaignDaoTest {
         campaign.setCampaignStatus(1);
         campaign.setExpectedRevenue(100.0);
         campaign.setExpectedCloseDate(new Date());
-        campaign.setAssignTo(1);
+        campaign.setAssignTo("1");
         campaign.setProduct(new Product());
         campaign.setTargetSize(1);
         campaign.setNumSent(1);
@@ -90,9 +89,6 @@ public class CampaignDaoTest {
         campaign.setUpdateInfo("测试更改");
         campaign.setExpActual(new ExpActual());
         campaign.setOpportunity(new Opportunity());
-        Document document=new Document();
-        document.setDocumentId(1);
-        campaign.setDocument(document);
         System.out.println(campaignDao.updateCampaign(campaign));
     }
 
@@ -116,7 +112,7 @@ public class CampaignDaoTest {
         campaign.setCampaignType("足球");
         campaign.setCampaignStatus(1);
         campaign.setExpectedRevenue(100.0);
-        campaign.setAssignTo(1);
+        campaign.setAssignTo("1");
         System.out.println(campaignDao.getCampaign(campaign));
     }
 }

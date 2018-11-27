@@ -38,7 +38,7 @@ public interface OrganizationService {
      * @Param: null
      * @return 
      */
-    Organization getOrganization(Organization organization);
+    List<Organization> getOrganization(Organization organization);
 
     /**
      * create by: Bin Liu

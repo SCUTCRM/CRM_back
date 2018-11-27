@@ -15,7 +15,7 @@ public interface CampaignService {
 
     Campaign getCampaignById(Integer campaignId);
 
-    Campaign getCampaign(Campaign campaign);
+    List<Campaign> getCampaign(Campaign campaign);
 
     int insertCampaign(Campaign campaign);
 

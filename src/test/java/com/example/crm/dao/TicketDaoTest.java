@@ -49,7 +49,7 @@ public class TicketDaoTest {
         ticket.setTitle("thinkpad售后");
         ticket.setStatus(1);
         ticket.setPriority(1);
-        ticket.setAssignTo(1);
+        ticket.setAssignTo("1");
         ticket.setHourNum("5小时");
         ticket.setCategory("电脑");
         ticket.setCreateTime(new Date());
@@ -77,7 +77,7 @@ public class TicketDaoTest {
         ticket.setTitle("macbookpro售后");
         ticket.setStatus(1);
         ticket.setPriority(1);
-        ticket.setAssignTo(1);
+        ticket.setAssignTo("1");
         ticket.setHourNum("5小时");
         ticket.setCategory("电脑");
         ticket.setCreateTime(new Date());
@@ -119,7 +119,7 @@ public class TicketDaoTest {
         Organization organization=organizationDao.getOrganizationByName(organizationName);
         ticket.setStatus(1);
         ticket.setPriority(1);
-        ticket.setAssignTo(1);
+        ticket.setAssignTo("1");
       /*  String firstName="刘";
         String lastName="斌";
         Contact contact=contactDao.getContactByName(firstName,lastName);

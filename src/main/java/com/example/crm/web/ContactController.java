@@ -109,7 +109,8 @@ public class ContactController {
             contact.setOfficePhone(officePhone);
             String assignTo = HttpServletRequestUtil.getString(request, "assignTo");
             contact.setAssignTo(assignTo);
-            resultMap.put("contact", contact);
+            List<Contact> contacts=contactService.getContact(contact);
+            resultMap.put("contacts", contacts);
             resultMap.put("success", true);
             resultMap.put("code", 200);
             resultMap.put("msg", "数据获取成功");

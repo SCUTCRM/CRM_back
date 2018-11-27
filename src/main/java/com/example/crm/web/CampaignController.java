@@ -1,11 +1,13 @@
 package com.example.crm.web;
 
 import com.example.crm.dto.CampaignDto;
-import com.example.crm.entity.Campaign;
-import com.example.crm.entity.Contact;
+import com.example.crm.entity.*;
 import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.CampaignException;
 import com.example.crm.service.CampaignService;
+import com.example.crm.service.LeadsService;
+import com.example.crm.service.OpportunityService;
+import com.example.crm.service.OrganizationService;
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +33,12 @@ import java.util.List;
 public class CampaignController {
     @Autowired
     private CampaignService campaignService;
+    @Autowired
+    private OpportunityService opportunityService;
+    @Autowired
+    private OrganizationService organizationService;
+    @Autowired
+    private LeadsService leadsService;
 
     //获取活动信息
     @GetMapping("campaign/campaigns")
@@ -58,7 +67,7 @@ public class CampaignController {
     }
 
     @GetMapping("/campaign/getCampaignById")
-    private HashMap<String, Object> getCampaign(HttpServletRequest request) {
+    private HashMap<String, Object> getCampaignById(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int campaignId = HttpServletRequestUtil.getInt(request, "campaignId");
@@ -74,6 +83,38 @@ public class CampaignController {
         }
         return resultMap;
     }
+
+    @GetMapping("/campaign/getCampaign")
+    private HashMap<String, Object> getCampaign(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            Campaign campaign=new Campaign();
+            String campaignName = HttpServletRequestUtil.getString(request, "campaignName");
+            campaign.setCampaignName(campaignName);
+            String campaignType =  HttpServletRequestUtil.getString(request, "campaignType");
+            campaign.setCampaignType(campaignType);
+            Integer campaignStatus = HttpServletRequestUtil.getInt(request, "campaignStatus");
+            campaign.setCampaignStatus(campaignStatus);
+            Double expectedRevenue = HttpServletRequestUtil.getDouble(request, "expectedRevenue");
+            campaign.setExpectedRevenue(expectedRevenue);
+            String expectedCloseDate=HttpServletRequestUtil.getString(request,"expectedCloseDate");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            campaign.setExpectedCloseDate(sdf.parse(expectedCloseDate));
+            String assignTo=HttpServletRequestUtil.getString(request,"assignTo");
+            campaign.setAssignTo(assignTo);
+            List<Campaign> campaigns = campaignService.getCampaign(campaign);
+            resultMap.put("campaign", campaign);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
 
     @PostMapping("/campaign/insert")
     private HashMap<String, Object> insertCampaign(HttpServletRequest request) {
@@ -171,6 +212,101 @@ public class CampaignController {
                 campaigns.add(dto);
             }
             resultMap.put("campaigns", campaigns);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("campaign/getUpdateInfo")
+    private HashMap<String, Object> getUpdateInfo(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int campaignId = HttpServletRequestUtil.getInt(request, "campaignId");
+            Campaign campaign = campaignService.getUpdateInfo(campaignId);
+            resultMap.put("campaign", campaign);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("campaign/getContactByCampaignId")
+    private HashMap<String, Object> getContactByCampaignId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int campaignId = HttpServletRequestUtil.getInt(request, "campaignId");
+            Campaign campaign=campaignService.getCampaignById(campaignId);
+            Opportunity opportunity=opportunityService.getOpportunityById(campaign.getOpportunity().getOpportId());
+            Contact contact=opportunity.getContact();
+            resultMap.put("contact", contact);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("campaign/getLeadsByCampaignId")
+    private HashMap<String, Object> getLeadsByCampaignId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int campaignId = HttpServletRequestUtil.getInt(request, "campaignId");
+            Campaign campaign=campaignService.getCampaignById(campaignId);
+            Leads leads = leadsService.getLeadsByProductId(campaign.getProduct().getProductId());
+            resultMap.put("leads", leads);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("campaign/getOpportunityByCampaignId")
+    private HashMap<String, Object> getOpportunityByCampaignId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int campaignId = HttpServletRequestUtil.getInt(request, "campaignId");
+            Campaign campaign=campaignService.getCampaignById(campaignId);
+            Opportunity opportunity=opportunityService.getOpportunityByContactId(campaign.getOpportunity().getOpportId());
+            resultMap.put("opportunity", opportunity);
+            resultMap.put("success", true);
+            resultMap.put("code", 200);
+            resultMap.put("msg", "数据获取成功");
+        } catch (Exception ex) {
+            resultMap.put("success", false);
+            resultMap.put("code", -200);
+            resultMap.put("msg", SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg());
+        }
+        return resultMap;
+    }
+
+    @GetMapping("campaign/getOrganizationByCampaignId")
+    private HashMap<String, Object> getOrganizationByProductId(HttpServletRequest request) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        try {
+            int campaignId = HttpServletRequestUtil.getInt(request, "campaignId");
+            Campaign campaign=campaignService.getCampaignById(campaignId);
+            Organization organization=organizationService.getOrganizationByProductId(campaign.getProduct().getProductId());
+            resultMap.put("organization", organization);
             resultMap.put("success", true);
             resultMap.put("code", 200);
             resultMap.put("msg", "数据获取成功");

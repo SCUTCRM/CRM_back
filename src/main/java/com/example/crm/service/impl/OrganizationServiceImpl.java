@@ -32,7 +32,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public Organization getOrganization(Organization organization) {
+    public List<Organization> getOrganization(Organization organization) {
         return organizationDao.getOrganization(organization);
     }
 

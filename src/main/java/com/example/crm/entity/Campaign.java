@@ -24,7 +24,7 @@ public class Campaign {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm aaa")
     private Date expectedCloseDate;
     //分配给
-    private Integer assignTo;
+    private String assignTo;
     //目标大小
     private Integer targetSize;
     //发送数量
@@ -49,8 +49,6 @@ public class Campaign {
     private ExpActual expActual;
     //机会
     private Opportunity opportunity;
-    //文件
-    private Document document;
 
     public Integer getCampaignId() {
         return campaignId;
@@ -100,11 +98,11 @@ public class Campaign {
         this.expectedCloseDate = expectedCloseDate;
     }
 
-    public Integer getAssignTo() {
+    public String getAssignTo() {
         return assignTo;
     }
 
-    public void setAssignTo(Integer assignTo) {
+    public void setAssignTo(String assignTo) {
         this.assignTo = assignTo;
     }
 
@@ -194,13 +192,5 @@ public class Campaign {
 
     public void setOpportunity(Opportunity opportunity) {
         this.opportunity = opportunity;
-    }
-
-    public Document getDocument() {
-        return document;
-    }
-
-    public void setDocument(Document document) {
-        this.document = document;
     }
 }

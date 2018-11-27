@@ -48,7 +48,7 @@ public interface CampaignDao {
      * @Param: null
      * @return 
      */
-    Campaign getCampaign(Campaign campaign);
+    List<Campaign> getCampaign(Campaign campaign);
 
     /**
      * create by: Bin Liu
