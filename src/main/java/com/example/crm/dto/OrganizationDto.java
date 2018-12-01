@@ -7,22 +7,49 @@ package com.example.crm.dto;
  * @ Modified By：
  */
 public class OrganizationDto {
-    private String value;
-    private Integer id;
+    private String organizationName;
+    private String billingCity;
+    private String website;
+    private String primaryPhone;
+    private String assignTo;
 
-    public String getValue() {
-        return value;
+    public String getOrganizationName() {
+        return organizationName;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 
-    public Integer getId() {
-        return id;
+    public String getBillingCity() {
+        return billingCity;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBillingCity(String billingCity) {
+        this.billingCity = billingCity;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getPrimaryPhone() {
+        return primaryPhone;
+    }
+
+    public void setPrimaryPhone(String primaryPhone) {
+        this.primaryPhone = primaryPhone;
+    }
+
+    public String getAssignTo() {
+        return assignTo;
+    }
+
+    public void setAssignTo(String assignTo) {
+        this.assignTo = assignTo;
     }
 }

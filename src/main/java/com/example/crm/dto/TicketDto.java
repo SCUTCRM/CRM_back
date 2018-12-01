@@ -7,22 +7,58 @@ package com.example.crm.dto;
  * @ Modified By：
  */
 public class TicketDto {
-    private String value;
-    private Integer id;
+    private String title;
+    private String organizationName;
+    private String status;
+    private Integer priority;
+    private String assignTo;
+    private String contactName;
 
-    public String getValue() {
-        return value;
+    public String getTitle() {
+        return title;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Integer getId() {
-        return id;
+    public String getOrganizationName() {
+        return organizationName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    public String getAssignTo() {
+        return assignTo;
+    }
+
+    public void setAssignTo(String assignTo) {
+        this.assignTo = assignTo;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 }

@@ -114,31 +114,15 @@
         where product_id=#{productId}
     </select>
 
-    <!--<select id="findDuplicates" resultMap="productMap">
-        select p.*
-        from product p
-        where
-        <foreach collection="list" item="id" separator=",">
-            #{id}
-        </foreach> in
-        (select
-        <foreach collection="list" item="id" separator=",">
-            #{id}
+    <select id="findDuplicates" resultMap="productMap" parameterType="list">
+        select *
+        from product
+        group by
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id,jdbcType = VARCHAR}
         </foreach>
-        from product p group by
-        <foreach collection="list" item="id" separator=",">
-            #{id}
-        </foreach>
-        having
-        count(
-        <foreach collection="list" item="id" separator=",">
-            #{id}
-        </foreach>
-        )>1)
-        <foreach collection="">
-
-        </foreach>
-    </select>-->
+        having count(*) > 1
+    </select>
 
     <select id="getProductByOrganizationId" resultMap="productMap">
         select p.*

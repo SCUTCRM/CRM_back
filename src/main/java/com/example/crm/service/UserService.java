@@ -2,6 +2,9 @@ package com.example.crm.service;
 
 import com.example.crm.dto.UserResult;
 import com.example.crm.entity.User;
+import com.github.pagehelper.PageInfo;
+
+import java.util.Map;
 
 /**
  * @ Author     ：Bin Liu
@@ -10,6 +13,17 @@ import com.example.crm.entity.User;
  * @ Modified By：
  */
 public interface UserService {
+    /**
+     * create by: Bin Liu
+     * description: 获取用户列表
+     * create time: 2018/11/28 15:49
+     * @param map
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    PageInfo<User> getUserList(Map map, Integer pageNo, Integer pageSize);
+
     /**
      * create by: Bin Liu
      * description: 根据姓名判断用户是否存在
@@ -38,4 +52,13 @@ public interface UserService {
      * @return 
      */   
     UserResult updateUser(User user);
+
+    /**
+     * create by: Bin Liu
+     * description: 根据id删除一个用户
+     * create time: 2018/11/28 15:48
+     * @Param: null
+     * @return 
+     */
+    int deleteUser(Integer id);
 }

@@ -22,6 +22,18 @@
         </association>
     </resultMap>
 
+    <select id="getUserListByParams" resultMap="userMap">
+        select u.*
+        from user u
+        where
+        <if test="userName != null and userName != ''">
+            and u.user_name = #{userName}
+        </if>
+        <if test="phone != null and phone != ''">
+            and u.phone = #{phone}
+        </if>
+    </select>
+
     <!-- 登录用 -->
     <select id="getUser" resultMap="userMap">
         select u.*
@@ -48,4 +60,8 @@
         </set>
         where user_id = #{userId}
     </update>
+
+    <delete id="deleteUser">
+        delete from user where user_id = #{id}
+    </delete>
 </mapper>

@@ -313,7 +313,7 @@ DROP TABLE IF EXISTS `parent_product`;
 CREATE TABLE `parent_product` (
   `father_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '父代信息id',
   `product_id` int(11) NOT NULL COMMENT '产品id',
-  `parent_id` int(11) NOT NULL COMMENT '父代产品id',
+  `parent_id` int(11) DEFAULT NULL COMMENT '父代产品id',
   PRIMARY KEY (`father_id`),
   KEY `product_id` (`product_id`),
   KEY `parent_id` (`parent_id`),
@@ -350,8 +350,10 @@ INSERT INTO `price` VALUES ('4', '14880.00', '0.00');
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '产品id',
-  `product_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '产品名称',
-  `part_number` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '零件号',
+  `product_no` varchar(100) NOT NULL COMMENT '产品no' unique,
+  `product_name` varchar(50) NOT NULL COMMENT '产品名称',
+  `part_number` varchar(30) NOT NULL COMMENT '零件号',
+  
   `product_number` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '产品编号',
   `product_category` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '产品种类',
   `active` int(2) NOT NULL COMMENT '产品是否在售',
@@ -398,7 +400,7 @@ DROP TABLE IF EXISTS `product_bundles`;
 CREATE TABLE `product_bundles` (
   `bundle_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '捆绑信息id',
   `bundle1_id` int(11) NOT NULL COMMENT '捆绑产品1id',
-  `bundle2_id` int(11) NOT NULL COMMENT '捆绑产品1id',
+  `bundle2_id` int(11) NOT NULL COMMENT '捆绑产品2id',
   PRIMARY KEY (`bundle_id`),
   KEY `bundle1_id` (`bundle1_id`),
   KEY `bundle2_id` (`bundle2_id`),

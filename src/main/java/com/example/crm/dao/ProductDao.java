@@ -90,7 +90,7 @@ public interface ProductDao {
      * @Param: null
      * @return 
      */
-    List<Product> findDuplicates();
+    List<Product> findDuplicates(List<Object> list);
 
     /**
      * create by: Bin Liu

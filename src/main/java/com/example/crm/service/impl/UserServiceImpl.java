@@ -7,9 +7,14 @@ import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.enums.UserResultEnum;
 import com.example.crm.exception.UserException;
 import com.example.crm.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ Author     ：Bin Liu
@@ -21,6 +26,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+
+    @Override
+    public PageInfo<User> getUserList(Map map, Integer pageNo, Integer pageSize) {
+        pageNo = pageNo == -1 ? 1 : pageNo;
+        pageSize = pageSize == -1 ? 10 : pageSize;
+        List<User> list = userDao.getUserListByParams(map);
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<User> pageInfo = new PageInfo<>(list);
+        return pageInfo;
+    }
 
     @Override
     public UserResult userExitOrNot(String userName) {
@@ -74,6 +89,19 @@ public class UserServiceImpl implements UserService {
             return userResult;
         }catch (Exception e){
             throw new UserException(SystemErrorEnum.SYSTEM_INNER_ERROR.getMsg(), SystemErrorEnum.SYSTEM_INNER_ERROR.getCode());
+        }
+    }
+
+    @Transactional
+    @Override
+    public int deleteUser(Integer id) {
+        if (id == null) return 0;
+        try {
+            int result = userDao.deleteUser(id);
+            if (result <= 0) return 0;
+            return 1;
+        } catch (Exception e) {
+            throw new RuntimeException("删除失败");
         }
     }
 }
