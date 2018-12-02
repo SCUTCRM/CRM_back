@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.dto.ProductDto;
 import com.example.crm.entity.Leads;
 import com.example.crm.entity.Product;
 
@@ -39,7 +40,7 @@ public interface ProductService {
      * @Param: null
      * @return
      */
-    List<Product> getProduct(Product product);
+    List<ProductDto> getProduct(Product product);
 
     /**
      * create by: Bin Liu

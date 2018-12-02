@@ -114,7 +114,7 @@ public class ContactController {
             contact.setOfficePhone(officePhone);
             String assignTo = HttpServletRequestUtil.getString(request, "assignTo");
             contact.setAssignTo(assignTo);
-            List<Contact> contacts=contactService.getContact(contact);
+            List<ContactDto> contacts=contactService.getContact(contact);
             resultMap.put("contacts", contacts);
             resultMap.put("success", true);
             resultMap.put("code", 200);

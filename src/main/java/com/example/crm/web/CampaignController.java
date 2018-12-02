@@ -106,7 +106,7 @@ public class CampaignController {
             campaign.setExpectedCloseDate(sdf.parse(expectedCloseDate));
             String assignTo=HttpServletRequestUtil.getString(request,"assignTo");
             campaign.setAssignTo(assignTo);
-            List<Campaign> campaigns = campaignService.getCampaign(campaign);
+            List<CampaignDto> campaigns = campaignService.getCampaign(campaign);
             resultMap.put("campaign", campaign);
             resultMap.put("success", true);
             resultMap.put("code", 200);

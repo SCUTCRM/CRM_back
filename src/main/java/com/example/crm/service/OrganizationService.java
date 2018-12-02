@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.dto.OrganizationDto;
 import com.example.crm.entity.Organization;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public interface OrganizationService {
      * @Param: null
      * @return 
      */
-    List<Organization> getOrganization(Organization organization);
+    List<OrganizationDto> getOrganization(Organization organization);
 
     /**
      * create by: Bin Liu

@@ -107,7 +107,7 @@ public class OrganizationController {
             organization1.setPrimaryPhone(primaryPhone);
             String assignTo=HttpServletRequestUtil.getString(request, "assignTo");
             organization1.setAssignTo(assignTo);
-            List<Organization> organizations = organizationService.getOrganization(organization1);
+            List<OrganizationDto> organizations = organizationService.getOrganization(organization1);
             resultMap.put("organizations", organizations);
             resultMap.put("success", true);
             resultMap.put("code", 200);

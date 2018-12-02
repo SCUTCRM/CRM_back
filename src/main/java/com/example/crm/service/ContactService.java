@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.dto.ContactDto;
 import com.example.crm.entity.Contact;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface ContactService {
 
     Contact getContactById(Integer contactId);
 
-    List<Contact> getContact(Contact contact);
+    List<ContactDto> getContact(Contact contact);
 
     Contact getContactByOrganizationId(Integer organizationId);
 

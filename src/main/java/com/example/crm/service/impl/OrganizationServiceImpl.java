@@ -1,6 +1,7 @@
 package com.example.crm.service.impl;
 
 import com.example.crm.dao.OrganizationDao;
+import com.example.crm.dto.OrganizationDto;
 import com.example.crm.entity.Organization;
 import com.example.crm.exception.OrganizationException;
 import com.example.crm.service.OrganizationService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +34,19 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Override
-    public List<Organization> getOrganization(Organization organization) {
-        return organizationDao.getOrganization(organization);
+    public List<OrganizationDto> getOrganization(Organization organization) {
+        List<Organization> organizationList=organizationDao.getOrganization(organization);
+        List<OrganizationDto> organizations = new ArrayList<>();
+        for (Organization o : organizationList) {
+            OrganizationDto oto = new OrganizationDto();
+            oto.setOrganizationName(o.getOrganizationName());
+            oto.setBillingCity(o.getBillingCity());
+            oto.setWebsite(o.getWebsite());
+            oto.setPrimaryPhone(o.getPrimaryPhone());
+            oto.setAssignTo(o.getAssignTo());
+            organizations.add(oto);
+        }
+        return organizations;
     }
 
     @Transactional

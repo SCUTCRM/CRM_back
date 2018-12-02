@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.dto.LeadsDto;
 import com.example.crm.entity.Campaign;
 import com.example.crm.entity.Leads;
 
@@ -24,7 +25,7 @@ public interface LeadsService {
 
     List<Leads> getRecentlyModified();
 
-    List<Leads> getLeads(Leads leads);
+    List<LeadsDto> getLeads(Leads leads);
 
     Leads getUpdateInfo(Integer leadsId);
 

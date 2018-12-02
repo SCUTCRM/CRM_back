@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.dto.OpportunityDto;
 import com.example.crm.entity.Opportunity;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface OpportunityService {
 
     Opportunity getOpportunityById(Integer opportunityId);
 
-    Opportunity getOpportunity(Opportunity opportunity);
+    List<OpportunityDto> getOpportunity(Opportunity opportunity);
 
     int insertOpportunity(Opportunity opportunity);
 

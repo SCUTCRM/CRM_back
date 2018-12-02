@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.dto.TicketDto;
 import com.example.crm.entity.Ticket;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface TicketService {
 
     Ticket getTicketById(Integer ticketId);
 
-    Ticket getTicket(Ticket ticket);
+    List<TicketDto> getTicket(Ticket ticket);
 
     int insertTicket(Ticket ticket);
 

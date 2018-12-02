@@ -1,6 +1,7 @@
 package com.example.crm.service.impl;
 
 import com.example.crm.dao.OpportunityDao;
+import com.example.crm.dto.OpportunityDto;
 import com.example.crm.entity.Opportunity;
 import com.example.crm.exception.OpportunityException;
 import com.example.crm.service.OpportunityService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +34,22 @@ public class OpportunityServiceImpl implements OpportunityService {
     }
 
     @Override
-    public Opportunity getOpportunity(Opportunity opportunity) {
-        return opportunityDao.getOpportunity(opportunity);
+    public List<OpportunityDto> getOpportunity(Opportunity opportunity) {
+        List<Opportunity> opportunityList=opportunityDao.getOpportunity(opportunity);
+        List<OpportunityDto> opportunities = new ArrayList<>();
+        for (Opportunity o : opportunityList) {
+            OpportunityDto oto = new OpportunityDto();
+            oto.setOpportunityName(o.getOpportName());
+            oto.setOrganizationName(o.getContact().getOrganization().getOrganizationName());
+            oto.setSalesStage(o.getSalesStage());
+            oto.setLeadSource(o.getLeadSource());
+            oto.setExpectedCloseDate(o.getExpectedCloseDate());
+            oto.setAmount(o.getForcastAmount());
+            oto.setAssignTo(o.getAssignTo());
+            oto.setContactName(o.getContact().getFirstName());
+            opportunities.add(oto);
+        }
+        return opportunities;
     }
     @Transactional
     @Override

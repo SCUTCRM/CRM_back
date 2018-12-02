@@ -40,7 +40,7 @@ public interface TicketDao {
      * @Param: null
      * @return 
      */
-    Ticket getTicket(Ticket ticket);
+    List<Ticket> getTicket(Ticket ticket);
     /**
      * create by: Bin Liu
      * description: 插入一条售后服务信息

@@ -1,6 +1,7 @@
 package com.example.crm.service.impl;
 
 import com.example.crm.dao.ContactDao;
+import com.example.crm.dto.ContactDto;
 import com.example.crm.entity.Contact;
 import com.example.crm.exception.CampaignException;
 import com.example.crm.exception.ContactException;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,8 +35,21 @@ public class ContatcServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getContact(Contact contact) {
-        return contactDao.getContact(contact);
+    public List<ContactDto> getContact(Contact contact) {
+        List<Contact> contactList=contactDao.getContact(contact);
+        List<ContactDto> contacts = new ArrayList<>();
+        for (Contact c : contactList) {
+            ContactDto cto = new ContactDto();
+            cto.setFirstName(c.getFirstName());
+            cto.setLastName(c.getLastName());
+            cto.setTitle(c.getTitle());
+            cto.setOrganizationName(c.getOrganization().getOrganizationName());
+            cto.setPrimaryEmail(c.getPrimaryEmail());
+            cto.setOfficePhone(c.getOfficePhone());
+            cto.setAssignTo(c.getAssignTo());
+            contacts.add(cto);
+        }
+        return contacts;
     }
 
     @Override

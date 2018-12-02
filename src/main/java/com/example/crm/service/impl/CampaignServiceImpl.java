@@ -1,6 +1,7 @@
 package com.example.crm.service.impl;
 
 import com.example.crm.dao.CampaignDao;
+import com.example.crm.dto.CampaignDto;
 import com.example.crm.entity.Campaign;
 import com.example.crm.exception.CampaignException;
 import com.example.crm.service.CampaignService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +34,20 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
-    public List<Campaign> getCampaign(Campaign campaign) {
-        return null;
+    public List<CampaignDto> getCampaign(Campaign campaign) {
+        List<Campaign> campaignList=campaignDao.getCampaign(campaign);
+        List<CampaignDto> campaigns = new ArrayList<>();
+        for (Campaign c : campaignList) {
+            CampaignDto dto = new CampaignDto();
+            dto.setCampaignName(c.getCampaignName());
+            dto.setCampaignType(c.getCampaignType());
+            dto.setCampaignStatus(c.getCampaignStatus());
+            dto.setExpectedRevenue(c.getExpectedRevenue());
+            dto.setExpectedCloseDate(c.getExpectedCloseDate());
+            dto.setAssignTo(c.getAssignTo());
+            campaigns.add(dto);
+        }
+        return campaigns;
     }
 
     @Transactional

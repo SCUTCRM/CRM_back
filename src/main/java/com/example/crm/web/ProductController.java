@@ -117,7 +117,7 @@ public class ProductController {
             stockInfo1.setUnit(unit);
             StockInfo stockInfo=stockInfoDao.getStockInfo(stockInfo1);
             product.setStockInfo(stockInfo);
-            List<Product> products = productService.getProduct(product);
+            List<ProductDto> products = productService.getProduct(product);
             resultMap.put("products", products);
             resultMap.put("success", true);
             resultMap.put("code", 200);

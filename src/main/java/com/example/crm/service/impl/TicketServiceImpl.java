@@ -1,6 +1,8 @@
 package com.example.crm.service.impl;
 
 import com.example.crm.dao.TicketDao;
+import com.example.crm.dto.TicketDto;
+import com.example.crm.entity.Organization;
 import com.example.crm.entity.Ticket;
 import com.example.crm.exception.TicketException;
 import com.example.crm.service.TicketService;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +35,20 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket getTicket(Ticket ticket) {
-        return ticketDao.getTicket(ticket);
+    public List<TicketDto> getTicket(Ticket ticket) {
+        List<Ticket> ticketList=ticketDao.getTicket(ticket);
+        List<TicketDto> tickets = new ArrayList<>();
+        for (Ticket t : ticketList) {
+            TicketDto tto = new TicketDto();
+            tto.setTitle(t.getTitle());
+            tto.setOrganizationName(t.getOrganization().getOrganizationName());
+            tto.setStatus(t.getStatus());
+            tto.setPriority(t.getPriority());
+            tto.setAssignTo(t.getAssignTo());
+            Organization organization=t.getOrganization();
+            tickets.add(tto);
+        }
+        return tickets;
     }
 
     @Transactional

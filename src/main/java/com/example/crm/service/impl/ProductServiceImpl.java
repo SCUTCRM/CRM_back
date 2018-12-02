@@ -2,6 +2,7 @@ package com.example.crm.service.impl;
 
 import com.example.crm.dao.LeadsDao;
 import com.example.crm.dao.ProductDao;
+import com.example.crm.dto.ProductDto;
 import com.example.crm.entity.Leads;
 import com.example.crm.entity.Product;
 import com.example.crm.exception.OrganizationException;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +37,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProduct(Product product) {
-        return productDao.getProduct(product);
+    public List<ProductDto> getProduct(Product product) {
+        List<Product> productList=productDao.getProduct(product);
+        List<ProductDto> products = new ArrayList<>();
+        for (Product p : productList) {
+            ProductDto pto = new ProductDto();
+            pto.setProductName(p.getProductName());
+            pto.setPartNumber(p.getPartNumber());
+            pto.setCommissionRate(p.getPrice().getCommissionRate());
+            pto.setQtyInStock(p.getStockInfo().getQtyInStock());
+            pto.setUnit(p.getStockInfo().getUnit());
+            pto.setUnitPrice(p.getPrice().getUnitPrice());
+            products.add(pto);
+        }
+        return products;
     }
 
     @Transactional

@@ -1,5 +1,6 @@
 package com.example.crm.service;
 
+import com.example.crm.dto.CampaignDto;
 import com.example.crm.entity.Campaign;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface CampaignService {
 
     Campaign getCampaignById(Integer campaignId);
 
-    List<Campaign> getCampaign(Campaign campaign);
+    List<CampaignDto> getCampaign(Campaign campaign);
 
     int insertCampaign(Campaign campaign);
 

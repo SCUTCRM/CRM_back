@@ -1,6 +1,7 @@
 package com.example.crm.service.impl;
 
 import com.example.crm.dao.LeadsDao;
+import com.example.crm.dto.LeadsDto;
 import com.example.crm.entity.Leads;
 import com.example.crm.exception.LeadsException;
 import com.example.crm.service.LeadsService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +34,21 @@ public class LeadsServiceImpl implements LeadsService {
     }
 
     @Override
-    public List<Leads> getLeads(Leads leads) {
-        return leadsDao.getLeads(leads);
+    public List<LeadsDto> getLeads(Leads leads) {
+        List<Leads> leadsList=leadsDao.getLeads(leads);
+        List<LeadsDto> leadses = new ArrayList<>();
+        for (Leads l : leadsList) {
+            LeadsDto lto = new LeadsDto();
+            lto.setFirstName(l.getFirstName());
+            lto.setLastName(l.getLastName());
+            lto.setCompany(l.getCompany());
+            lto.setPrimaryPhone(l.getPrimaryPhone());
+            lto.setWebsite(l.getWebsite());
+            lto.setPrimaryEmail(l.getPrimaryEmail());
+            lto.setAssignTo(l.getAssignTo());
+            leadses.add(lto);
+        }
+        return leadses;
     }
 
     @Override

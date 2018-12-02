@@ -74,7 +74,7 @@ public interface OpportunityDao {
      * @Param: null
      * @return 
      */
-    Opportunity getOpportunity(Opportunity opportunity);
+    List<Opportunity> getOpportunity(Opportunity opportunity);
 
     /**
      * create by: Bin Liu
