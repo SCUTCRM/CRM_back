@@ -55,8 +55,11 @@ public class OrganizationController {
             List<OrganizationDto> organizations = new ArrayList<>();
             for (Organization o : organizationList) {
                 OrganizationDto oto = new OrganizationDto();
-                oto.setValue(o.getOrganizationName());
-                oto.setId(o.getOrganizationId());
+                oto.setOrganizationName(o.getOrganizationName());
+                oto.setBillingCity(o.getBillingCity());
+                oto.setWebsite(o.getWebsite());
+                oto.setPrimaryPhone(o.getPrimaryPhone());
+                oto.setAssignTo(o.getAssignTo());
                 organizations.add(oto);
             }
             resultMap.put("organizations", organizations);
@@ -203,15 +206,7 @@ public class OrganizationController {
     private HashMap<String, Object> getRecentlyModified() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
-            List<Organization> organizationList = organizationService.getRecentlyModified();
-            //前端只能识别字段为value的值
-            List<OrganizationDto> organizations = new ArrayList<>();
-            for (Organization o : organizationList) {
-                OrganizationDto oto = new OrganizationDto();
-                oto.setValue(o.getOrganizationName());
-                oto.setId(o.getOrganizationId());
-                organizations.add(oto);
-            }
+            List<Organization> organizations= organizationService.getRecentlyModified();
             resultMap.put("organizations", organizations);
             resultMap.put("success", true);
             resultMap.put("code", 200);

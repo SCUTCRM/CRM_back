@@ -52,7 +52,7 @@ public class ProductDaoTest {
     public void insertProduct() {
         Product product = new Product();
         product.setProductName("thinkpad");
-        product.setPartNumber(1);
+        product.setPartNumber("1");
         product.setSaleStartDate(new Date());
         product.setProductCategory("电脑");
         product.setActive("T");
@@ -83,7 +83,7 @@ public class ProductDaoTest {
     public void updateProduct() {
         Product product = productDao.getProductById(3);
         product.setProductName("thinkpad X1");
-        product.setPartNumber(2);
+        product.setPartNumber("2");
         product.setSaleStartDate(new Date());
         product.setProductCategory("电脑");
         product.setActive("F");
@@ -114,7 +114,7 @@ public class ProductDaoTest {
     public void getProduct() {
         Product product = new Product();
         product.setProductName("thinkpad");
-        product.setPartNumber(1);
+        product.setPartNumber("1");
         Price price=new Price();
         price.setUnitPrice(5.0);
         price.setCommissionRate(10.01);

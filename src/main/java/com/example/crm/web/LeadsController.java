@@ -52,8 +52,13 @@ public class LeadsController {
             List<LeadsDto> leads = new ArrayList<>();
             for (Leads l : leadsList) {
                 LeadsDto lto = new LeadsDto();
-                lto.setValue(l.getFirstName());
-                lto.setId(l.getLeadId());
+                lto.setFirstName(l.getFirstName());
+                lto.setLastName(l.getLastName());
+                lto.setCompany(l.getCompany());
+                lto.setPrimaryPhone(l.getPrimaryPhone());
+                lto.setWebsite(l.getWebsite());
+                lto.setPrimaryEmail(l.getPrimaryEmail());
+                lto.setAssignTo(l.getAssignTo());
                 leads.add(lto);
             }
             resultMap.put("leads", leads);
@@ -171,15 +176,7 @@ public class LeadsController {
     private HashMap<String, Object> getRecentlyModified() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
-            List<Leads> leadsList = leadsService.getRecentlyModified();
-            //前端只能识别字段为value的值
-            List<LeadsDto> leads = new ArrayList<>();
-            for (Leads l : leadsList) {
-                LeadsDto lto = new LeadsDto();
-                lto.setValue(l.getFirstName());
-                lto.setId(l.getLeadId());
-                leads.add(lto);
-            }
+            List<Leads> leads = leadsService.getRecentlyModified();
             resultMap.put("leads", leads);
             resultMap.put("success", true);
             resultMap.put("code", 200);

@@ -9,7 +9,7 @@ package com.example.crm.dto;
 public class TicketDto {
     private String title;
     private String organizationName;
-    private String status;
+    private Integer status;
     private Integer priority;
     private String assignTo;
     private String contactName;
@@ -30,11 +30,11 @@ public class TicketDto {
         this.organizationName = organizationName;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

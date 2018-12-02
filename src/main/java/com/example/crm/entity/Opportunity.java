@@ -17,7 +17,7 @@ public class Opportunity {
     //概率
     private Double prob;
     //预测金额
-    private Double forcastAmount;
+    private Integer forcastAmount;
     //是否是来自于线索 T和F
     private String isFromLead;
     //分配给
@@ -69,11 +69,11 @@ public class Opportunity {
         this.prob = prob;
     }
 
-    public Double getForcastAmount() {
+    public Integer getForcastAmount() {
         return forcastAmount;
     }
 
-    public void setForcastAmount(Double forcastAmount) {
+    public void setForcastAmount(Integer forcastAmount) {
         this.forcastAmount = forcastAmount;
     }
 

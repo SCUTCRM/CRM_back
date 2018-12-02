@@ -40,8 +40,14 @@ public class OpportunityController {
             List<OpportunityDto> opportunitys = new ArrayList<>();
             for (Opportunity o : opportunityList) {
                 OpportunityDto oto = new OpportunityDto();
-                oto.setValue(o.getOpportName());
-                oto.setId(o.getOpportId());
+                oto.setOpportunityName(o.getOpportName());
+                oto.setOrganizationName(o.getContact().getOrganization().getOrganizationName());
+                oto.setSalesStage(o.getSalesStage());
+                oto.setLeadSource(o.getLeadSource());
+                oto.setExpectedCloseDate(o.getExpectedCloseDate());
+                oto.setAmount(o.getForcastAmount());
+                oto.setAssignTo(o.getAssignTo());
+                oto.setContactName(o.getContact().getFirstName());
                 opportunitys.add(oto);
             }
             resultMap.put("opportunitys", opportunitys);
@@ -56,8 +62,8 @@ public class OpportunityController {
         return resultMap;
     }
 
-    @GetMapping("/opportunity/getOpportunity")
-    private HashMap<String, Object> getOpportunity(HttpServletRequest request) {
+    @GetMapping("/opportunity/getOpportunityById")
+    private HashMap<String, Object> getOpportunityById(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int opportunityId = HttpServletRequestUtil.getInt(request, "opportunityId");
@@ -160,16 +166,8 @@ public class OpportunityController {
     private HashMap<String, Object> getRecentlyModified() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
-            List<Opportunity> opportunityList = opportunityService.getRecentlyModified();
-            //前端只能识别字段为value的值
-            List<OpportunityDto> opportunitys = new ArrayList<>();
-            for (Opportunity o : opportunityList) {
-                OpportunityDto oto = new OpportunityDto();
-                oto.setValue(o.getOpportName());
-                oto.setId(o.getOpportId());
-                opportunitys.add(oto);
-            }
-            resultMap.put("opportunitys", opportunitys);
+            List<Opportunity> opportunities = opportunityService.getRecentlyModified();
+            resultMap.put("opportunities", opportunities);
             resultMap.put("success", true);
             resultMap.put("code", 200);
             resultMap.put("msg", "数据获取成功");

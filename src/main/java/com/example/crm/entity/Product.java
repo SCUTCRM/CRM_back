@@ -15,7 +15,7 @@ public class Product {
     //产品名称
     private String productName;
     //零件号
-    private Integer partNumber;
+    private String partNumber;
     //销售开始日期
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date saleStartDate;
@@ -57,6 +57,7 @@ public class Product {
     //产品绑定
     private Integer bundleId;
 
+
     public Integer getProductId() {
         return productId;
     }
@@ -73,11 +74,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public Integer getPartNumber() {
+    public String getPartNumber() {
         return partNumber;
     }
 
-    public void setPartNumber(Integer partNumber) {
+    public void setPartNumber(String partNumber) {
         this.partNumber = partNumber;
     }
 

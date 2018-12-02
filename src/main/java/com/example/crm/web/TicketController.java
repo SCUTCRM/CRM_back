@@ -1,11 +1,11 @@
 package com.example.crm.web;
 
-import com.example.crm.dto.ProductDto;
 import com.example.crm.dto.TicketDto;
-import com.example.crm.entity.Product;
+import com.example.crm.entity.Organization;
 import com.example.crm.entity.Ticket;
 import com.example.crm.enums.SystemErrorEnum;
 import com.example.crm.exception.ProductException;
+import com.example.crm.service.ContactService;
 import com.example.crm.service.TicketService;
 import com.example.crm.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +31,8 @@ import java.util.List;
 public class TicketController {
     @Autowired
     private TicketService ticketService;
+    @Autowired
+    private ContactService contactService;
 
     //获取售后信息
     @GetMapping("/ticket/tickets")
@@ -42,8 +44,13 @@ public class TicketController {
             List<TicketDto> tickets = new ArrayList<>();
             for (Ticket t : ticketList) {
                 TicketDto tto = new TicketDto();
-                tto.setValue(t.getTitle());
-                tto.setId(t.getTicketId());
+                tto.setTitle(t.getTitle());
+                tto.setOrganizationName(t.getOrganization().getOrganizationName());
+                tto.setStatus(t.getStatus());
+                tto.setPriority(t.getPriority());
+                tto.setAssignTo(t.getAssignTo());
+                Organization organization=t.getOrganization();
+                tto.setContactName(contactService.getContactByOrganizationId(organization.getOrganizationId()).getFirstName());
                 tickets.add(tto);
             }
             resultMap.put("tickets", tickets);
@@ -58,8 +65,8 @@ public class TicketController {
         return resultMap;
     }
 
-    @GetMapping("/ticket/getTicket")
-    private HashMap<String, Object> getTicket(HttpServletRequest request) {
+    @GetMapping("/ticket/getTicketById")
+    private HashMap<String, Object> getTicketById(HttpServletRequest request) {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
             int ticketId = HttpServletRequestUtil.getInt(request, "ticketId");
@@ -162,15 +169,7 @@ public class TicketController {
     private HashMap<String, Object> getRecentlyModified() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
-            List<Ticket> ticketList = ticketService.getRecentlyModified();
-            //前端只能识别字段为value的值
-            List<TicketDto> tickets = new ArrayList<>();
-            for (Ticket t : ticketList) {
-                TicketDto tto = new TicketDto();
-                tto.setValue(t.getTitle());
-                tto.setId(t.getTicketId());
-                tickets.add(tto);
-            }
+            List<Ticket> tickets = ticketService.getRecentlyModified();
             resultMap.put("tickets", tickets);
             resultMap.put("success", true);
             resultMap.put("code", 200);

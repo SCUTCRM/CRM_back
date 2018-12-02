@@ -12,7 +12,7 @@ import java.util.Date;
 public class CampaignDto {
     private String campaignName;
     private String campaignType;
-    private String campaignStatus;
+    private Integer campaignStatus;
     private Double expectedRevenue;
     private Date expectedCloseDate;
     private String assignTo;
@@ -33,11 +33,11 @@ public class CampaignDto {
         this.campaignType = campaignType;
     }
 
-    public String getCampaignStatus() {
+    public Integer getCampaignStatus() {
         return campaignStatus;
     }
 
-    public void setCampaignStatus(String campaignStatus) {
+    public void setCampaignStatus(Integer campaignStatus) {
         this.campaignStatus = campaignStatus;
     }
 

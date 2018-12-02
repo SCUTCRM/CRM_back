@@ -236,7 +236,7 @@ CREATE TABLE `opportunity` (
   `opport_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '机会id',
   `opport_name` varchar(30) NOT NULL COMMENT '机会名字',
   `prob` double(4,2) NOT NULL COMMENT '概率',
-  `forcast_amount` double(11,2) NOT NULL COMMENT '预测金额',
+  `forcast_amount` int(11) NOT NULL COMMENT '预测金额',
   `is_from_lead` varchar(2) NOT NULL COMMENT '是否是来自于线索',
   `assign_to` varchar(30) NOT NULL COMMENT '分配给',
   `sales_stage` varchar(30) NOT NULL COMMENT '销售阶段',

@@ -50,8 +50,12 @@ public class CampaignController {
             List<CampaignDto> campaigns = new ArrayList<>();
             for (Campaign c : campaignList) {
                 CampaignDto dto = new CampaignDto();
-                dto.setValue(c.getCampaignType());
-                dto.setId(c.getCampaignId());
+                dto.setCampaignName(c.getCampaignName());
+                dto.setCampaignType(c.getCampaignType());
+                dto.setCampaignStatus(c.getCampaignStatus());
+                dto.setExpectedRevenue(c.getExpectedRevenue());
+                dto.setExpectedCloseDate(c.getExpectedCloseDate());
+                dto.setAssignTo(c.getAssignTo());
                 campaigns.add(dto);
             }
             resultMap.put("campaigns", campaigns);
@@ -202,15 +206,7 @@ public class CampaignController {
     private HashMap<String, Object> getRecentlyModified() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
-            List<Campaign> campaignList = campaignService.getRecentlyModified();
-            //前端只能识别字段为value的值
-            List<CampaignDto> campaigns = new ArrayList<>();
-            for (Campaign c : campaignList) {
-                CampaignDto dto = new CampaignDto();
-                dto.setValue(c.getCampaignType());
-                dto.setId(c.getCampaignId());
-                campaigns.add(dto);
-            }
+            List<Campaign> campaigns = campaignService.getRecentlyModified();
             resultMap.put("campaigns", campaigns);
             resultMap.put("success", true);
             resultMap.put("code", 200);

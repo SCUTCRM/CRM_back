@@ -55,8 +55,13 @@ public class ContactController {
             List<ContactDto> contacts = new ArrayList<>();
             for (Contact c : contactList) {
                 ContactDto cto = new ContactDto();
-                cto.setValue(c.getFirstName());
-                cto.setId(c.getContactId());
+                cto.setFirstName(c.getFirstName());
+                cto.setLastName(c.getLastName());
+                cto.setTitle(c.getTitle());
+                cto.setOrganizationName(c.getOrganization().getOrganizationName());
+                cto.setPrimaryEmail(c.getPrimaryEmail());
+                cto.setOfficePhone(c.getOfficePhone());
+                cto.setAssignTo(c.getAssignTo());
                 contacts.add(cto);
             }
             resultMap.put("contacts", contacts);
@@ -209,15 +214,7 @@ public class ContactController {
     private HashMap<String, Object> getRecentlyModified() {
         HashMap<String, Object> resultMap = new HashMap<>();
         try {
-            List<Contact> contactList = contactService.getRecentlyModified();
-            //前端只能识别字段为value的值
-            List<ContactDto> contacts = new ArrayList<>();
-            for (Contact c : contactList) {
-                ContactDto cto = new ContactDto();
-                cto.setValue(c.getFirstName());
-                cto.setId(c.getContactId());
-                contacts.add(cto);
-            }
+            List<Contact> contacts = contactService.getRecentlyModified();
             resultMap.put("contacts", contacts);
             resultMap.put("success", true);
             resultMap.put("code", 200);
